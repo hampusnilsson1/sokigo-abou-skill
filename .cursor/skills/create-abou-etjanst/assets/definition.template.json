@@ -1,0 +1,31 @@
+{
+  "shortName": "KORTNAMN",
+  "displayName": "Visningsnamn",
+  "organisationName": "Nämnd",
+  "serviceNr": 1,
+  "availableCitizen": true,
+  "availableCompany": false,
+  "requiresAuthentication": true,
+  "requiresSignature": true,
+  "requireEID": true,
+  "isEnabled": false,
+  "updatedBy": "hani001",
+  "updatedByName": "Hampus Nilsson",
+  "infoHtml": "<p>Ingress.</p>",
+  "thankYouHtml": "<p>Tack för din ansökan.</p>",
+  "pages": [
+    {
+      "name": "Uppgifter",
+      "displayName": "Uppgifter",
+      "showInSummary": true,
+      "fields": [
+        {
+          "id": 10,
+          "type": "EGovTextField",
+          "question": "Fråga",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
