@@ -153,7 +153,11 @@ Encrypted digital mailbox (Kivra, Min myndighetspost, Bring Digimail). Full prod
 
 ## Handläggare kan redigera svarsalternativ på ett inskickat ärende
 
-Combined with behörighet-per-alternativ: dialog warns that the field drives rights; picking an alternative they do not have makes the case unavailable to them. Standalone page steps: [catalog.md](catalog.md) title *Handläggare kan redigera svarsalternativ för ett inskickat ärende* — do not invent extra UI.
+On **rullistor, kryssrutor, radioknappar**: field argument **Svar redigerbart av handläggare** = `True`. After submit, handläggare change that answer on the **ärendedetaljvy**.
+
+Typical: felanmälan where the citizen picked the wrong förvaltning — change the choice so the case routes internally. If **Meddelande per svarsalternativ** is on, a **new** funktionsbrevlåda mail goes out for the new choice (builder `messages.md`).
+
+Combined with behörighet-per-alternativ: dialog warns that the field drives rights; picking an alternative they do not have makes the case unavailable to them.
 
 ## Synkronisera användare med AD
 

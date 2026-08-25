@@ -61,11 +61,12 @@ Same Lägg till / namn / mall / Testa / Spara / Sortera flow as Tjänster, but t
 
 **2020.11 and earlier:** tabs like Min sida, Köplatser och bokningar, Direktmeddelanden, Mina ärenden, Mina uppgifter.
 
-**Funktioner som stöds** on Min sida:
+**Funktioner som stöds** on Min sida (2021.2 list):
 
 - Signera som medsökande / attestera
 - Ångra ärende not yet signed by medsökande ([functionality.md](functionality.md))
-- Komplettera (when allowed / when requested)
+- Komplettera where the service allows it
+- Komplettera when handläggare begärt komplettering
 - Tacka ja/nej till köerbjudande
 - Betala årlig köavgift
 - Avboka bokning
@@ -73,6 +74,26 @@ Same Lägg till / namn / mall / Testa / Spara / Sortera flow as Tjänster, but t
 - Ta del av handläggarbilagor
 - Svara på direktmeddelanden
 
-**2024.2:** organisation with **pages as top level** (custom navigation / grouping instead of the older tab strip). Wiki title: *Min sida efter 2024.2, med sidor som översta nivå*.
+## Min sida efter 2024.2 (sidor som översta nivå)
 
-**Min sida Plus:** enhanced Min sida (Sokigo product variant). Do not invent widget lists; if the live site and this file disagree, trust the live site.
+From **2024.2** the top level is **sidor** (they appear in the toppmeny). Previously the top level was kategorier. A sida is text + **komponenter**. Two component types today (more may come):
+
+| Komponent | What it is |
+| --- | --- |
+| **Inbäddad kategori** | Inline list (e.g. things to do, started applications) |
+| **Bildkortsmeny** | Image you click to reveal the content |
+
+Treat sidor as **permanent** menu entries so Min sida feels familiar. Show/hide **inside** the page (components and their content), do not hide the whole sida.
+
+A sida is the CMS-like entry point for the **logged-in** person.
+
+### Standard Min sida (not editable layout)
+
+Two sidor:
+
+1. **Att göra** — two inbäddade kategorier: **Att göra** and **Påbörjade ansökningar**
+2. **Mina ärenden** — two bildkortsmenyer: **Pågående ärenden** and **Avslutade ärenden**
+
+### Min sida Plus
+
+Customers with Plus can arrange sidor and komponenter themselves. External content from other systems is often put on **own sidor**. Do not invent extra widget types; if the live site disagrees, trust the live site.

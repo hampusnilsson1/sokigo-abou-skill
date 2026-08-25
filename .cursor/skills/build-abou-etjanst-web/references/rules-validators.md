@@ -61,6 +61,7 @@ Also mentioned on field properties: **standardvalidering (obligatoriskt fält)**
 | Dold | True | Always hidden |
 | Aktiverad | False | Read-only (e.g. prefilled) |
 | Aktivera meddelande per svarsalternativ | True | Different email recipients per choice |
+| Svar redigerbart av handläggare | True | After submit, handläggare can change this choice on the case ([functionality.md](../../abou-platform/references/functionality.md)) |
 | Datumformat | e.g. `yyyy-MM-dd HH:mm` | Booking / ärendeväljare |
 | Visar sluttid | True/False | Booking interval display |
 | Antal ärenden att visa | Positive int | Recent cases |

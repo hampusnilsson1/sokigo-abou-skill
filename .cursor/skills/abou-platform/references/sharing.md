@@ -1,7 +1,7 @@
 # Dela e-tjänster med andra
 
-Municipalities can share an e-tjänst definition (not live cases) via Sokigo **Provrummet**.
+**Provrummet** is Sokigo’s shared catalog of e-tjänster that customers have built in Abou. You can **test** those services there and **export** them, then **import** into your own Abou.
 
-FAQ answer: there is an e-tjänst on Provrummet named **Dela e-tjänster med andra** used for this. Import still grants only **Redaktör** ([faq.md](faq.md), [admin.md](admin.md) import/export). Booking slots do not import; Python `SlotFilter` code does.
+To publish one of yours into Provrummet, Sokigo provides an e-tjänst on Provrummet named **Dela e-tjänster med andra**. That is not the same as Admin zip export between your own test/prod.
 
-Full Confluence steps (how to package, who receives, what is stripped) are filled in when the wiki page is ingested below. Do not invent a public “app store” or assume ZIP export from Admin is the same as this Provrummet flow.
+After import: only **Redaktör** is granted ([faq.md](faq.md), [admin.md](admin.md)). Booking slots do not import; Python `SlotFilter` code does. Rights and editorial texts follow the usual import rules ([operations.md](operations.md)).

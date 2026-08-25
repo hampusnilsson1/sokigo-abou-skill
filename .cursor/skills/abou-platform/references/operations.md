@@ -23,6 +23,27 @@
 
 Also: publishing ≠ activating; empty menygrupper stay hidden; blankett is a separate publish tick; Python needs **Redigera och exekvera Python-kod**; ThankYou Python plugin may need app-pool recycle (builder `logic.md`); test mail often hits a generic mailbox ([faq.md](faq.md)); do not delete a production e-tjänst until cases/köer/bokningar are gone ([admin.md](admin.md)).
 
-## Deployprocess
+## Deployprocess (Sokigo platform release)
 
-Sokigo’s own hosting/deploy pipeline is a separate wiki page. Until that page is copied here: do not invent IIS slots or who clicks deploy. Kundservice/Support process is not in this skill.
+Customer-facing process for a **new Abou version** (not the same as importing one e-tjänst — that is the checklist above). Sokigo usually books a **full day** (deploy + their tests).
+
+### Cadence
+
+1. Deploy to **test**
+2. Customer has **2–3 weeks** to test and feed back
+3. Sokigo adjusts
+4. Deploy to **prod** (usually faster than test)
+
+### What Sokigo does on each environment
+
+**Test:** systemtest + funktionstest after deploy. Kundansvarig reports results (often same afternoon or next day). During deploy they **lock** the platform; visitors see a maintenance text (standard texts exist; customer can choose wording, e.g. estimated date/time).
+
+**Prod:** same tests, same lock, results usually **the same day**.
+
+### After go-live
+
+- Support: `kundservice@sokigo.com`
+- The site is on the **latest** Abou version; new features/fixes are listed per release (not copied into this skill)
+- Cost of a deploy: ask kundansvarig
+
+Do not invent IIS slots or who clicks the actual deploy.
