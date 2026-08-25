@@ -99,6 +99,6 @@ Amount (provider units may differ), PayedBy (Citizen; docs note it “borde heta
 
 **PaymentType:** Applicant, CoApplicant.
 
-**ProposalFilterType** (string values on Confluence): include *Inväntar publicering*, *Röstning pågår*, and related e-förslag filters — confirm spelling on the live page if you need an exact match.
+**ProposalFilterType** (e-förslag list filters): *Inväntar publicering*, *Röstning pågår*, *Inväntar ställningstagande*, plus decided statuses *Godkänt* / *Avslaget* / *Besvarat* / *Avslutad*. URL example: `/Citizen/Proposal?status=Godkänt&status=Avslaget` (space as `%20`).
 
 Substitution **`$token$`** list: [../message-tokens.md](../message-tokens.md).
