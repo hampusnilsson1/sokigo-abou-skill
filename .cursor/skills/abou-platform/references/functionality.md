@@ -99,36 +99,109 @@ Same integration. Use when payment in the service is optional, or for **årlig k
 
 Builder: `create-and-settings.md`. FAQ for one vs two guardians: [faq.md](faq.md). Field **Attestlista med sök** is **internal** attest (AD), not citizen guardians — see Attestering below.
 
-## Ångra osignerat ärende
+## Ångra ett ärende som inte har signerats av medsökande
 
-On Min sida: undo a case not yet signed by medsökande. Supported functions list: [min-sida.md](min-sida.md).
+Service Inställningar **Tillåt sökande att ångra ärendet under Min sida** (off by default). While status is **Väntar på medsökandes signatur**, the applicant on Min sida can **Ångra ärende**. The case returns to **utkast** (spara/återuppta): they can change answers and submit again. Related setting **Tillåt sökande att ändra ärendet under Min sida** (builder `create-and-settings.md` / `messages.md`) is the same family of “revert while waiting for co-sign”.
 
-## Attestering (Attestlista med sök)
+## Attestering
 
-Internal multi-approve, **not** vårdnadshavare. Needs **inloggning and signering**. Searchable dropdown. Svarsalternativ: `efternamn|förnamn|identitet|e-post` (all four) or Python `SetOptions`; optional 5th help segment with `{1}` `{2}`.
+Variant of multipelsignering: one or more **attestanter** must answer (with e-sign) before the case is Inkommet and can be handlagd. Needs **inloggning**. Signing from the sökande is usual but **not** a technical requirement.
 
-Mail: **Redigera meddelanden** → send **När sökande har signerat (medsökande finns)** → **Till fält för invånare (E-post)** = this field’s id.
+### Attestlista med sök
 
-Flow: pick chef → **Väntar på medsökandes signatur** → chef **Attestera** on Min sida → **Inkommet**.
+Searchable dropdown. Alternatives: `Efternamn|Förnamn|UID|E-postadress` (all four, pipe-separated). UID = personnummer **or** AD short name, depending how the site identifies users. Or Python `SetOptions`. Optional 5th help segment with `{1}` `{2}`. Common: AD lookup of the user’s chef (`InternalWebSearch`). Builder: `field-types.md`.
 
-Builder field notes: `build-abou-etjanst-web/references/field-types.md`.
+### Notifiering
 
-## Värden som parametrar (URL)
+Same as multi-sign: **När sökande har signerat (medsökande finns)** → **Till fält för invånare (E-post)** = the attest field id. Point them at Min sida.
 
-Prefill from query string into `self.Service.SessionParameters` (string dict, **case sensitive**). Check `in` before indexing. Builder mall: `logic-templates/url-parameters.md`. Example: `Siteurl/Etjänstenamn?Smak=sur&Frukt=citron`.
+### Flow
+
+1. Sökande completes the service (optional own sign).
+2. Status **Väntar på medsökandes signatur** (resurstext — often renamed **Väntar på attest**).
+3. That “när sökande har signerat” mail goes out.
+4. Attestant on Min sida **Att göra** sees **Signera som medsökande** (resurstext — often **Attestera ärende**).
+5. Opens **Ärendesammanfattning**, picks an answer, optional comment/file.
+6. From **V26** default answers are **Bevilja** and **Avslå**. Older **Besvara** is config-only (also in Admin ärendevy).
+7. **Attestera** → signing provider → back to Min sida.
+8. When all attestants have answered: status **Inkommet** — **regardless of Bevilja vs Avslå**. Then “när ärendet inkommit” mails; RestWrapper / ThankYou **PythonPlugin** can change status from the attest answers.
+
+### Ombud / byt attestant
+
+Like multi-sign: handläggare **Hantera attest** on the case — answer as ombud and/or change attestant.
+
+## Värden som parametrar till e-tjänst (from 2019.2)
+
+Query string `?namn=värde` (`&` between pairs) lands in `self.Service.SessionParameters` (string dict, **case sensitive**). Use to know *where* the service was started or to prefill. Builder mall: *Starta e-tjänst med parametrar i url och sedan använda dom* (`logic-templates/url-parameters.md`). Check `in` before indexing.
+
+Example: `https://service.kommunnamn.se/GRUSK?skola=Lyckoskolan&årskurs=3` then Python can prefill school/year or skip pages.
 
 ## Mina meddelanden (DIGG)
 
-Encrypted digital mailbox (Kivra, Min myndighetspost, Bring Digimail). Builder: `integrations/mina-meddelanden.md`. Message malls can target Mina meddelanden.
+Encrypted digital mailbox (Kivra, Min myndighetspost, Bring Digimail). Full product notes: builder `integrations/mina-meddelanden.md`.
 
-## Redaktör kan uppdatera svarsalternativ
+- Citizen must have joined Mina meddelanden **and** chosen this kommun.
+- Service needs **login or integrated personnummer** (lookup is on personnummer). Mallar must be coupled. Sokigo plugin + customer avtal.
+- Separate body for e-post vs Mina meddelanden (falls back to e-post body). Same for företag → else invånare body.
+- Only the **ärende-PDF** can be attached differently vs ordinary e-post. Other case files follow the notifiering tick (go to both).
+- On **beslut**, case files **including the decision file** always go with the MM send.
+- Does **not** replace SMS (SMS has its own mall).
 
-Service Inställningar. Lets Redaktör change choice labels in **produktion** via Redigera texter. Can break logic, integrations, and behörighet-per-alternativ — warnings when those are on.
+## Redaktör kan uppdatera svarsalternativ i produktion (from 3.15)
 
-## AD-uppslag / synka användare
+**Redigera texter** in prod. Typical: seasonal stipend choices. Someone with **Skapa och redigera e-tjänster** must first tick the service Inställningar flag **in test**, then **import** to prod. Can break logic, integrations, and behörighet-per-alternativ — warnings when those are on.
 
-Lookups: login, rights admin UI, assigned handläggare in list/details. LDAP vs IdP: builder `integrations/active-directory.md`. Group names in AD can map to Abou groups (LDAP path).
+## Handläggare kan redigera svarsalternativ på ett inskickat ärende
 
-## Pages still being filled from wiki into this folder
+Combined with behörighet-per-alternativ: dialog warns that the field drives rights; picking an alternative they do not have makes the case unavailable to them. Standalone page steps: [catalog.md](catalog.md) title *Handläggare kan redigera svarsalternativ för ett inskickat ärende* — do not invent extra UI.
 
-Krypterad e-post; Lämnameddelande; skapa nytt ärende från befintligt; e-post vid fel i Abou; handläggare ändrar svarsalternativ på inskickat ärende; responsiv anpassning; stöd för olika typer av e-tjänster. Until those sections exist here, say the skill does not have that page yet — do not invent behaviour.
+## Synkronisera användare med AD
+
+Only with **LDAP** AD login (not IdP). Rights live on **Abou groups that match AD groups**; users need not be created by hand. For mail, Abou still needs the user’s e-post — that is what sync fills.
+
+**Behörigheter → Grupper → Synkronisera användare**: syncs every AD user who sits in an AD group that exists in Abou. Updates name/email; **creates** missing users. **Does not delete** a user who left the AD group (remove in Abou by hand). Synced users **cannot** be edited in Abou and **cannot** get individual e-tjänst or system rights — all via the group.
+
+Import/create service: Redaktör is **not** auto-granted to the synced user; they pick **which group(s)** get the right.
+
+**Sluta synkronisera** on the user: then edit rights in Abou (or inactivate to remove).
+
+Lookups also run at login, on the rights UI, and when showing assigned handläggare. LDAP vs IdP product: builder `integrations/active-directory.md`.
+
+## Krypterad e-post (tilläggsbeställning, from 3.28)
+
+S/MIME on **standardmeddelanden**, aimed at funktionsbrevlådor. Needs cert on the server: encryption cert public `.crt`/`.cer` **and** signing cert private `.pfx`. Recipients need the matching private key to read. Price: kundansvarig.
+
+Tick on the service: **Redigera meddelanden → Standardmeddelanden → Kryptera e-post**. Mall must **not** attach PDF / PDF to Mina meddelanden. **No attachments** on encrypted mail. Extra field content in the body = Razor mall.
+
+## Lavinmeddelande
+
+Banner on **all pages of the external UI** (maintenance, outage). Admin **Texter → Lavinmeddelande**. Right **Uppdatera vanliga texter** = this node. Sysadmin **Uppdatera innehåll** = all nodes in the install.
+
+## Meddelanden per svarsalternativ
+
+Funktionsbrevlåda to different addresses from choice fields. Several such fields allowed on one service. Full builder steps: `build-abou-etjanst-web/references/messages.md`. One address per alternative; optional default address/mall/attachments when an alternative has no override.
+
+## Skapa ett nytt ärende baserat på ett befintligt (from 2019.11)
+
+Not “edit the old case”. A **kompletteringstjänst** maps fields onto a **ursprungstjänst** via integrationsargument. Sokigo enables **CaseServicePlugin**: on submit of the kompletteringstjänst it builds a **new** case from the original + new answers (version history kept). Original case can be closed or left unchanged. Sokigo also wires the two services. Use when a long-lived case must be updated without replaying the whole original e-tjänst (which may have changed).
+
+## Skicka e-postmeddelande vid fel i Abou
+
+Sysadmin mail to a fixed mailbox on failures, including: Paynova/payment, file upload, save case, update status, REST API in/out, menygrupp page load, menygrupp save in Admin, e-leg login, e-leg signing, outbound mail, Navet, SMS, other integrations.
+
+Example: `Abou.Security.Eid.EidProvider.Logout()` with Sirius — logout abort; citizen sees no error page, but ops still get mail.
+
+## Stöd för olika typer av e-tjänster
+
+| Type | Login/sign | Follow case | Extra |
+| --- | --- | --- | --- |
+| Ingen inloggning/signering | none | no Mina ärenden | |
+| Koppling via integrerat personnummer | none | yes | optional file-komplettering (Inställningar) |
+| E-leg | login + sign | yes | Navet/KIR prefill; field-komplettering handläggaren begär; optional file-komplettering |
+| E-leg + multipelsignering | all sökande sign | all sökande | cannot handlägg until all signed |
+| Med beslut | e-leg **or** integrated personnummer | yes | download of beslut = läskvitto (who/when) |
+
+## Responsiv anpassning
+
+Abou **always** ships a responsive citizen UI (phone / tablet / desktop). Wiki browser matrix is historical (iOS 5–9, Android 4.3–6, old Firefox/IE/Chrome/Edge) — do not treat as current support; browsers: [technical/compliance.md](technical/compliance.md).
+

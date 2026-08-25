@@ -40,7 +40,7 @@ Notes: [e-forslag.md](e-forslag.md).
 All Q&A pairs: [faq.md](faq.md).
 
 ### Funktionalitet
-Feature pages: [functionality.md](functionality.md). Remaining thin titles listed at the bottom of that file.
+Feature pages: [functionality.md](functionality.md).
 
 ### Kömodulen
 Beskrivning; Komma Igång; Skapa Ny Kö; Konfigurera En Kö; Handlägga Köer (+ byt köplats, digital betalning, lägg till manuellt, ta bort, uppdatera kontakt, uppdatera registreringsdatum, uppdatera status); Köbetalning; Köer: Hur Gör Invånaren; Köfilter; Kömeddelanden.

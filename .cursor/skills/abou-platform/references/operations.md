@@ -1,15 +1,28 @@
 # Checklista och deploy
 
-Confluence: *Projektdokument, Checklistor Och Processer* — **Checklista: Driftsättning av e-tjänst** and **Deployprocess**.
+## Checklista: driftsättning av e-tjänst
 
-Until those pages are copied into this file, use what is already known elsewhere in the skill:
+### First time (service not in prod yet)
 
-- Builder work in **test**; import to prod grants **Redaktör** only ([admin.md](admin.md), [faq.md](faq.md)).
-- Publishing a service ≠ activating it. Menygrupper can stay hidden if empty. Blankett link is a separate publish tick ([admin.md](admin.md), [document-templates.md](document-templates.md)).
-- Python needs system right **Redigera och exekvera Python-kod**; ThankYou Python plugin may need app-pool recycle (builder `logic.md`).
-- Rights: importer cannot see cases until someone grants Läs/Status/Verksamhetsadmin ([permissions.md](permissions.md)).
-- Integrations (Navet, payment, e-leg, AD, REST) are Sokigo/sysadmin — not finished by a field tick alone.
-- Test mail often hits a generic mailbox, not the real address ([faq.md](faq.md)).
-- Do not delete a production e-tjänst until cases/köer/bokningar are removed ([admin.md](admin.md)).
+1. Export in **test**
+2. Import in **prod** (grants **Redaktör** only — [faq.md](faq.md), [admin.md](admin.md))
+3. Tell Sokigo if the service needs **database wiring** they own (payment, bokning, …) and **when** you will go live
+4. Set handläggare/redaktör rights — **rights do not travel with the import**
+5. Submit a **test case** in prod: logic, texts, messages, PDF. Warn whoever owns the funktionsbrevlåda
+6. Publish under the menygrupp(er) citizens should use
+7. Put the link on the municipal website: `https://<host>/<kortnamn>` (example pattern `https://eservice.engelholm.se/ABOU01`)
 
-Do not invent a Sokigo deploy pipeline (IIS, slots, who clicks deploy). Kundservice/Support process is not in this skill.
+### Change to a service that already exists in prod
+
+1. Export **prod**
+2. Import that zip into **test** (so test matches live)
+3. Edit in **test**
+4. Export **test**
+5. Import into **prod** — normally **do not** take editorial texts with the import
+6. Submit a test case again; warn the funktionsbrevlåda owners
+
+Also: publishing ≠ activating; empty menygrupper stay hidden; blankett is a separate publish tick; Python needs **Redigera och exekvera Python-kod**; ThankYou Python plugin may need app-pool recycle (builder `logic.md`); test mail often hits a generic mailbox ([faq.md](faq.md)); do not delete a production e-tjänst until cases/köer/bokningar are gone ([admin.md](admin.md)).
+
+## Deployprocess
+
+Sokigo’s own hosting/deploy pipeline is a separate wiki page. Until that page is copied here: do not invent IIS slots or who clicks deploy. Kundservice/Support process is not in this skill.

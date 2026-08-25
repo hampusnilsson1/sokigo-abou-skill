@@ -44,7 +44,7 @@ Audience: **Medborgare** / **Företag** / **Förening**. With e-legitimation and
 Same ideas plus:
 
 - **Använd denna e-tjänst som mall** — listed first when creating from a template; does not change runtime behaviour.
-- **Tillåt sökande att ändra ärendet under Min sida** — only with multipelsignering. Applicant can change while status is “Väntar på medsökandes signatur” and the service definition has not changed after submit.
+- **Tillåt sökande att ändra ärendet under Min sida** / **Tillåt sökande att ångra ärendet under Min sida** — with multipelsignering (or attestering). Applicant can revert to utkast while status is **Väntar på medsökandes signatur**. Off by default. [functionality.md](../../abou-platform/references/functionality.md).
 - **Tillåt invånaren att komplettera ärendet med bilaga under Mina ärenden**
 - **Logga ut invånaren vid start av e-tjänst** — anonymity; case not tied to the logged-in user.
 - **Begränsa åtkomst till enbart invånare i kommunen** — Sokigo must set kommunkod; needs login + Navet or KIR.

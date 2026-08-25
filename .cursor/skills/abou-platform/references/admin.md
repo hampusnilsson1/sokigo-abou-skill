@@ -8,7 +8,7 @@ Flik **Administration → Organisationer**. **Skapa ny organisation**. Pencil = 
 
 ## Texter och bild
 
-System **Uppdatera vanliga texter**. Flik **Texter**. Citizen pages + **Handläggarstöd**. Not sammanfattning/tacksida in the e-tjänst help column. **Välj roll**: only infotext + rubrik, not body. Images: upload under **Dokument** first ([document-templates.md](document-templates.md)). Generic theme: **Visa i meny**, **Ordning i menyn**; infobox above body.
+System **Uppdatera vanliga texter**. Flik **Texter**. Citizen pages + **Handläggarstöd**. Not sammanfattning/tacksida in the e-tjänst help column. **Välj roll**: only infotext + rubrik, not body. Images: upload under **Dokument** first ([document-templates.md](document-templates.md)). Generic theme: **Visa i meny**, **Ordning i menyn**; infobox above body. Tab **Lavinmeddelande**: banner on every external page ([functionality.md](functionality.md)). Sysadmin **Uppdatera innehåll** can set one banner for **all nodes**.
 
 E-tjänst texts: left **Redigera texter** (needs **Redaktör** or **Verksamhetsadministrator**). Tabs **Sidtexter** (sidnamn, huvudrubrik, infobox) and **Block och fält** (hjälp, text ovan/under, sometimes svarsalternativ).
 
@@ -38,7 +38,7 @@ System **Administrera vanliga frågor**. Menu **Frågor och svar → Ny fråga**
 
 ## Behörigheter UI
 
-Menu **Behörigheter**. First login: username = password, then change. Per-choice rights: [functionality.md](functionality.md) *Behörighet givet val*.
+Menu **Behörigheter**. First login: username = password, then change. Per-choice rights: [functionality.md](functionality.md) *Behörighet givet val*. LDAP: **Grupper → Synkronisera användare** ([functionality.md](functionality.md)).
 
 ## Integrationslogg
 
