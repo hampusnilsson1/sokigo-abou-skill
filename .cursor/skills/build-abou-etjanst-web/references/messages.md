@@ -73,6 +73,8 @@ Always `$name$` (case-sensitive). Field answers: Razor `@this.Model["AVB.2"]` (n
 
 Useful: `$uniqueID$`, `$registrationNumber$`, `$serviceName$`, `$citizenFirstName$`, `$dateSubmitted$`, `$customerUrl$`. Min sida case URL pattern: `…/Citizen/MyPage2#/cases/$uniqueID$`.
 
+Full token list (kö, bokning, betalning Razor): [message-tokens.md](../../abou-platform/references/message-tokens.md). Case object for dokumentmall / ThankYouAdvanced: [htmlcasemodel.md](../../abou-platform/references/technical/htmlcasemodel.md).
+
 ## Create malls
 
 **Meddelandemallar** in the main menu. Needs permission **Uppdatera texter**. Usage: Automatiskt / Manuellt / Standardmall för statusnotifiering (only one in the system) / handläggare status or tilldelning. Subject can use `$serviceName$` / `$uniqueID$`. Optional case PDF; SMS max 160 characters. Separate body for invånare vs företag; Mina meddelanden has its own editor or falls back to email body.

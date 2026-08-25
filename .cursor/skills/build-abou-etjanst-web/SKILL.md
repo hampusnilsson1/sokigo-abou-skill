@@ -15,7 +15,8 @@ Official docs (logged-in Confluence, space Abou):
 
 - Hub: [Att bygga e-tjänster](https://dok.sokigo.com/pages/viewpage.action?pageId=56918159)
 - Integrations: [Integrationer](https://dok.sokigo.com/display/ABOU/Integrationer)
-- Last read: 2026-08-21
+- Platform (roles, Min sida, köer, REST, CitizenInfo, HtmlCaseModel): [abou-platform](../abou-platform/SKILL.md)
+- Last read (builder + integrations): 2026-08-21. Platform hub: 2026-08-25.
 
 If a UI label in the live builder disagrees with these notes, **trust the live builder** and update the matching reference.
 
@@ -37,6 +38,10 @@ Read the matching file when you:
 | Official mall as a worked example | [logic-templates/INDEX.md](references/logic-templates/INDEX.md) — one mall |
 | How an integration is used | [integrations/INDEX.md](references/integrations/INDEX.md) — one product file |
 | Show/hide without code | [rules-validators.md](references/rules-validators.md) |
+| Who may edit Python / see cases / publish | [abou-platform permissions](../abou-platform/references/permissions.md) |
+| `self.Citizen` / GetCitizen / PersonPost JSON | [CitizenInfo](../abou-platform/references/technical/citizeninfo.md) |
+| `@Model` in dokumentmall / ThankYouAdvanced | [HtmlCaseModel](../abou-platform/references/technical/htmlcasemodel.md) |
+| External REST against cases | [Abou REST API](../abou-platform/references/technical/rest-api.md) |
 
 Do not invent PageNode, `PageLogic`, or adapter methods. If it is not in the library or integration notes, say so.
 
