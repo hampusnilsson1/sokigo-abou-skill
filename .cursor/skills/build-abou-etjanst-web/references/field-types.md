@@ -128,4 +128,4 @@ Pick a previous submitted case to prefill later pages. Needs e-legitimation. Put
 
 Barnomsorgsfält, Barnomsorgsminifält, Beställningsfält, Modersmålsfält, Brandfarlig vara, Heltalssummering, Lånelista, Bygglovsväljare, Anhörigfält, Personallistfält, Textsummering, Dynamiskt funktionsbrevlåde, **Bokningsfält (gammalt)**, **Filuppladdningsfält (gammalt)**, EGovDistanceListField, EGovTextFieldLarge, EGovIframeField.
 
-Current **Bokningsfält** / **Köfält** still exist elsewhere; they cannot use fältregler (see rules-validators.md).
+Current **Bokningsfält** / **Köfält** still exist elsewhere; they cannot use fältregler (see rules-validators.md). Booking field arguments and Admin slot UI: [booking.md](../../abou-platform/references/booking.md). Köfält: [queues.md](../../abou-platform/references/queues.md). Register as svarsalternativ: [registers.md](../../abou-platform/references/registers.md).
