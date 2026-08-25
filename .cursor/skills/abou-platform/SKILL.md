@@ -28,6 +28,7 @@ Start at [references/INDEX.md](references/INDEX.md). Read **one** topic file. Ca
 | Citizen portal, Att göra, villkor, versions | [min-sida.md](references/min-sida.md) |
 | Köer (create, handlägg, payment, citizen flow) | [queues.md](references/queues.md) |
 | Which add-on modules exist | [modules.md](references/modules.md) |
+| Dokumentmallar, blankett-PDF, editerbar PDF | [document-templates.md](references/document-templates.md) |
 | Admin pages (publish, import, organisations, …) | [admin.md](references/admin.md) |
 | Ärendelista, loggbok, diarienummer | [cases.md](references/cases.md) |
 | Bokningsmodulen | [booking.md](references/booking.md) |

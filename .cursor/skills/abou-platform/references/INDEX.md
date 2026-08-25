@@ -16,6 +16,7 @@ Hub: [Abou](https://dok.sokigo.com/display/ABOU). Read 2026-08-25.
 | Bokningsmodulen | [booking.md](booking.md) |
 | Registermodulen | [registers.md](registers.md) |
 | E-förslag | [e-forslag.md](e-forslag.md) |
+| Dokumentmallar, blankett, editerbar PDF | [document-templates.md](document-templates.md) |
 | Feature pages under Funktionalitet | [functionality.md](functionality.md) |
 | `$uniqueID$`, kö/bokning tokens, Razor in mallar | [message-tokens.md](message-tokens.md) |
 | REST API method names | [technical/rest-api.md](technical/rest-api.md) |

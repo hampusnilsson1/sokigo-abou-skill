@@ -4,14 +4,14 @@ Space: [Abou](https://dok.sokigo.com/display/ABOU). Read 2026-08-25.
 
 **Already in `build-abou-etjanst-web`:** *Att bygga e-tjänster* (pageId 56918159) and *Integrationer*. Do not duplicate those here.
 
-**Not ingested as notes (titles only):** Release notes bodies, Community presentations, Webinar, Minut Bygg, Minut Miljö (other products).
+**Not ingested as notes (titles only):** Release notes bodies, Community presentations, Webinar videos, Minut Bygg, Minut Miljö (other products), remaining FAQ article bodies, a few Funktionalitet pages still thin (see [functionality.md](functionality.md)).
 
 ## Abou (main hub)
 
 ### Administrationsidorna
 Administrera Organisationer; Administrera Text Och Bild I Abou; Aktivera/Inaktivera E-Tjänst; Ange Öppettider För En E-Tjänst; Forcera Ärenden (Signera Som Ombud); Frågor Och Svar; Hantera Behörigheter; Hantera Dokument; Importera Och Exportera E-Tjänster; Integrationslogg; Menygrupper; Permanent Borttagning Av Ärenden; Publicera E-Tjänst Och/Eller Blankett; Skicka In Ärende Som Ombud; Statistik Och Rapporter; Systemhändelser; Sök Och Ta Bort Invånare (Personpost); Ta Bort E-Tjänst I Admin; Ändra Organisation För En E-Tjänst; Ändra Texter I E-Tjänster.
 
-Notes: [admin.md](admin.md).
+Notes: [admin.md](admin.md). PDF/dokumentmallar: [document-templates.md](document-templates.md).
 
 ### Ärendehantering
 Ärendelistan Och Ärendedetaljvy; Ärendets Diarienummer; Handlägga Ärenden; Loggboken.

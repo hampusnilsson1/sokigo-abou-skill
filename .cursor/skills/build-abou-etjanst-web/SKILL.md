@@ -98,6 +98,7 @@ These were **not** a complete IronPython or JS SDK on *Att bygga e-tjänster*:
 - [logic-templates/libraries.md](references/logic-templates/libraries.md) — how PageNode, PageLogic, and extra types are used
 - [logic-templates/INDEX.md](references/logic-templates/INDEX.md) — mallar as examples (pick one)
 - [integrations/INDEX.md](references/integrations/INDEX.md) — how each integration is used (pick one)
+- [document-templates.md](references/document-templates.md) — Dokumentmallar, blankett, editerbar PDF
 - [builder-ui.md](references/builder-ui.md) — layout builder, preview, shortcuts
 - [messages.md](references/messages.md) — emails, status notices, co-signer notify
 - [catalog.md](references/catalog.md) — full article list under Att bygga e-tjänster
