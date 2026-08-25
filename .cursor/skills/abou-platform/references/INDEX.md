@@ -1,8 +1,8 @@
 # Abou platform — pick one file
 
-Hub: [Abou](https://dok.sokigo.com/display/ABOU). Read 2026-08-25.
+These files **are** the documentation. The wiki is behind login; do not send the user there. Read 2026-08-25.
 
-**Do not load this whole folder.** Builder pages/fields/Python: [build-abou-etjanst-web](../../build-abou-etjanst-web/SKILL.md). Full page list: [catalog.md](catalog.md).
+**Do not load this whole folder.** Builder pages/fields/Python: [build-abou-etjanst-web](../../build-abou-etjanst-web/SKILL.md). Page list: [catalog.md](catalog.md).
 
 | Need | File |
 | --- | --- |
@@ -18,6 +18,9 @@ Hub: [Abou](https://dok.sokigo.com/display/ABOU). Read 2026-08-25.
 | E-förslag | [e-forslag.md](e-forslag.md) |
 | Dokumentmallar, blankett, editerbar PDF | [document-templates.md](document-templates.md) |
 | Feature pages under Funktionalitet | [functionality.md](functionality.md) |
+| FAQ Q&A | [faq.md](faq.md) |
+| Dela e-tjänster med andra kommuner | [sharing.md](sharing.md) |
+| Checklista driftsättning / deploy | [operations.md](operations.md) |
 | `$uniqueID$`, kö/bokning tokens, Razor in mallar | [message-tokens.md](message-tokens.md) |
 | REST API method names | [technical/rest-api.md](technical/rest-api.md) |
 | `self.Citizen` vs `GetCitizen` vs GetCitizenAsJson | [technical/citizeninfo.md](technical/citizeninfo.md) |

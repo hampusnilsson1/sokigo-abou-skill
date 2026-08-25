@@ -103,7 +103,7 @@ Lock name fields, keep email editable: argument **Endast epost är redigerbart**
 
 The multipelsigneringsfält **cannot** be configured as never required: either tick **Obligatoriskt**, or keep both “require signatures” arguments.
 
-Notify the co-signer: [Koppla meddelandemall till e-tjänst](https://dok.sokigo.com/pages/viewpage.action?pageId=60096727) (see [messages.md](messages.md)).
+Notify the co-signer: [messages.md](messages.md) (*Koppla meddelandemall till e-tjänst*).
 
 ## Payment
 

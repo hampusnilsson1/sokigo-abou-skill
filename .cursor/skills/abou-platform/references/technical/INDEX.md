@@ -13,4 +13,4 @@ Hub: *Teknisk Information & Dokumentation*. Read 2026-08-25.
 
 **Ansvarsfördelning vid drift On Prem** and **Teknisk kravspecifikation - Abou Intern Hosting** are PDFs on Confluence; not transcribed here.
 
-**Abou REST API** is a PDF (*Abou REST API version 2.5.2*, 56 pages). Method names: [rest-api.md](rest-api.md). Request/response schemas: open the PDF. Test endpoints: Sokigo support.
+**Abou REST API** is a PDF (*Abou REST API version 2.5.2*, 56 pages). Method names: [rest-api.md](rest-api.md). Request/response schemas were not transcribed (too large). Ask Sokigo support for the PDF / test endpoints — do not tell the user to log into the wiki.

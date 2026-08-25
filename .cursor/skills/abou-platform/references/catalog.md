@@ -1,10 +1,10 @@
 # Abou space catalog (outside builder + integrations)
 
-Space: [Abou](https://dok.sokigo.com/display/ABOU). Read 2026-08-25.
+Ingested 2026-08-25 from Confluence space Abou. **Answer from the notes files**, not from wiki URLs.
 
-**Already in `build-abou-etjanst-web`:** *Att bygga e-tjänster* (pageId 56918159) and *Integrationer*. Do not duplicate those here.
+**Already in `build-abou-etjanst-web`:** *Att bygga e-tjänster* and *Integrationer*. Do not duplicate those here.
 
-**Not ingested as notes (titles only):** Release notes bodies, Community presentations, Webinar videos, Minut Bygg, Minut Miljö (other products), remaining FAQ article bodies, a few Funktionalitet pages still thin (see [functionality.md](functionality.md)).
+**Not ingested (intentionally):** Release-note bodies, Community presentations, Webinar videos, Minut Bygg, Minut Miljö. REST API request/response schemas (PDF). On-prem hosting PDFs (headings only in compliance). Testpersoner personnummer (never copy into git).
 
 ## Abou (main hub)
 
@@ -29,7 +29,7 @@ Beskrivning; Handläggning Av Bokningar; Skapa Nytt Bokningstillfälle; Återkom
 Notes: [booking.md](booking.md).
 
 ### Dela e-tjänster med andra
-Share catalog / other municipalities. Titles only here.
+Notes: [sharing.md](sharing.md).
 
 ### E-Förslag
 Beskrivning; Skapa E-Tjänst För Att Lämna Förslag; Inställningar; Handlägga Förslag; Handlägga Kommentarer; Rösta Som Ombud; Läsa, Rösta, Dela Och Kommentera; Texter I Invånarvy; E-Förslagsmeddelanden.
@@ -37,12 +37,10 @@ Beskrivning; Skapa E-Tjänst För Att Lämna Förslag; Inställningar; Handlägg
 Notes: [e-forslag.md](e-forslag.md).
 
 ### FAQ
-~30 Q&A pages (AD, fält visa/dölja, hjälptexter, blankettgenerator, roller, en/två vårdnadshavare, ärende-PDF i mail, handläggarnotifiering, ärendenummerformat, dela e-tjänster, taggar, Oracle vs SQL, förhindra inklistring e-post, funktionsbrevlåda per val, följa process, SMS, utskrift, editera sidor, när AD-uppslag, personuppgifter sparas, grafisk anpassning, ärendelista filter, Navet-kostnad, redaktör vid import, inga mail i test, Navet-data, e-leg leverantörer, SQL-databaser, första-inloggning lösenord).
-
-Use the matching topic file; do not invent answers.
+All Q&A pairs: [faq.md](faq.md).
 
 ### Funktionalitet
-~40 feature pages. Index: [functionality.md](functionality.md).
+Feature pages: [functionality.md](functionality.md). Remaining thin titles listed at the bottom of that file.
 
 ### Kömodulen
 Beskrivning; Komma Igång; Skapa Ny Kö; Konfigurera En Kö; Handlägga Köer (+ byt köplats, digital betalning, lägg till manuellt, ta bort, uppdatera kontakt, uppdatera registreringsdatum, uppdatera status); Köbetalning; Köer: Hur Gör Invånaren; Köfilter; Kömeddelanden.
@@ -68,7 +66,9 @@ Schemaläggningsmodul; E-Förslagsmodulen; Betalningsfunktion; Min Sida; Använd
 Notes: [modules.md](modules.md).
 
 ### Projektdokument, Checklistor Och Processer
-Kundservice/Support; Deployprocess; Checklista: Driftsättning Av E-Tjänst. Titles only.
+Kundservice/Support; Deployprocess; Checklista: Driftsättning Av E-Tjänst.
+
+Notes: [operations.md](operations.md).
 
 ### Registermodulen
 Fokuswebinar; Beskrivning; Import Och Export; Redigera Register; Koppla Register Och E-Tjänst; Behörigheter För Register; Text/Värdeseparering.
@@ -76,7 +76,7 @@ Fokuswebinar; Beskrivning; Import Och Export; Redigera Register; Koppla Register
 Notes: [registers.md](registers.md).
 
 ### Release notes
-V26; 2025.11 … back through 2021 and earlier. **Catalog only** — read Confluence for a specific version, do not dump changelogs into the skill.
+V26; 2025.11 … back through 2021 and earlier. **Not copied** into the skill (too large / version-specific). Ask Sokigo or the live wiki for a named version.
 
 ### Schemaläggning
 Beskrivning; Ärendepåminnelser; Bokningspåminnelser; Köplatspåminnelser; Notifiering Vid Röstningsperiodens Slut; Signeringspåminnelse; Skapa Fil; Synkronisera Personuppgifter; Ta Bort Ärenden Mjukt; Ta Bort Ärenden Permanent; Uppdatera Status På Ärende.
@@ -90,5 +90,5 @@ Notes: [technical/INDEX.md](technical/INDEX.md).
 
 ## Other top-level in the space
 
-- **Community** — användarträffar, webinars (titles only).
+- **Community** — användarträffar, webinars (not ingested).
 - **Minut Bygg / Minut Miljö** — other Sokigo products; do not open.

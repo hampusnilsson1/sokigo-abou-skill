@@ -11,12 +11,11 @@ Read [abou-web-guard](../abou-web-guard/SKILL.md) before any browser work. Stay 
 
 ## Source
 
-Official docs (logged-in Confluence, space Abou):
+Official docs were ingested from logged-in Confluence (space Abou). **These skill files are the documentation** — the wiki is behind login and is not available to the agent.
 
-- Hub: [Att bygga e-tjänster](https://dok.sokigo.com/pages/viewpage.action?pageId=56918159)
-- Integrations: [Integrationer](https://dok.sokigo.com/display/ABOU/Integrationer)
-- Platform (roles, Min sida, köer, REST, CitizenInfo, HtmlCaseModel): [abou-platform](../abou-platform/SKILL.md)
-- Last read (builder + integrations): 2026-08-21. Platform hub: 2026-08-25.
+- Builder + integrations: this folder (`references/`). Last read 2026-08-21.
+- Platform (roles, Min sida, köer, REST, CitizenInfo, HtmlCaseModel, FAQ): [abou-platform](../abou-platform/SKILL.md). Last bulk read 2026-08-25.
+- Do not send the user a dok.sokigo.com URL as the answer.
 
 If a UI label in the live builder disagrees with these notes, **trust the live builder** and update the matching reference.
 
@@ -84,7 +83,7 @@ These were **not** a complete IronPython or JS SDK on *Att bygga e-tjänster*:
 - Python: library docs in [libraries.md](references/logic-templates/libraries.md) and [pagenode-api.md](references/logic-templates/pagenode-api.md); mallar are examples. ThankYou `IPythonCaseService` is extra sysadmin. Other Python is “kundens eget ansvar”
 - JavaScript: [client/api.md](references/logic-templates/client/api.md). Other JS is “kundens eget ansvar”
 - Navet **library** for barn/vårdnadshavare is documented in [navet.md](references/integrations/navet.md) plus mallar [navet-dropdown.md](references/logic-templates/navet-dropdown.md) / [navet-table.md](references/logic-templates/navet-table.md).
-- The children-macro **Validatorer** (26 articles) on the hub did not resolve to live pages (404). Use [Konfigurera validatorer](https://dok.sokigo.com/display/ABOU/Konfigurera+Validatorer) instead
+- The children-macro **Validatorer** (26 articles) on the hub did not resolve to live pages (404). Use [rules-validators.md](references/rules-validators.md) (*Konfigurera validatorer*).
 - Navet integration page (`58524277`) describes PersonPost/NamnSökning and properties, **not** a `CitizenServiceProxy` API. Relation lookup is the builder mallar; method names in [navet.md](references/integrations/navet.md) are from those mallar.
 - Most other integrations are product blurbs + Sokigo config. Only **EDP Future** publishes a Python method list.
 

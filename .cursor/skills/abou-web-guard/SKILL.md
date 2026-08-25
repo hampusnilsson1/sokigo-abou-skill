@@ -23,7 +23,7 @@ Current known docs base (when the user pointed here):
 - Prefix: `/pages/` and `/display/ABOU/` (Confluence in the **Abou** space only).
 - In-scope documentation: the whole Abou tree — *Att bygga e-tjänster*, *Integrationer*, *Abou* (behörighet, schemaläggning, Min sida, köer, moduler, admin, teknisk information, …).
 - Out of scope even on this host: other Sokigo products (**Minut Bygg**, **Minut Miljö**), user profiles (`/display/~`), logout, Community file dumps unless the user asked to update those notes.
-- Prefer the skill files (`build-abou-etjanst-web`, `abou-platform`) over browsing. Browse Confluence only to **fill or correct** those files while logged in.
+- **Skill files are the knowledge base.** Answer from `build-abou-etjanst-web` and `abou-platform`. The wiki is behind login; agents usually cannot open it. Browse Confluence only to **fill or correct** those files while the user is already logged in — never as the way to answer a question.
 
 When they later give a builder base (e.g. a municipal Abou host or Provrummet), replace the allowlist for that session. Do not keep using the docs host to open the builder, or the builder host to open unrelated admin.
 

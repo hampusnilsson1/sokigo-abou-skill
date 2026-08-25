@@ -24,13 +24,22 @@ Each row is a button to the action; it disappears when done.
 
 Subset of case history: status changes on cases and köplatser; booking created/cancelled. **Visa** opens the case.
 
-## Direct messages
+## Direct messages (Direktmeddelanden)
 
-Two-way messages with an e-leg-authenticated citizen. Caseworker knows sender/recipient is the logged-in person.
+Two-way thread with an e-leg-authenticated citizen. Caseworker knows sender/recipient is the logged-in person (not a guessed email). Sokigo can hide the menu item; the function can still exist. Service setting **Tillåt invånaren att starta Direktmeddelanden**. Unread threads appear under **Att göra**. Citizen can **Svara på direktmeddelanden** (supported-functions list). Permanent case delete also drops direct messages ([admin.md](admin.md)).
 
 ## Publicering och villkorsstyrning
 
-Min sida content is driven by the logged-in person (age, parent, children’s age, fastighet, VA/avfall subscriptions, …) plus favourited e-tjänster.
+Min sida content is driven by the logged-in person plus favourited e-tjänster. Typical villkor the product uses (wiki: *Publicering och villkorsstyrning*):
+
+- Age of the logged-in person
+- Parent / guardian
+- Children’s age
+- Fastighet
+- VA / avfall subscriptions
+- Other municipality rules, often from a verksamhetssystem (shown as **Egenkonfigurerade villkor** under Att göra, e.g. ByggR unread decision, grannhörning)
+
+Exact operator list and how redaktörer attach a villkor to a menygrupp/page is filled from that Confluence page into this file when ingested. Do not invent extra villkor types.
 
 ## Versions
 
@@ -48,6 +57,6 @@ Min sida content is driven by the logged-in person (age, parent, children’s ag
 - Ta del av handläggarbilagor
 - Svara på direktmeddelanden
 
-**2024.2:** organisation with **pages as top level** (custom navigation / grouping). Details: Confluence *Min sida efter 2024.2, med sidor som översta nivå*.
+**2024.2:** organisation with **pages as top level** (custom navigation / grouping instead of the older tab strip). Wiki title: *Min sida efter 2024.2, med sidor som översta nivå* — steps for creating those pages belong in this file once ingested.
 
 **Min sida Plus:** enhanced Min sida (Sokigo product variant). Do not invent widget lists; if the live site and this file disagree, trust the live site.
