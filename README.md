@@ -14,6 +14,18 @@ Notes come from logged-in Sokigo Confluence (space Abou). Browser work is limite
 
 Agents should open **one** reference file from the matching skill (`references/INDEX.md`), not the whole tree.
 
+## Kunskapsbaser (en fil per skill)
+
+Samma innehåll, samlat till tre markdownfiler som kan laddas in i en annan AI:
+
+| Fil | Skill |
+| --- | --- |
+| [kunskap/abou-web-guard.md](kunskap/abou-web-guard.md) | Web guard |
+| [kunskap/build-abou-etjanst-web.md](kunskap/build-abou-etjanst-web.md) | E-tjänstebyggaren + Integrationer |
+| [kunskap/abou-platform.md](kunskap/abou-platform.md) | Plattform (admin, Min sida, köer, FAQ, REST, …) |
+
+Återskapa: `python3 kunskap/rebuild.py`
+
 ## Use in Cursor
 
 Ask the agent to help **build an e-tjänst in the web builder**, or to explain roles, Min sida, köer, scheduled jobs, or the REST API. It should use Swedish UI names (Layoutsida, Fältregler, Verksamhetsadministrator, Köplatser, …).
