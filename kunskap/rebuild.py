@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Concatenate each Cursor skill into one markdown knowledge-base file."""
+"""Concatenate each Cursor skill into one markdown knowledge-base file for RAG."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -9,6 +10,13 @@ SKILLS = ROOT / ".cursor/skills"
 OUT = Path(__file__).resolve().parent
 
 SKIP_NAMES = {"README.md"}
+SKIP_RELATIVE = {"references/INDEX.md"}
+
+MD_LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+BACKTICK_PATH = re.compile(
+    r"`(?:[^`]*\.md[^`]*|\.\.?/[^`]+|(?:build-abou-etjanst-web|abou-platform|abou-web-guard)[^`]*)`"
+)
+SKILL_PATH = re.compile(r"\.cursor/skills/\S+")
 
 
 def strip_frontmatter(text: str) -> str:
@@ -20,57 +28,97 @@ def strip_frontmatter(text: str) -> str:
     return text[end + 5 :].lstrip("\n")
 
 
+def _replace_md_link(match: re.Match[str]) -> str:
+    label, url = match.group(1), match.group(2)
+    url_l = url.lower()
+    is_file = (
+        url_l.endswith(".md")
+        or ".md#" in url_l
+        or url_l.startswith("references/")
+        or "../" in url
+        or ".cursor" in url_l
+        or url_l.startswith("build-abou")
+        or url_l.startswith("abou-")
+    )
+    if not is_file:
+        return match.group(0)
+    if label.endswith(".md") or "/" in label or label.startswith("references"):
+        return ""
+    return label
+
+
+def strip_skill_refs(text: str) -> str:
+    """Remove pointers to skill files so RAG does not cite them."""
+    text = MD_LINK.sub(_replace_md_link, text)
+    text = BACKTICK_PATH.sub("", text)
+    text = SKILL_PATH.sub("", text)
+    text = re.sub(r"\b[\w./-]+\.md\b", "", text)
+    text = re.sub(r"`references/`", "", text)
+    text = re.sub(r"this folder \(\s*\)", "this documentation", text)
+    text = re.sub(r":\s*\.(?=\s|$)", ".", text)
+    text = re.sub(r"(?i)^notes:\s*$", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\(\s*\)", "", text)
+    text = re.sub(r"\s+—\s*\.", ".", text)
+    text = re.sub(r"\b[Ss]ee\s*\.", "", text)
+    text = re.sub(r":\s*,(?:\s*,)*\s*\.?", ".", text)
+    text = re.sub(r",\s*\.", ".", text)
+    text = re.sub(r"[ \t]+\n", "\n", text)
+    text = re.sub(r" +", " ", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip() + "\n"
+
+
 def collect_md(skill_dir: Path, ordered: list[str] | None = None) -> list[Path]:
     files: list[Path] = []
     seen: set[Path] = set()
 
     def add(rel: str) -> None:
         p = skill_dir / rel
-        if p.is_file() and p not in seen:
+        if p.is_file() and p not in seen and p.name not in SKIP_NAMES:
+            rel = p.relative_to(skill_dir).as_posix()
+            if rel in SKIP_RELATIVE:
+                return
             files.append(p)
             seen.add(p)
 
-    add("SKILL.md")
+    if skill_dir.name == "abou-web-guard":
+        add("SKILL.md")
     for rel in ordered or []:
         add(rel)
 
     remaining = sorted(
         p
         for p in skill_dir.rglob("*.md")
-        if p not in seen and p.name not in SKIP_NAMES
+        if p not in seen
+        and p.name not in SKIP_NAMES
+        and p.relative_to(skill_dir).as_posix() not in SKIP_RELATIVE
+        and not (p.name == "SKILL.md" and skill_dir.name != "abou-web-guard")
     )
     files.extend(remaining)
     return files
 
 
-def render(skill_id: str, title: str, blurb: str, files: list[Path], skill_dir: Path) -> str:
+def render(title: str, blurb: str, files: list[Path]) -> str:
     parts: list[str] = [
         f"# {title}",
         "",
         blurb,
         "",
-        "Detta är en **sammanslagen kunskapsfil** för en AI. All kunskap från skillen "
-        f"`{skill_id}` ligger här. Svara från den här filen. Hitta inte på API:er, "
-        "behörigheter eller fält som inte står här. Svenska UI-namn från Abou gäller.",
+        "Detta är en **självständig kunskapsfil för RAG**. Svara från den här texten. "
+        "Hitta inte på API:er, behörigheter eller fält som inte står här. "
+        "Svenska UI-namn från Abou gäller. Referera inte till interna dokumentationsfiler.",
         "",
-        "Källfiler (samma innehåll som under `.cursor/skills/`):",
+        "---",
         "",
     ]
     for p in files:
-        rel = p.relative_to(skill_dir).as_posix()
-        parts.append(f"- `{rel}`")
-    parts += ["", "---", ""]
-
-    for p in files:
-        rel = p.relative_to(skill_dir).as_posix()
-        body = strip_frontmatter(p.read_text(encoding="utf-8")).rstrip() + "\n"
-        parts.append(f"## Källa: `{rel}`")
-        parts.append("")
-        parts.append(body)
+        body = strip_skill_refs(strip_frontmatter(p.read_text(encoding="utf-8")))
+        if not body.strip():
+            continue
+        parts.append(body.rstrip())
         parts.append("")
         parts.append("---")
         parts.append("")
-
     return "\n".join(parts).rstrip() + "\n"
 
 
@@ -80,12 +128,10 @@ def main() -> None:
     guard_dir = SKILLS / "abou-web-guard"
     (OUT / "abou-web-guard.md").write_text(
         render(
-            "abou-web-guard",
             "Abou web guard — kunskapsbas",
             "Begränsar webbläsararbete till allowlistad dokumentation eller byggare. "
             "Läs före varje webbläsaranrop mot Sokigo/Abou.",
             collect_md(guard_dir),
-            guard_dir,
         ),
         encoding="utf-8",
     )
@@ -148,12 +194,10 @@ def main() -> None:
     ]
     (OUT / "build-abou-etjanst-web.md").write_text(
         render(
-            "build-abou-etjanst-web",
             "Bygg Abou e-tjänst — kunskapsbas",
             "All kunskap för **e-tjänstebyggaren**: sidor, fält, fältregler, validatorer, "
             "Python/JS-bibliotek, logikmallar och Integrationer (Navet, REST, betalning, AD, EDP, …).",
             collect_md(builder_dir, builder_order),
-            builder_dir,
         ),
         encoding="utf-8",
     )
@@ -186,13 +230,11 @@ def main() -> None:
     ]
     (OUT / "abou-platform.md").write_text(
         render(
-            "abou-platform",
             "Abou-plattform — kunskapsbas",
             "All kunskap utanför byggaren: behörigheter, admin, ärenden, Min sida, köer, "
             "bokning, register, e-förslag, schemaläggning, dokumentmallar, FAQ, Funktionalitet, "
             "REST-metodnamn, CitizenInfo, HtmlCaseModel, GDPR/TLS.",
             collect_md(platform_dir, platform_order),
-            platform_dir,
         ),
         encoding="utf-8",
     )

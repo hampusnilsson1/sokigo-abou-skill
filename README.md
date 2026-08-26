@@ -16,7 +16,7 @@ Agents should open **one** reference file from the matching skill (`references/I
 
 ## Kunskapsbaser (en fil per skill)
 
-Samma innehåll, samlat till tre markdownfiler som kan laddas in i en annan AI:
+Samma innehåll, samlat till tre markdownfiler för RAG. Filerna är självständig text (inga pekare till skill-filer).
 
 | Fil | Skill |
 | --- | --- |

@@ -2,15 +2,9 @@
 
 Begränsar webbläsararbete till allowlistad dokumentation eller byggare. Läs före varje webbläsaranrop mot Sokigo/Abou.
 
-Detta är en **sammanslagen kunskapsfil** för en AI. All kunskap från skillen `abou-web-guard` ligger här. Svara från den här filen. Hitta inte på API:er, behörigheter eller fält som inte står här. Svenska UI-namn från Abou gäller.
-
-Källfiler (samma innehåll som under `.cursor/skills/`):
-
-- `SKILL.md`
+Detta är en **självständig kunskapsfil för RAG**. Svara från den här texten. Hitta inte på API:er, behörigheter eller fält som inte står här. Svenska UI-namn från Abou gäller. Referera inte till interna dokumentationsfiler.
 
 ---
-
-## Källa: `SKILL.md`
 
 # Abou web access guard
 
@@ -32,7 +26,7 @@ Current known docs base (when the user pointed here):
 - Prefix: `/pages/` and `/display/ABOU/` (Confluence in the **Abou** space only).
 - In-scope documentation: the whole Abou tree — *Att bygga e-tjänster*, *Integrationer*, *Abou* (behörighet, schemaläggning, Min sida, köer, moduler, admin, teknisk information, …).
 - Out of scope even on this host: other Sokigo products (**Minut Bygg**, **Minut Miljö**), user profiles (`/display/~`), logout, Community file dumps unless the user asked to update those notes.
-- **Skill files are the knowledge base.** Answer from `build-abou-etjanst-web` and `abou-platform`. The wiki is behind login; agents usually cannot open it. Browse Confluence only to **fill or correct** those files while the user is already logged in — never as the way to answer a question.
+- **Skill files are the knowledge base.** Answer from and . The wiki is behind login; agents usually cannot open it. Browse Confluence only to **fill or correct** those files while the user is already logged in — never as the way to answer a question.
 
 When they later give a builder base (e.g. a municipal Abou host or Provrummet), replace the allowlist for that session. Do not keep using the docs host to open the builder, or the builder host to open unrelated admin.
 
@@ -53,7 +47,6 @@ Do not capture pages that show personnummer, names of citizens, or case contents
 
 ## After reading
 
-Write notes into `build-abou-etjanst-web` (builder) or `abou-platform` (admin/modules/technical). Do not paste secrets, API keys, personnummer, or customer case dumps into git.
-
+Write notes into (builder) or (admin/modules/technical). Do not paste secrets, API keys, personnummer, or customer case dumps into git.
 
 ---

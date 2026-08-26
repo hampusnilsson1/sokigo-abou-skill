@@ -27,7 +27,59 @@ Changes do **not** rewrite old PDFs already generated.
 
 Editor actions: search (visible text / e-tjänst / organisation), filter malltyp, sort, add, **couple to e-tjänst or organisation**, duplicate, delete.
 
-Razor object in the mall: [technical/htmlcasemodel.md](technical/htmlcasemodel.md). Changing organisation on a service switches to that org’s PDF mall, else kund/standard ([admin.md](admin.md)).
+Razor object in the mall is **HtmlCaseModel** (`@Model`). Changing organisation on a service switches to that org’s PDF mall, else kund/standard.
+
+These PDFs are **not** the same thing as **meddelandemallar** (e-post/SMS). A notifiering can *attach* the ärende-PDF or beslut-PDF. The HTML/Razor below is what Abou turns into those PDFs.
+
+## Two PDF jobs (the ones customers edit most)
+
+| Mall | When Abou generates it | Typical attach-on |
+| --- | --- | --- |
+| **Ärende-mall** (Medborgare/Företag) | When the case is created (after submit / after last medsökande sign) | Inkommet-mail, Min sida, Admin |
+| **Beslutsmall** (Medborgare/Företag) | When handläggare **Godkänn** or **Avslå** | Beslutsmail, Min sida “ta del av beslut” |
+
+Same editor, same `@Model`, different body: ärende-mallen is a **sammanfattning of answers**; beslutsmallen leads with **the decision** then usually repeats the answers.
+
+Both are a full HTML document: `<style>` in `<head>`, Razor in `<body>` inside `@{ … }`. CSS is customer-owned (font, left margin, zebra `bgcolor="efefef"`, table ~80% wide, `th.table-key` ~45%). Use `<caption class="sr-only">` when a table has no visible heading. Screen-reader captions and `scope="row"` on the question cell are the a11y pattern.
+
+Do **not** hard-code a municipality name, logo path, or inbox in the shared kund-mall if organisation mallar should differ — put those in sidhuvud/sidfot or org-level mall.
+
+### Ärende-PDF — what the mall must do
+
+1. **Title of the case** — `@Model.Service.DisplayName` (h1).
+2. **Ärende meta** — at least `@Model.UniqueId` and `@Model.Submitted` (`ToString("yyyy-MM-dd HH:mm")`). If `@Model.FirstSignedByAll.HasValue`, show that timestamp as signed-time (nullable — guard it).
+3. **Answers** — only pages that have data: `foreach (var page in Model.Pages)` + `if (page.HasAnyValues)`. Page title = `@page.DisplayName` (h2). Then `foreach (var block in page.Blocks)`. On a block page (`page.IsBlockPage`) the block header is a table `<caption>` when not empty.
+4. **Fields** — `block.Fields`; skip empty with `Model.HasValue(FriendlyFieldId)`.
+   - If the answer is itself a table (`Answer.Contains("<table ")`), print question as a full-width header and `@field.Answer` as HTML (do not escape).
+   - Otherwise two columns: question | answer, zebra rows (`j++ % 2`).
+5. **Payments** (optional) — `Model.Payments` with culture `sv-SE`: amount (`ToString("C")`), `OrderId`, `Date`. Skip the block if the list is null/empty.
+6. **Signing**
+   - **Alternativ signering** (`Model.IsSignedAlternatively`): empty lines for Datum/Ort and Underskrift (paper sign after print).
+   - Else **sökande**: `Model.ApplicantSignature` — Submitted, `SignedBy.FirstName` + `LastName`, `SignedBy.SocialSecurityNumber`, `Issuer`, `Signed`.
+   - **Medsökande**: `Model.SortedRecentCoApplicantSignatures` (same columns, loop).
+   - **Attestanter**: `Model.SortedRecentAttestSignatures` plus `SignatureAttest.AnswerString` (Bevilja/Avslå), `Comment`, optional `Attachment.FileName`.
+7. **Kompletteringar** — `Model.Supplements`: Title, DateRequested, DateCompleted, OriginalFileNamesJoined, CitizenComment. Skip empty strings.
+
+Older mallar loop `page.Fields` instead of `page.Blocks` / `block.Fields`. New kund-mallar should use **blocks** so layout matches the builder.
+
+`HasValue` vs printing every field: ärende-PDF that should hide unanswered questions uses `HasValue`. Editerbar PDF mallar sometimes print all fields as inputs instead.
+
+### Beslut-PDF — what the mall must do
+
+1. **Service name** + caption **Beslutat**.
+2. **Decision block first** — `@Model.Decision.DecisionText` (Godkänt / Avslaget), `@Model.Decision.Date`, handläggare, `@Model.Decision.Comment`. The property for the caseworker name on Decision is spelled **`Adminstrator`** in the template model (no “i”). Null-check `Model.Decision` if a mall can render before a decision exists.
+3. **Same answer dump as the ärende-PDF** (pages → blocks → HasValue fields).
+4. **Signing on the decision PDF** is usually gated with `Model.Service.RequiresEid`. Then either the paper-sign blanks (`IsSignedAlternatively`) or the applicant row from `Model.Signatures.FirstOrDefault(s => s.SignatureType == …SignatureType.Applicant)`.
+5. Leave room after the decision for **överklagandehänvisning** (CSS hook `.overklaga` is common). Different Godkänt vs Avslaget wording belongs in this mall (or in sidhuvud/beslutstext), not in the e-tjänst layout.
+
+### Razor pitfalls in dokumentmallar
+
+- Guard nulls (`FirstSignedByAll`, `ApplicantSignature`, `Payments`, `Decision`, attest attachment).
+- Table-valued answers must be detected before you wrap them in a two-column `<td>` or the nested table breaks the PDF.
+- Field answers that contain a raw `@` without `@Model["fältid"]` can break PDF generation.
+- Date format in Swedish PDFs: `yyyy-MM-dd HH:mm`.
+- Money: `CultureInfo.CreateSpecificCulture("sv-SE")` + currency format.
+- Alternativ signering and e-leg blocks are mutually exclusive in a well-written mall (`IsSignedAlternatively`).
 
 ## Hantera dokument (file library)
 
@@ -157,7 +209,7 @@ The e-tjänst **is** the blankett. Every **Ladda hem blankett** / **Generera bla
 - Help texts can print at the end: service **Inställningar → Visa hjälptexter i genererad blankett**
 - Manual page breaks: page **Inställningar** or field **Avancerat**
 - Header/footer follow ärende-PDF
-- Signing block: Sokigo can require it on all blanketter or only e-leg services. In the **Ärendeblankett** mall, wrap “Sökandes underskrift” in `if (Model.RequireId) { … }` so unsigned services omit it ([faq.md](faq.md))
+- Signing block: Sokigo can require it on all blanketter or only e-leg services. In the **Ärendeblankett** mall, wrap “Sökandes underskrift” in `if (Model.RequireId) { … }` so unsigned services omit it
 - Unique layout from 3.26 = this editor (customer-editable)
 
 Publish as menygrupp type **Blankett genererad från e-tjänst**, or generate from Admin. Role **Skicka in ärende** can generate PDF. The blankett is **not** a fillable computer form — print, fill by hand, post.

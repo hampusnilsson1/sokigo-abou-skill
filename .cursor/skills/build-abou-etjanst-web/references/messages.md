@@ -94,6 +94,39 @@ FAQ DB field **ServiceRequestEmail** is a different Sokigo mapping ([faq.md](../
 
 Encryption tick on standardmeddelanden: [functionality.md](../../abou-platform/references/functionality.md) *Krypterad e-post* — **no attachments**.
 
+## How to write a meddelandemall
+
+**Meddelandemallar** are e-post / SMS / Mina meddelanden — not the PDF editor. Couple them under **Redigera meddelanden**. Subject and body may use `$token$` (case-sensitive). A mall has a **name** (internal) and a **subject** (what the citizen sees). SMS max 160 characters; no Razor in SMS or scheduled reminders.
+
+### What every citizen mail should contain
+
+1. **What happened** in plain language (status changed, you are in a queue, please sign, decision taken, …).
+2. **Which case** — `$uniqueID$` (and `$serviceName$` if the person has several services).
+3. **What they should do next** if anything (open Min sida with e-leg, wait for a second mail, sign as medsökande).
+4. **That they cannot reply** to the technical sender (point to a real kontaktväg in the closing).
+5. **Closing** — organisation name + how to reach the municipality (e-post/phone). Put the closing in sidfot-equivalent text in the mall, not as a one-off in a single service if many services share a kund-mall.
+
+Do not paste live inbox addresses into shared notes; each customer fills their own closing.
+
+### Statusnotifiering (e-post or SMS)
+
+Trigger: **Vid statusuppdatering** (not the first submit). Body pattern: status has changed → identify the case with `$uniqueID$` → follow the case on **Min sida** (e-leg login) → no-reply + closing.
+
+SMS: same facts, shortened to 160 characters (`$uniqueID$` still).
+
+### Köbekräftelse
+
+Trigger: when the citizen is placed in a queue (kö-mail coupled on the service/kö). Subject often includes `$serviceName$`. Body pattern: thanks for the anmälan → they are **in the queue** → a further confirmation of plats/deltagande will follow → which queue `$QueueName$` and which number `$QueuePosition$` → closing.
+
+`$Comment$` is the handläggarens kö-status comment when that is what you are notifying.
+
+### Tokens vs Razor
+
+- Tokens: `$uniqueID$`, `$serviceName$`, `$QueueName$`, `$QueuePosition$`, `$citizenFirstName$`, … — work in subject, e-post, SMS.
+- `$ServiceName$` (capital S) is **not** the documented token; `$serviceName$` is. Wrong casing is left as literal text.
+- Field answers and richer PDF-like blocks: Razor `@this.Model["Fält.Id"]` or `@Model.…` in **e-post** mallar only.
+- Attach the **ärende-PDF** or **beslut-PDF** on the coupling (attachments), rather than duplicating the whole Razor PDF inside the mail body.
+
 ## Statusnotifieringar
 
 New **inloggning** services get an automatic status message (not on first submit). Citizen opt-in: **Integrerat kontaktfält**. Without login: add a message later to an email field.
