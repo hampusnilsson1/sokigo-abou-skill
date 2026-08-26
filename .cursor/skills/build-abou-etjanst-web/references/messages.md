@@ -73,13 +73,26 @@ Always `$name$` (case-sensitive). Field answers: Razor `@this.Model["AVB.2"]` (n
 
 Useful: `$uniqueID$`, `$registrationNumber$`, `$serviceName$`, `$citizenFirstName$`, `$dateSubmitted$`, `$customerUrl$`. Min sida case URL pattern: `…/Citizen/MyPage2#/cases/$uniqueID$`.
 
+Full token list (kö, bokning, betalning Razor): [message-tokens.md](../../abou-platform/references/message-tokens.md). Case object for dokumentmall / ThankYouAdvanced: [htmlcasemodel.md](../../abou-platform/references/technical/htmlcasemodel.md).
+
 ## Create malls
 
 **Meddelandemallar** in the main menu. Needs permission **Uppdatera texter**. Usage: Automatiskt / Manuellt / Standardmall för statusnotifiering (only one in the system) / handläggare status or tilldelning. Subject can use `$serviceName$` / `$uniqueID$`. Optional case PDF; SMS max 160 characters. Separate body for invånare vs företag; Mina meddelanden has its own editor or falls back to email body.
 
 ## Meddelanden per svarsalternativ
 
-Funktionsbrevlåda routed by a choice field (kryssrutor, radioknappar, rullgardin). Argument **Aktivera meddelande per svarsalternativ** = `True`. Tab **Meddelande per svarsalternativ**. **One address per alternative.** FAQ workaround: hidden field copied from the first.
+Funktionsbrevlåda routed by a choice field (kryssrutor, radioknappar, rullgardin). **Several** such fields on one service are allowed. **One address per alternative.**
+
+1. Create the choice field(s).
+2. Fältargument **Aktivera meddelande per svarsalternativ** = `True`. Save.
+3. Left menu **Redigera meddelande** → tab **Meddelande per svarsalternativ**.
+4. Optional default: name, e-post, mall, and whether case files are attached — used when an alternative has no override. If there is **no** default, every alternative **must** have address + mall.
+5. Per field, per alternative: recipient and optional mall; attachment tick can differ per field.
+6. Save.
+
+FAQ DB field **ServiceRequestEmail** is a different Sokigo mapping ([faq.md](../../abou-platform/references/faq.md)). Workaround for several addresses on one alternative: hidden field copied from the first.
+
+Encryption tick on standardmeddelanden: [functionality.md](../../abou-platform/references/functionality.md) *Krypterad e-post* — **no attachments**.
 
 ## Statusnotifieringar
 
@@ -89,6 +102,11 @@ New **inloggning** services get an automatic status message (not on first submit
 
 **Skicka meddelande** (from 2023.2 email or SMS). Needs a link to the applicant. Works while **Väntar på medsökandes signatur**. Mallar marked **Manuellt ärendemeddelande**.
 
-## Sökande ändrar before co-sign
+## Sökande ändrar / ångrar before co-sign
 
-Service setting **Tillåt sökande att ändra ärendet under Min sida**: while waiting for co-sign, applicant can revert to draft. Off by default.
+Service Inställningar (off by default):
+
+- **Tillåt sökande att ändra ärendet under Min sida**
+- **Tillåt sökande att ångra ärendet under Min sida**
+
+While status is **Väntar på medsökandes signatur**, the applicant on Min sida can revert the case to **utkast**, change answers, and submit again. [functionality.md](../../abou-platform/references/functionality.md).

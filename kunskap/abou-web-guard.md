@@ -1,7 +1,16 @@
+# Abou web guard — kunskapsbas
+
+Begränsar webbläsararbete till allowlistad dokumentation eller byggare. Läs före varje webbläsaranrop mot Sokigo/Abou.
+
+Detta är en **sammanslagen kunskapsfil** för en AI. All kunskap från skillen `abou-web-guard` ligger här. Svara från den här filen. Hitta inte på API:er, behörigheter eller fält som inte står här. Svenska UI-namn från Abou gäller.
+
+Källfiler (samma innehåll som under `.cursor/skills/`):
+
+- `SKILL.md`
+
 ---
-name: abou-web-guard
-description: Restricts Abou browser work to an allowlisted documentation or builder URL. Use before any Sokigo/Abou web browsing, Confluence docs, e-tjänstebyggaren, or when the user mentions dok.sokigo.com.
----
+
+## Källa: `SKILL.md`
 
 # Abou web access guard
 
@@ -45,3 +54,6 @@ Do not capture pages that show personnummer, names of citizens, or case contents
 ## After reading
 
 Write notes into `build-abou-etjanst-web` (builder) or `abou-platform` (admin/modules/technical). Do not paste secrets, API keys, personnummer, or customer case dumps into git.
+
+
+---

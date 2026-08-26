@@ -98,8 +98,8 @@ How to use an extra type: read the **integration file** (what the product does, 
 
 ## GDPR and person data
 
-- `self.Citizen` on a logged-in service is **stripped** (e.g. civilstånd, födelse, raw CitizenData often empty).
-- Session lookup: `GetCitizenInfoLookUp` — not stored in DB.
+- `self.Citizen` on a logged-in service is **stripped** (e.g. civilstånd, födelse, raw CitizenData often empty). Mapping table: [citizeninfo.md](../../../abou-platform/references/technical/citizeninfo.md).
+- Session lookup: `GetCitizenInfoLookup` / `GetCitizenInfoLookUp` — not stored in DB.
 - Relations (barn, other VF): `CitizenServiceProxy` mallar — those people are **not** stored unless you write them into fields.
 - Skyddad folkbokföring / sekretessmarkering: [navet.md](../integrations/navet.md). Dropdown mall drops protected children and blocks protected other guardians; table mall does **not** — add that if needed.
 - Do not log real personnummer.

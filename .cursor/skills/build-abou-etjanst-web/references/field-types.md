@@ -104,13 +104,13 @@ Arguments: **Format på bakgrundsdata** (Tiles / WMS), **Funktion** (`None`, `Se
 
 ## Attestlista med sök
 
-Internal services (AD or integrated personnummer), **not** citizen guardian signing. Needs **inloggning and signering**. Searchable dropdown.
+Internal services (AD or integrated personnummer), **not** citizen guardian signing. Needs **inloggning**. Sökande signering is usual but not a technical requirement. Searchable dropdown.
 
 Svarsalternativ syntax: `efternamn|förnamn|identitet|e-post` (all four, pipe-separated). Or `SetOptions` in Python; help text as 5th segment with `{1}` `{2}` placeholders.
 
 Email: **Redigera meddelanden** → new message → send **När sökande har signerat (medsökande finns)** → **Till fält för invånare (E-post)** = this field’s id.
 
-Flow: pick chef → status **Väntar på medsökandes signatur** → chef **Attestera** on Min sida → **Inkommet**.
+Flow, V26 **Bevilja**/**Avslå**, ombud **Hantera attest**: [functionality.md](../../abou-platform/references/functionality.md) *Attestering*. Status becomes **Inkommet** regardless of Bevilja vs Avslå.
 
 ## Ärendeinformationsfältet
 
@@ -128,4 +128,4 @@ Pick a previous submitted case to prefill later pages. Needs e-legitimation. Put
 
 Barnomsorgsfält, Barnomsorgsminifält, Beställningsfält, Modersmålsfält, Brandfarlig vara, Heltalssummering, Lånelista, Bygglovsväljare, Anhörigfält, Personallistfält, Textsummering, Dynamiskt funktionsbrevlåde, **Bokningsfält (gammalt)**, **Filuppladdningsfält (gammalt)**, EGovDistanceListField, EGovTextFieldLarge, EGovIframeField.
 
-Current **Bokningsfält** / **Köfält** still exist elsewhere; they cannot use fältregler (see rules-validators.md).
+Current **Bokningsfält** / **Köfält** still exist elsewhere; they cannot use fältregler (see rules-validators.md). Booking field arguments and Admin slot UI: [booking.md](../../abou-platform/references/booking.md). Köfält: [queues.md](../../abou-platform/references/queues.md). Register as svarsalternativ: [registers.md](../../abou-platform/references/registers.md).

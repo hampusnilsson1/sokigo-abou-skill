@@ -1,8 +1,8 @@
 # Använda url-parametrar
 
-Tab: **Logik**. Prefill from query string, stored in `self.Service.SessionParameters` (string dict).
+Tab: **Logik**. From **2019.2**. Prefill from query string, stored in `self.Service.SessionParameters` (string dict). Product page: [functionality.md](../../../abou-platform/references/functionality.md) *Värden som parametrar*.
 
-Example URL: `Siteurl/Etjänstenamn?Smak=sur&Frukt=citron`. Missing keys throw — check `in` first. Dict keys are **case sensitive** (`Frukt` vs `frukt`).
+Example URL: `Siteurl/Etjänstenamn?Smak=sur&Frukt=citron` or `…/GRUSK?skola=Lyckoskolan&årskurs=3`. Missing keys throw — check `in` first. Dict keys are **case sensitive** (`Frukt` vs `frukt`).
 
 ```python
 from Abou.Calamare.Web import PageNode
