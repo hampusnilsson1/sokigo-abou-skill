@@ -2,176 +2,13 @@
 
 All kunskap för **e-tjänstebyggaren**: sidor, fält, fältregler, validatorer, Python/JS-bibliotek, logikmallar och Integrationer (Navet, REST, betalning, AD, EDP, …).
 
-Detta är en **sammanslagen kunskapsfil** för en AI. All kunskap från skillen `build-abou-etjanst-web` ligger här. Svara från den här filen. Hitta inte på API:er, behörigheter eller fält som inte står här. Svenska UI-namn från Abou gäller.
-
-Källfiler (samma innehåll som under `.cursor/skills/`):
-
-- `SKILL.md`
-- `references/catalog.md`
-- `references/builder-ui.md`
-- `references/create-and-settings.md`
-- `references/pages-and-fields.md`
-- `references/field-types.md`
-- `references/rules-validators.md`
-- `references/logic.md`
-- `references/messages.md`
-- `references/logic-templates/INDEX.md`
-- `references/logic-templates/libraries.md`
-- `references/logic-templates/pagenode-api.md`
-- `references/logic-templates/standard.md`
-- `references/logic-templates/url-parameters.md`
-- `references/logic-templates/payment.md`
-- `references/logic-templates/custom-validation.md`
-- `references/logic-templates/booking-filter.md`
-- `references/logic-templates/file-upload.md`
-- `references/logic-templates/navet-dropdown.md`
-- `references/logic-templates/navet-table.md`
-- `references/logic-templates/prefill-multisign.md`
-- `references/logic-templates/prefill-case-selector.md`
-- `references/logic-templates/prefill.md`
-- `references/logic-templates/required-when-hidden.md`
-- `references/logic-templates/hide-fields-blocks.md`
-- `references/logic-templates/ad-lookup.md`
-- `references/logic-templates/logging.md`
-- `references/logic-templates/page-skip.md`
-- `references/logic-templates/calculations.md`
-- `references/logic-templates/table-field.md`
-- `references/logic-templates/thankyou.md`
-- `references/logic-templates/extended-citizen.md`
-- `references/logic-templates/client/api.md`
-- `references/logic-templates/client/empty.md`
-- `references/logic-templates/client/handle-field.md`
-- `references/logic-templates/client/handle-many.md`
-- `references/logic-templates/client/hide-block-on-value.md`
-- `references/integrations/INDEX.md`
-- `references/integrations/catalog.md`
-- `references/integrations/navet.md`
-- `references/integrations/bolagsverket.md`
-- `references/integrations/adapter-rest.md`
-- `references/integrations/e-legitimation.md`
-- `references/integrations/sokigo-fb.md`
-- `references/integrations/geo.md`
-- `references/integrations/payment.md`
-- `references/integrations/sms.md`
-- `references/integrations/mina-meddelanden.md`
-- `references/integrations/active-directory.md`
-- `references/integrations/edp-future.md`
-- `references/integrations/verksamhetssystem.md`
-- `references/integrations/plattformar.md`
-- `references/integrations/arkiv.md`
-- `references/integrations/ovrigt.md`
+Detta är en **självständig kunskapsfil för RAG**. Svara från den här texten. Hitta inte på API:er, behörigheter eller fält som inte står här. Svenska UI-namn från Abou gäller. Referera inte till interna dokumentationsfiler.
 
 ---
-
-## Källa: `SKILL.md`
-
-# Build an Abou e-tjänst in the web builder
-
-Sokigo **Abou** e-tjänster are built in the **e-tjänstebyggaren** (layout builder). Sokigo must have enabled the builder. This skill is for **click-and-configure in the UI**, using Swedish builder names from Sokigo documentation.
-
-Read [abou-web-guard](../abou-web-guard/SKILL.md) before any browser work. Stay on the docs or builder URL the user gave.
-
-## Source
-
-Official docs were ingested from logged-in Confluence (space Abou). **These skill files are the documentation** — the wiki is behind login and is not available to the agent.
-
-- Builder + integrations: this folder (`references/`). Last read 2026-08-21.
-- Platform (roles, Min sida, köer, REST, CitizenInfo, HtmlCaseModel, FAQ): [abou-platform](../abou-platform/SKILL.md). Last bulk read 2026-08-25.
-- Do not send the user a dok.sokigo.com URL as the answer.
-
-If a UI label in the live builder disagrees with these notes, **trust the live builder** and update the matching reference.
-
-## These references are the documentation
-
-`references/` is how agents **learn and explain** Abou — libraries, integrations, and builder behaviour — not a folder of files to open only when pasting a new script.
-
-Read the matching file when you:
-
-- Explain what Python, JavaScript, or an integration can do
-- Choose between fältregler, klientlogik, and sidlogik
-- Review or debug logic the user pasted
-- Design a flow that uses Navet, REST, payment, AD, EDP, …
-- Write or adapt Logik / Klientlogik
-
-| Need | Documentation |
-| --- | --- |
-| PageNode / PageLogic / extra types | [logic-templates/libraries.md](references/logic-templates/libraries.md) then the API file |
-| Official mall as a worked example | [logic-templates/INDEX.md](references/logic-templates/INDEX.md) — one mall |
-| How an integration is used | [integrations/INDEX.md](references/integrations/INDEX.md) — one product file |
-| Show/hide without code | [rules-validators.md](references/rules-validators.md) |
-| Who may edit Python / see cases / publish | [abou-platform permissions](../abou-platform/references/permissions.md) |
-| `self.Citizen` / GetCitizen / PersonPost JSON | [CitizenInfo](../abou-platform/references/technical/citizeninfo.md) |
-| `@Model` in dokumentmall / ThankYouAdvanced | [HtmlCaseModel](../abou-platform/references/technical/htmlcasemodel.md) |
-| External REST against cases | [Abou REST API](../abou-platform/references/technical/rest-api.md) |
-
-Do not invent PageNode, `PageLogic`, or adapter methods. If it is not in the library or integration notes, say so.
-
-## Workflow when the user wants a new e-tjänst
-
-Ask only for what is missing, then give **builder steps**:
-
-1. **E-tjänster → Skapa ny e-tjänst** and fill **Egenskaper** ([create-and-settings.md](references/create-and-settings.md)).
-2. Add **layoutsidor**, blocks, and fields ([pages-and-fields.md](references/pages-and-fields.md), [field-types.md](references/field-types.md)).
-3. Set **fältregler / visningsvillkor** before writing Python for show/hide or page skip ([rules-validators.md](references/rules-validators.md)).
-4. Use **Pythonlogik** or **Klientlogik** only when the UI cannot do it. Read [libraries.md](references/logic-templates/libraries.md) for how the APIs work, then one mall from [INDEX.md](references/logic-templates/INDEX.md) if you implement.
-5. If the service needs a register or backend (Navet, Bolagsverket, ByggR, REST, …), read **only** the matching file under [integrations/INDEX.md](references/integrations/INDEX.md) (how that integration is used). Do not load the whole integrations folder.
-6. **Förhandsvisa e-tjänsten** on the page you are editing. Do not publish to production unless the user asked in this message.
-
-Paste-here: if you cannot click the builder, describe the exact tab, field, and value. Ask the user to paste screenshots or confirm labels.
-
-## Builder vocabulary (Swedish UI names)
-
-Use these names when talking to the user:
-
-| Builder name | Meaning |
-| --- | --- |
-| E-tjänstenamn | Citizen-facing title |
-| Systemnamn | Unique code in the URL; a-z A-Z 0-9 `_` only; not åäö |
-| Layoutsida | Normal page with blocks and fields |
-| Sammanfattningssida | Summary before submit; no extra fields |
-| Signeringssida / Sign | Sign with e-legitimation |
-| Tacksida | After submit (`ThankYou` and variants) |
-| Multipelsignering | Several signers (e.g. two guardians) |
-| Fältregler | Show/hide/require other fields from a field’s answer |
-| Visningsvillkor | Show a whole later page from an earlier field |
-| Fältargument | Extra settings on a field (Hidden, Enabled, etc.) |
-| Logik | IronPython on a page (`Initialize` / `GetNextPage`) |
-| Klientlogik | JavaScript on a Layoutsida |
-
-## Gaps (not in this docs tree)
-
-These were **not** a complete IronPython or JS SDK on *Att bygga e-tjänster*:
-
-- Python: library docs in [libraries.md](references/logic-templates/libraries.md) and [pagenode-api.md](references/logic-templates/pagenode-api.md); mallar are examples. ThankYou `IPythonCaseService` is extra sysadmin. Other Python is “kundens eget ansvar”
-- JavaScript: [client/api.md](references/logic-templates/client/api.md). Other JS is “kundens eget ansvar”
-- Navet **library** for barn/vårdnadshavare is documented in [navet.md](references/integrations/navet.md) plus mallar [navet-dropdown.md](references/logic-templates/navet-dropdown.md) / [navet-table.md](references/logic-templates/navet-table.md).
-- The children-macro **Validatorer** (26 articles) on the hub did not resolve to live pages (404). Use [rules-validators.md](references/rules-validators.md) (*Konfigurera validatorer*).
-- Navet integration page (`58524277`) describes PersonPost/NamnSökning and properties, **not** a `CitizenServiceProxy` API. Relation lookup is the builder mallar; method names in [navet.md](references/integrations/navet.md) are from those mallar.
-- Most other integrations are product blurbs + Sokigo config. Only **EDP Future** publishes a Python method list.
-
-## References
-
-- [create-and-settings.md](references/create-and-settings.md) — new service, login, signing, service settings
-- [pages-and-fields.md](references/pages-and-fields.md) — page types, default pages, adding fields
-- [field-types.md](references/field-types.md) — builder field-type names
-- [rules-validators.md](references/rules-validators.md) — field rules, page conditions, validators, field arguments
-- [logic.md](references/logic.md) — where to write logic in the builder
-- [logic-templates/libraries.md](references/logic-templates/libraries.md) — how PageNode, PageLogic, and extra types are used
-- [logic-templates/INDEX.md](references/logic-templates/INDEX.md) — mallar as examples (pick one)
-- [integrations/INDEX.md](references/integrations/INDEX.md) — how each integration is used (pick one)
-- [document-templates.md](references/document-templates.md) — Dokumentmallar, blankett, editerbar PDF
-- [builder-ui.md](references/builder-ui.md) — layout builder, preview, shortcuts
-- [messages.md](references/messages.md) — emails, status notices, co-signer notify
-- [catalog.md](references/catalog.md) — full article list under Att bygga e-tjänster
-
-
----
-
-## Källa: `references/catalog.md`
 
 # Documentation catalog — Att bygga e-tjänster
 
-Hub: https://dok.sokigo.com/pages/viewpage.action?pageId=56918159  
+Hub: https://dok.sokigo.com/pages/viewpage.action?pageId=56918159
 Space: Abou. Stay on `dok.sokigo.com`. Read 2026-08-21.
 
 Prerequisite noted on the hub: e-tjänstebyggaren must be enabled by Sokigo.
@@ -231,7 +68,7 @@ Prerequisite noted on the hub: e-tjänstebyggaren must be enabled by Sokigo.
 - Konfigurera validatorer
 - Kortkommandon
 - Pythonlogik
-  - Kod på tacksidor — PythonCaseService och PythonPlugin
+ - Kod på tacksidor — PythonCaseService och PythonPlugin
 - Skapa block och fält på layoutsida
 - Sök och navigera till fält i layoutbyggaren
 
@@ -253,13 +90,10 @@ Linked from the hub articles, not children of the hub:
 ## Broken / missing from this tree
 
 - Children-display **Validatorer** (26 articles) on the hub: linked page IDs 404. Use *Konfigurera validatorer*.
-- Python/JS beyond builder mallar is “kundens eget ansvar”. See [libraries.md](logic-templates/libraries.md).
+- Python/JS beyond builder mallar is “kundens eget ansvar”.
 - Hub video guides were not transcribed (videos on the pages).
 
-
 ---
-
-## Källa: `references/builder-ui.md`
 
 # Layout builder UI
 
@@ -307,10 +141,7 @@ Do **not** publish from preview. Do not open Mina ärenden or other citizens’ 
 | Ctrl+S | Save (whole builder) |
 | Escape | Undo last shortcut |
 
-
 ---
-
-## Källa: `references/create-and-settings.md`
 
 # Create service and settings
 
@@ -358,7 +189,7 @@ Audience: **Medborgare** / **Företag** / **Förening**. With e-legitimation and
 Same ideas plus:
 
 - **Använd denna e-tjänst som mall** — listed first when creating from a template; does not change runtime behaviour.
-- **Tillåt sökande att ändra ärendet under Min sida** / **Tillåt sökande att ångra ärendet under Min sida** — with multipelsignering (or attestering). Applicant can revert to utkast while status is **Väntar på medsökandes signatur**. Off by default. [functionality.md](../../abou-platform/references/functionality.md).
+- **Tillåt sökande att ändra ärendet under Min sida** / **Tillåt sökande att ångra ärendet under Min sida** — with multipelsignering (or attestering). Applicant can revert to utkast while status is **Väntar på medsökandes signatur**. Off by default. .
 - **Tillåt invånaren att komplettera ärendet med bilaga under Mina ärenden**
 - **Logga ut invånaren vid start av e-tjänst** — anonymity; case not tied to the logged-in user.
 - **Begränsa åtkomst till enbart invånare i kommunen** — Sokigo must set kommunkod; needs login + Navet or KIR.
@@ -417,16 +248,13 @@ Lock name fields, keep email editable: argument **Endast epost är redigerbart**
 
 The multipelsigneringsfält **cannot** be configured as never required: either tick **Obligatoriskt**, or keep both “require signatures” arguments.
 
-Notify the co-signer: [messages.md](messages.md) (*Koppla meddelandemall till e-tjänst*).
+Notify the co-signer: (*Koppla meddelandemall till e-tjänst*).
 
 ## Payment
 
 Needs login, at least one answered field, payment page last before thank-you. Sokigo must add the service in system config (kortnamn, amount, error page usually Sammanfattning). Add a page and set sidtyp **Betalningssida**.
 
-
 ---
-
-## Källa: `references/pages-and-fields.md`
 
 # Pages and fields in the builder
 
@@ -440,55 +268,8 @@ Source: Sokigo Abou docs (read 2026-08-21).
 
 ### Page properties
 
-**Systemnamn** — for the system and for Python. Same character rules as service systemnamn. Tip: `HarSkriverJagEttSidnamn`. Citizens do not see it.
-
-**Sidnamn** — heading in the service, admin, and PDF.
-
-**Sidtyp** — default **Layoutsida**. See below.
-
-**Visa på sammanfattningssidan** — uncheck so the page is omitted from summary (typical for info-only pages). User then cannot go back and change that page from summary.
-
-**Förhandsgranska ärendesammanfattning** — on the summary page: draft PDF marked “Utkast”.
-
-**Dölj navigeringsknappar** — hides next/back, step counter, save, cancel.
-
-**Dölj inte tillbaka-knappen** — hide other nav but keep back.
-
-**Sidbryt** — blankettgenerator / PDF page break after last field.
-
-Delete page: red cross.
-
-## Sidtyper
-
-New pages default to **Layoutsida**. Change under the page’s **Inställningar**.
-
-| Sidtyp | Use |
-| --- | --- |
-| Layoutsida | Normal pages: blocks and fields. Not summary, sign, thank-you. |
-| Sammanfattningssida | Created automatically. No extra fields. Every new page is shown here unless you uncheck **Visa på sammanfattningssidan**. |
-| Signeringssida | Created if the service requires e-legitimation. Add manually if that was not ticked at create. No extra fields. |
-| Betalningssida | Payment; needs no fields. |
-| Tacksida: ThankYou | Default thank-you. Hardcoded case number. **Huvudinnehåll** after the case number; may replace the municipality “signatur”. No extra fields. |
-| Tacksida: ThankYouSimple | Empty; no hardcoded text (e.g. hide case number). |
-| Tacksida: PdfLinkThankYou | Link to case summary (from 2023.11 HTML summary + PDF link). **Huvudinnehåll** at top, replaces part of “Tack för din ansökan/anmälan”. |
-| Tacksida: PaymentThankYou | Payment info (from 3.48). |
-| Tacksida: ThankYouAdvanced | Razor in **Huvudinnehåll** for dynamic text (case number etc.). Test thoroughly. |
-| NoNavigationFieldPage.aspx | Removed in 2020.5 |
-| Fältsida | Removed in 2020.5. Convert via Inställningar → Sidtyper. **Re-set validators** after convert. |
-
-## Add a field (classic field tab)
-
-1. Select the page
-2. Tab **Fält**
-3. **Nytt fält**
-4. Fill properties, **Spara**
-
-Prefer layout builder blocks when working on a Layoutsida (see builder-ui.md).
-
-### Field properties
-
-- **Rubrik** — citizen label. Bold via `<br/><strong>Övrigt</strong>`
-- **Fälttyp** — dropdown of types (see field-types.md)
+**Systemnamn** — for the system and for Python. Same character rules as service systemnamn. Tip: `HarSkriverJagEttSidnamn<br/><strong>Övrigt</strong>`
+- **Fälttyp** — dropdown of types (see )
 - **Svarsalternativ** — where the type needs them
 - **Obligatoriskt**
 - **Anpassade valideringstexter** — only when format is wrong, not when empty (system texts then). Not for köfält.
@@ -506,10 +287,7 @@ Prefer layout builder blocks when working on a Layoutsida (see builder-ui.md).
 - **Svarsalternativ hjälptexter** — after a choice is selected
 - **Muspekartext** — keep short
 
-
 ---
-
-## Källa: `references/field-types.md`
 
 # Field types (builder names)
 
@@ -623,7 +401,7 @@ Svarsalternativ syntax: `efternamn|förnamn|identitet|e-post` (all four, pipe-se
 
 Email: **Redigera meddelanden** → new message → send **När sökande har signerat (medsökande finns)** → **Till fält för invånare (E-post)** = this field’s id.
 
-Flow, V26 **Bevilja**/**Avslå**, ombud **Hantera attest**: [functionality.md](../../abou-platform/references/functionality.md) *Attestering*. Status becomes **Inkommet** regardless of Bevilja vs Avslå.
+Flow, V26 **Bevilja**/**Avslå**, ombud **Hantera attest**: *Attestering*. Status becomes **Inkommet** regardless of Bevilja vs Avslå.
 
 ## Ärendeinformationsfältet
 
@@ -641,12 +419,9 @@ Pick a previous submitted case to prefill later pages. Needs e-legitimation. Put
 
 Barnomsorgsfält, Barnomsorgsminifält, Beställningsfält, Modersmålsfält, Brandfarlig vara, Heltalssummering, Lånelista, Bygglovsväljare, Anhörigfält, Personallistfält, Textsummering, Dynamiskt funktionsbrevlåde, **Bokningsfält (gammalt)**, **Filuppladdningsfält (gammalt)**, EGovDistanceListField, EGovTextFieldLarge, EGovIframeField.
 
-Current **Bokningsfält** / **Köfält** still exist elsewhere; they cannot use fältregler (see rules-validators.md). Booking field arguments and Admin slot UI: [booking.md](../../abou-platform/references/booking.md). Köfält: [queues.md](../../abou-platform/references/queues.md). Register as svarsalternativ: [registers.md](../../abou-platform/references/registers.md).
-
+Current **Bokningsfält** / **Köfält** still exist elsewhere; they cannot use fältregler (see ). Booking field arguments and Admin slot UI. Köfält. Register as svarsalternativ.
 
 ---
-
-## Källa: `references/rules-validators.md`
 
 # Field rules, validators, and field arguments
 
@@ -711,7 +486,7 @@ Also mentioned on field properties: **standardvalidering (obligatoriskt fält)**
 | Dold | True | Always hidden |
 | Aktiverad | False | Read-only (e.g. prefilled) |
 | Aktivera meddelande per svarsalternativ | True | Different email recipients per choice |
-| Svar redigerbart av handläggare | True | After submit, handläggare can change this choice on the case ([functionality.md](../../abou-platform/references/functionality.md)) |
+| Svar redigerbart av handläggare | True | After submit, handläggare can change this choice on the case |
 | Datumformat | e.g. `yyyy-MM-dd HH:mm` | Booking / ärendeväljare |
 | Visar sluttid | True/False | Booking interval display |
 | Antal ärenden att visa | Positive int | Recent cases |
@@ -720,45 +495,39 @@ Also mentioned on field properties: **standardvalidering (obligatoriskt fält)**
 
 Arguments are also used to map fields for integrations.
 
-
 ---
-
-## Källa: `references/logic.md`
 
 # Python and client logic
 
 Where to type code in the builder, and how it relates to the **libraries**.
 
-**How the APIs work** (read this when explaining or reviewing, not only when pasting a new file): [logic-templates/libraries.md](logic-templates/libraries.md).
+**How the APIs work** (read this when explaining or reviewing, not only when pasting a new file).
 
 Sokigo supports the **mallar in the builder** plus the listed PageNode / PageLogic methods. Other Python/JS is the municipality’s own risk. Do not invent methods.
 
-Prefer **fältregler / visningsvillkor** ([rules-validators.md](rules-validators.md)) before code.
+Prefer **fältregler / visningsvillkor** before code.
 
 ## Where to write it
 
 - **Logik** tab: IronPython `PageNode`. `Initialize` on enter, `BeforeGetNextPage` before leave, `GetNextPage` must return a page. Class name = IronPythonType = page systemnamn.
 - **Klientlogik** tab: JavaScript `PageLogic` on **Layoutsida** only. Runs when answers on **this page** change.
-- Thank-you: `Published(self)` → `PublishedResult`. Mall: [logic-templates/thankyou.md](logic-templates/thankyou.md).
+- Thank-you: `Published(self)` → `PublishedResult`. Mall.
 
 Field ids: `'x.1'` = current short name + number.
 
-Method lists: [pagenode-api.md](logic-templates/pagenode-api.md), [client/api.md](logic-templates/client/api.md). Worked examples: [INDEX.md](logic-templates/INDEX.md).
+Method lists. Worked examples.
 
 ## Thank-you plugin (sysadmin)
 
 Confluence: *Kod på tacksidor - PythonCaseService och PythonPlugin*. Needs app-pool recycle (`Python plugin loaded`).
 
-`IPythonCaseService`: `AddRelationToCase`, `UpdateStateForCase`, `AssignAdministratorToCase`, `RegisterCase`. Normal `GetAnswer` does not work; use published-case helpers in the thank-you mall. See [libraries.md](logic-templates/libraries.md).
+`IPythonCaseService`: `AddRelationToCase`, `UpdateStateForCase`, `AssignAdministratorToCase`, `RegisterCase`. Normal `GetAnswer` does not work; use published-case helpers in the thank-you mall.
 
 ## Preview
 
 **Förhandsvisa** reloads **this page only**. No logikhopp, no previous-page `GetNextPage` prefills, no tabellfält. **Visa skriptlogg** shows `Log*`.
 
-
 ---
-
-## Källa: `references/messages.md`
 
 # Messages (email / SMS) while building
 
@@ -835,7 +604,7 @@ Always `$name$` (case-sensitive). Field answers: Razor `@this.Model["AVB.2"]` (n
 
 Useful: `$uniqueID$`, `$registrationNumber$`, `$serviceName$`, `$citizenFirstName$`, `$dateSubmitted$`, `$customerUrl$`. Min sida case URL pattern: `…/Citizen/MyPage2#/cases/$uniqueID$`.
 
-Full token list (kö, bokning, betalning Razor): [message-tokens.md](../../abou-platform/references/message-tokens.md). Case object for dokumentmall / ThankYouAdvanced: [htmlcasemodel.md](../../abou-platform/references/technical/htmlcasemodel.md).
+Full token list (kö, bokning, betalning Razor). Case object for dokumentmall / ThankYouAdvanced.
 
 ## Create malls
 
@@ -852,9 +621,42 @@ Funktionsbrevlåda routed by a choice field (kryssrutor, radioknappar, rullgardi
 5. Per field, per alternative: recipient and optional mall; attachment tick can differ per field.
 6. Save.
 
-FAQ DB field **ServiceRequestEmail** is a different Sokigo mapping ([faq.md](../../abou-platform/references/faq.md)). Workaround for several addresses on one alternative: hidden field copied from the first.
+FAQ DB field **ServiceRequestEmail** is a different Sokigo mapping . Workaround for several addresses on one alternative: hidden field copied from the first.
 
-Encryption tick on standardmeddelanden: [functionality.md](../../abou-platform/references/functionality.md) *Krypterad e-post* — **no attachments**.
+Encryption tick on standardmeddelanden: *Krypterad e-post* — **no attachments**.
+
+## How to write a meddelandemall
+
+**Meddelandemallar** are e-post / SMS / Mina meddelanden — not the PDF editor. Couple them under **Redigera meddelanden**. Subject and body may use `$token$` (case-sensitive). A mall has a **name** (internal) and a **subject** (what the citizen sees). SMS max 160 characters; no Razor in SMS or scheduled reminders.
+
+### What every citizen mail should contain
+
+1. **What happened** in plain language (status changed, you are in a queue, please sign, decision taken, …).
+2. **Which case** — `$uniqueID$` (and `$serviceName$` if the person has several services).
+3. **What they should do next** if anything (open Min sida with e-leg, wait for a second mail, sign as medsökande).
+4. **That they cannot reply** to the technical sender (point to a real kontaktväg in the closing).
+5. **Closing** — organisation name + how to reach the municipality (e-post/phone). Put the closing in sidfot-equivalent text in the mall, not as a one-off in a single service if many services share a kund-mall.
+
+Do not paste live inbox addresses into shared notes; each customer fills their own closing.
+
+### Statusnotifiering (e-post or SMS)
+
+Trigger: **Vid statusuppdatering** (not the first submit). Body pattern: status has changed → identify the case with `$uniqueID$` → follow the case on **Min sida** (e-leg login) → no-reply + closing.
+
+SMS: same facts, shortened to 160 characters (`$uniqueID$` still).
+
+### Köbekräftelse
+
+Trigger: when the citizen is placed in a queue (kö-mail coupled on the service/kö). Subject often includes `$serviceName$`. Body pattern: thanks for the anmälan → they are **in the queue** → a further confirmation of plats/deltagande will follow → which queue `$QueueName$` and which number `$QueuePosition$` → closing.
+
+`$Comment$` is the handläggarens kö-status comment when that is what you are notifying.
+
+### Tokens vs Razor
+
+- Tokens: `$uniqueID$`, `$serviceName$`, `$QueueName$`, `$QueuePosition$`, `$citizenFirstName$`, … — work in subject, e-post, SMS.
+- `$ServiceName$` (capital S) is **not** the documented token; `$serviceName$` is. Wrong casing is left as literal text.
+- Field answers and richer PDF-like blocks: Razor `@this.Model["Fält.Id"]` or `@Model.…` in **e-post** mallar only.
+- Attach the **ärende-PDF** or **beslut-PDF** on the coupling (attachments), rather than duplicating the whole Razor PDF inside the mail body.
 
 ## Statusnotifieringar
 
@@ -871,19 +673,16 @@ Service Inställningar (off by default):
 - **Tillåt sökande att ändra ärendet under Min sida**
 - **Tillåt sökande att ångra ärendet under Min sida**
 
-While status is **Väntar på medsökandes signatur**, the applicant on Min sida can revert the case to **utkast**, change answers, and submit again. [functionality.md](../../abou-platform/references/functionality.md).
-
+While status is **Väntar på medsökandes signatur**, the applicant on Min sida can revert the case to **utkast**, change answers, and submit again. .
 
 ---
-
-## Källa: `references/logic-templates/INDEX.md`
 
 # Logic libraries and mallar
 
 This folder documents **how to use Abou’s Python and JavaScript libraries**, and includes the official builder **mallar** as examples.
 
-- **Library (how it works):** [libraries.md](libraries.md), [pagenode-api.md](pagenode-api.md), [client/api.md](client/api.md)
-- **Integrations those libraries call:** [../integrations/INDEX.md](../integrations/INDEX.md)
+- **Library (how it works):** , ,
+- **Integrations those libraries call:**
 - **Example to adapt:** one mall in the tables below
 
 Read the library files when explaining, reviewing, debugging, or designing — **not only** when you need a new script to paste.
@@ -894,49 +693,46 @@ In the builder: tab **Logik** or **Klientlogik**. Replace `ANGEFÄLTID` / `'x.1'
 
 ## Sidlogik (Python) — `PageNode`
 
-How to use the library: [libraries.md](libraries.md) + [pagenode-api.md](pagenode-api.md).
+How to use the library: + .
 
 | Topic | File |
 | --- | --- |
-| All PageNode helpers | [pagenode-api.md](pagenode-api.md) |
-| Empty class | [standard.md](standard.md) |
-| URL query → fields (`SessionParameters`) | [url-parameters.md](url-parameters.md) |
-| Payment amount / order text | [payment.md](payment.md) |
-| Custom validator text + stay on page | [custom-validation.md](custom-validation.md) |
-| Booking `SlotFilter` | [booking-filter.md](booking-filter.md) |
-| File upload types | [file-upload.md](file-upload.md) |
-| Navet children + other guardian (dropdown) | [navet-dropdown.md](navet-dropdown.md) |
-| Same with tabellfält | [navet-table.md](navet-table.md) |
-| Prefill from multipelsignering JSON | [prefill-multisign.md](prefill-multisign.md) |
-| Prefill from ärendeväljare | [prefill-case-selector.md](prefill-case-selector.md) |
-| Copy fields, läggtillrad, dynamic lists | [prefill.md](prefill.md) |
-| Required field hidden by JS | [required-when-hidden.md](required-when-hidden.md) |
-| Hide/disable fields and blocks (server) | [hide-fields-blocks.md](hide-fields-blocks.md) |
-| Internal user from AD (`RestWrapper`) | [ad-lookup.md](ad-lookup.md) |
-| System log (`LogDebug` …) | [logging.md](logging.md) (builder name **Inloggning**) |
-| Skip pages (`GetPage`) | [page-skip.md](page-skip.md) |
-| Sums / läggtillrad | [calculations.md](calculations.md) |
-| Build tabellfält JSON | [table-field.md](table-field.md) |
-| After submit (`Published`) | [thankyou.md](thankyou.md) |
-| Full PersonPost JSON | [extended-citizen.md](extended-citizen.md) |
+| All PageNode helpers | |
+| Empty class | |
+| URL query → fields (`SessionParameters`) | |
+| Payment amount / order text | |
+| Custom validator text + stay on page | |
+| Booking `SlotFilter` | |
+| File upload types | |
+| Navet children + other guardian (dropdown) | |
+| Same with tabellfält | |
+| Prefill from multipelsignering JSON | |
+| Prefill from ärendeväljare | |
+| Copy fields, läggtillrad, dynamic lists | |
+| Required field hidden by JS | |
+| Hide/disable fields and blocks (server) | |
+| Internal user from AD (`RestWrapper`) | |
+| System log (`LogDebug` …) | (builder name **Inloggning**) |
+| Skip pages (`GetPage`) | |
+| Sums / läggtillrad | |
+| Build tabellfält JSON | |
+| After submit (`Published`) | |
+| Full PersonPost JSON | |
 
-Thank-you **plugin** `IPythonCaseService`: [../logic.md](../logic.md).
+Thank-you **plugin** `IPythonCaseService`.
 
 ## Klientlogik (JavaScript) — `PageLogic`
 
-How to use the library: [libraries.md](libraries.md) + [client/api.md](client/api.md). Only on **Layoutsida**.
+How to use the library: + . Only on **Layoutsida**.
 
 | Topic | File |
 | --- | --- |
-| Empty skeleton | [client/empty.md](client/empty.md) |
-| One field (get/set/hide/empty, split text/value) | [client/handle-field.md](client/handle-field.md) |
-| Several fields and blocks | [client/handle-many.md](client/handle-many.md) |
-| Hide a block when a field matches | [client/hide-block-on-value.md](client/hide-block-on-value.md) |
-
+| Empty skeleton | |
+| One field (get/set/hide/empty, split text/value) | |
+| Several fields and blocks | |
+| Hide a block when a field matches | |
 
 ---
-
-## Källa: `references/logic-templates/libraries.md`
 
 # Abou libraries
 
@@ -946,18 +742,18 @@ Read here whenever you need to **know how a method, type, or integration-backed 
 
 Sokigo does not publish a separate SDK. **These notes plus the mallar are the library.** Methods not listed here are unsupported (“kundens eget ansvar”).
 
-**Do not load this whole folder.** Start at this file or [INDEX.md](INDEX.md), then one API file and (if you implement) one mall.
+**Do not load this whole folder.** Start at this file or , then one API file and (if you implement) one mall.
 
 ## When to read what
 
 | Situation | Read |
 | --- | --- |
-| What Python can do / which method to call | [pagenode-api.md](pagenode-api.md) |
-| What client JS can do / hide-show on the same page | [client/api.md](client/api.md) |
-| Navet, REST, payment, AD, EDP, … (product + how it is used) | [../integrations/INDEX.md](../integrations/INDEX.md) then one file |
-| Need a working script to adapt | [INDEX.md](INDEX.md) → one mall |
-| Field rules instead of code | [../rules-validators.md](../rules-validators.md) |
-| Where to type code in the builder | [../logic.md](../logic.md) |
+| What Python can do / which method to call | |
+| What client JS can do / hide-show on the same page | |
+| Navet, REST, payment, AD, EDP, … (product + how it is used) | then one file |
+| Need a working script to adapt | → one mall |
+| Field rules instead of code | |
+| Where to type code in the builder | |
 
 ## Layering (use the lowest layer that works)
 
@@ -965,7 +761,7 @@ Sokigo does not publish a separate SDK. **These notes plus the mallar are the li
 2. **Klientlogik (`PageLogic`)** — same Layoutsida, instant, browser only. Does not persist hide/require for the next page unless Python agrees.
 3. **Sidlogik (`PageNode`)** — on enter (`Initialize`) or leave (`GetNextPage` / `BeforeGetNextPage`). Other pages, validation that stops Nästa, registers, REST, payment amount, thank-you.
 
-Python hide and JS hide are different. A field hidden only in JS can still be **required** on the server — use [required-when-hidden.md](required-when-hidden.md).
+Python hide and JS hide are different. A field hidden only in JS can still be **required** on the server — use .
 
 ## Core library: `PageNode` (every Logik tab)
 
@@ -981,13 +777,13 @@ Import: `from Abou.Calamare.Web import PageNode`. Class name **must** equal Iron
 | Log in preview | `LogDebug` / `LogInfo` / `LogError` (+ `*Object`) |
 | JSON as a field answer | `Serialize` / `Deserialize` |
 | Other cases / ärendeväljare | `GetAnswerFromCase` / `GetCasesByServiceAndQuestionAnswer` / `GetDetailed` |
-| After submit | `GetAnswerFromPublishedCase` / `SetAnswerToPublishedCase` / `GetPublishedCasePdf` / `Published()` |
+| After submit | `GetAnswerFromPublishedCase` / `SetAnswerToPublishedCase` / `GetPublishedCasePdf` / `Published` |
 | Logged-in person (GDPR-stripped) | `self.Citizen` |
 | Fuller PersonPost in **session** | `GetCitizenInfoLookUp` — see Navet below |
-| Query string `?Smak=sur` | `self.Service.SessionParameters` ([url-parameters.md](url-parameters.md)) |
+| Query string `?Smak=sur` | `self.Service.SessionParameters` |
 | Cross-page Python state | `self.Session['key']` (serializable). Do not call Navet again on every page. |
 
-Full method list and mall: [pagenode-api.md](pagenode-api.md).
+Full method list and mall.
 
 Lifecycle: `Initialize` → citizen fills → `BeforeGetNextPage` → `GetNextPage` must return a page. Thank-you: `Published(self)` returns `PublishedResult`.
 
@@ -998,8 +794,8 @@ Field ids: `'x.1'` = **this** service short name + number. Other service: `'KORT
 Only on **Layoutsida**. Always:
 
 ```javascript
-PageLogic = function() {
-    var self = this;
+PageLogic = function {
+ var self = this;
 };
 ```
 
@@ -1014,7 +810,7 @@ Runs in the browser when answers **on this page** change. Cannot see other pages
 | Custom compare | `self.When(fn, value, callback)` |
 | Split text/value on change | `field.WhenEvent(fn, "change")` + `GetValueFromQuestionAlternative` |
 
-Full list: [client/api.md](client/api.md). Examples: [handle-field.md](client/handle-field.md), [handle-many.md](client/handle-many.md), [hide-block-on-value.md](client/hide-block-on-value.md).
+Full list. Examples.
 
 ## Extra types (only with matching integration / field)
 
@@ -1022,42 +818,39 @@ These are **not** always available. They need the field type and usually a **sys
 
 | Type / factory | What it is | Integration / setup | Example |
 | --- | --- | --- | --- |
-| `CitizenServiceProxy`, `ProxyRequest` | Children / other guardians from Navet (`VF`, skyddad identitet) | [navet.md](../integrations/navet.md) | [navet-dropdown.md](navet-dropdown.md), [navet-table.md](navet-table.md) |
-| `ICitizenServicePluginFactory` + `GetCitizenAsJson` | Full PersonPost JSON (Navet / TEST / TEIS shapes differ) | [navet.md](../integrations/navet.md) | [extended-citizen.md](extended-citizen.md) |
-| `IRestWrapperServiceFactory` | Named REST config (URL, auth). Python fills `IntegrationHttpRequest.Parameters` | [adapter-rest.md](../integrations/adapter-rest.md) | [ad-lookup.md](ad-lookup.md) (`InternalWebSearch`) |
-| `SlotFilter` on booking field | Filter bookable slots (admin, days, text, weekends) | Booking field on the page | [booking-filter.md](booking-filter.md) |
-| `TableFieldModel` | Table JSON (headers, widths ≤ 12, rows) | Tabellfält; not in preview | [table-field.md](table-field.md) |
-| `AnswersModel.Deserialize` | Läggtillrad cells `Answer1`, `Answer2`, … | [calculations.md](calculations.md) | same |
-| Payment hooks on Payment.aspx | `HasPaymentInfo`, `GetPaymentOrderText`, `CalculatePaymentAmount`; read via `GetAnswerFromFieldId` | [payment.md](../integrations/payment.md) | [payment.md](payment.md) |
-| `PublishedResult`, published-case helpers | After submit | Thank-you page | [thankyou.md](thankyou.md) |
-| `IPythonCaseService` | `AddRelationToCase`, `UpdateStateForCase`, `AssignAdministratorToCase`, `RegisterCase` | Sysadmin plugin; [../logic.md](../logic.md) | thank-you scripts |
-| EDP Future Request methods | Invoices, meters, subscriptions | [edp-future.md](../integrations/edp-future.md) | clone a working Future service — no builder mall here |
+| `CitizenServiceProxy`, `ProxyRequest` | Children / other guardians from Navet (`VF`, skyddad identitet) | | , |
+| `ICitizenServicePluginFactory` + `GetCitizenAsJson` | Full PersonPost JSON (Navet / TEST / TEIS shapes differ) | | |
+| `IRestWrapperServiceFactory` | Named REST config (URL, auth). Python fills `IntegrationHttpRequest.Parameters` | | (`InternalWebSearch`) |
+| `SlotFilter` on booking field | Filter bookable slots (admin, days, text, weekends) | Booking field on the page | |
+| `TableFieldModel` | Table JSON (headers, widths ≤ 12, rows) | Tabellfält; not in preview | |
+| `AnswersModel.Deserialize` | Läggtillrad cells `Answer1`, `Answer2`, … | | same |
+| Payment hooks on Payment.aspx | `HasPaymentInfo`, `GetPaymentOrderText`, `CalculatePaymentAmount`; read via `GetAnswerFromFieldId` | | |
+| `PublishedResult`, published-case helpers | After submit | Thank-you page | |
+| `IPythonCaseService` | `AddRelationToCase`, `UpdateStateForCase`, `AssignAdministratorToCase`, `RegisterCase` | Sysadmin plugin; | thank-you scripts |
+| EDP Future Request methods | Invoices, meters, subscriptions | | clone a working Future service — no builder mall here |
 | `JavaScriptSerializer` | .NET JSON serialize/deserialize | Used inside several mallar | prefill, table, Navet |
 
 How to use an extra type: read the **integration file** (what the product does, avtal, sysadmin) **and** the **mall** (exact imports and calls). Do not invent method names from the integration marketing page.
 
 ## GDPR and person data
 
-- `self.Citizen` on a logged-in service is **stripped** (e.g. civilstånd, födelse, raw CitizenData often empty). Mapping table: [citizeninfo.md](../../../abou-platform/references/technical/citizeninfo.md).
+- `self.Citizen` on a logged-in service is **stripped** (e.g. civilstånd, födelse, raw CitizenData often empty). Mapping table.
 - Session lookup: `GetCitizenInfoLookup` / `GetCitizenInfoLookUp` — not stored in DB.
 - Relations (barn, other VF): `CitizenServiceProxy` mallar — those people are **not** stored unless you write them into fields.
-- Skyddad folkbokföring / sekretessmarkering: [navet.md](../integrations/navet.md). Dropdown mall drops protected children and blocks protected other guardians; table mall does **not** — add that if needed.
+- Skyddad folkbokföring / sekretessmarkering. Dropdown mall drops protected children and blocks protected other guardians; table mall does **not** — add that if needed.
 - Do not log real personnummer.
 
 ## Preview limits (library still runs, but not the whole flow)
 
 **Förhandsvisa** reloads **this page only**. Logikhopp, prefills set in the previous page’s `GetNextPage`, and **tabellfält** are not testable there. **Visa skriptlogg** shows `Log*`.
 
-
 ---
-
-## Källa: `references/logic-templates/pagenode-api.md`
 
 # PageNode API — Dokumentation för hjälpmetoder
 
 This **is** the supported IronPython library (builder mall **Dokumentation för hjälpmetoder**, UI 2026-08-21). Use it to explain and review Python, not only to copy a new class.
 
-How it fits with client JS and integrations: [libraries.md](libraries.md). Worked examples: [INDEX.md](INDEX.md).
+How it fits with client JS and integrations. Worked examples.
 
 Field id: under Fältdetaljer. In code use `'x.1'` where `x` is the current service short name and `1` is the number. Other services: `'KORTNAMN.15'`. Helper: `GetFriendlyFieldIdFromFieldNumber(15)` → `"<shortName>.15"`.
 
@@ -1068,12 +861,12 @@ IronPythonType **class name must match**.
 ## How to use the methods
 
 - **Answers:** `GetAnswer` is one string. Checkboxes and tables need `GetAnswers`. `SetAnswerIfEmpty` lets the citizen keep a changed value.
-- **Visibility:** `SetHidden` / `SetHiddenBlock` run on the **server** when the page loads or on Nästa. Same-page instant hide is [client/api.md](client/api.md). Clearing a hidden required field: [required-when-hidden.md](required-when-hidden.md).
+- **Visibility:** `SetHidden` / `SetHiddenBlock` run on the **server** when the page loads or on Nästa. Same-page instant hide is . Clearing a hidden required field.
 - **Validation:** `SetValidationText` does nothing unless you `return self.Page`.
 - **Options:** `SetOptions` with `"Text|Value"` when **Separera text och värde** is on. Read with `GetValueFromQuestionAlternative` vs `GetAnswerFromQuestionAlternative`.
-- **Citizen:** `self.Citizen` is GDPR-stripped. Fuller PersonPost: `GetCitizenInfoLookUp` (session) or Navet types in [libraries.md](libraries.md).
+- **Citizen:** `self.Citizen` is GDPR-stripped. Fuller PersonPost: `GetCitizenInfoLookUp` (session) or Navet types in .
 - **Other cases:** `GetAnswerFromCase` requires the logged-in user to be tied to that case. After submit use `*PublishedCase*`.
-- **JSON:** mall comments mention `DeserializeObject`; the hjälpmetoder **code** calls `Deserialize`. Läggtillrad uses `AnswersModel` in [calculations.md](calculations.md), not these helpers.
+- **JSON:** mall comments mention `DeserializeObject`; the hjälpmetoder **code** calls `Deserialize`. Läggtillrad uses `AnswersModel` in , not these helpers.
 
 ## Methods (from the mall)
 
@@ -1119,7 +912,7 @@ IronPythonType **class name must match**.
 | `self.Session['key']` | HttpSession; any serializable value |
 | `self.Citizen` | Logged-in person. GDPR: MaritalStatusCode, BirthPlace.*, CitizenData **not** populated unless LookUp |
 | `self.Service` | Id, DisplayName, ShortName, Nr, ServiceVersion, UniqueCaseId, RequiresAuthentication/Signature, IsAnonymous, HasAlternativeSigning, IsQueueService, RequiresPayment, CustomerId, Properties, ServiceParameters. URL mall also: **SessionParameters** dict |
-| `self.Page` | PageId, DisplayName, PageName, PageIndex, HTML, ClientLogic, HiddenBlocks, ShowInSummary, Layout, ActivationRule, GetBlocksInPage() |
+| `self.Page` | PageId, DisplayName, PageName, PageIndex, HTML, ClientLogic, HiddenBlocks, ShowInSummary, Layout, ActivationRule, GetBlocksInPage |
 | `self.Service.GetField(id)` | Field object (TypeOfField, Arguments, …) |
 
 Citizen LookUp keys in the mall: ProtectedIdentity, ProtectedIdentityCivilRegister, FirstName, LastName, Adress, Postcode, City, Email, phones, alt address, WantEmailContact, MunicipalityKey, CitizenCaseRelations, …
@@ -1134,59 +927,59 @@ from System.Collections.Generic import *
 class InfoPage(PageNode):
 
 	# I den här mallen hittar du korta beskrivningar av våra Pagenode-metoder, tillsammans med exempel.
-	
+
 	## FältId ##
 	# Varje fält i en e-tjänst har ett unikt id som syns under Fältdetaljer på varje fält.
 	# För att nå ett fält från kod, skriv 'x.id', där id är siffran i fält-id:t
 	# Exempelvis 'x.1'
-	
+
 	## Initialize
 	# Initialize körs när sidan laddas och kan användas för att förifylla fält och styra vilka block och fält som ska visas.
 	def Initialize(self):
 		## GetAnswer ##
 		# Hämta svaret från ett fält.
 		svar = self.GetAnswer('x.1')
-		
+
 		## GetAnswers ##
 		# Används för ex. kryssrutor och tabellfält
 		# Hämta svar som en lista
 		svar = self.GetAnswers('x.1')
-		
+
 		## GetValueFromQuestionAlternative ##
 		# Används för ex. radioknappar och kryssrutor
 		# Få värdet i ett svarsalternativ, där "Separera text och värde" är ikryssat
 		svarsvarde = self.GetValueFromQuestionAlternative('x.1')
-		
+
 		## GetAnswerFromQuestionAlternative ##
 		# Används för ex. radioknappar och kryssrutor
 		# Få texten i ett svarsalternativ, där "Separera text och värde" är ikryssat
 		svarstext = self.GetAnswerFromQuestionAlternative('x.1')
-		
+
 		## SetAnswer ##
 		# Sätter svaret i ett fält. Ange först fältet, och sedan det svar du vill sätta.
 		self.SetAnswer('x.1', 'Svar')
-		
+
 		## SetAnswerIfEmpty ##
 		# Sätter svaret i ett fält om det är tomt. Om det redan fanns ett svar, eller om invånaren byter svar, kommer inte den här metoden ändra svaret.
 		self.SetAnswerIfEmpty('x.1', 'Svar om tomt')
-		
+
 		## SetQuestionText ##
 		# Sätter rubriken på ett fält
 		self.SetQuestionText('x.1','Fältrubrik')
-		
+
 		## GetOptions ##
 		# Hämtar tillåtna svarsalternativ för till exempel kryssrute- och radioknappsfält
 		svarsalternativ = self.GetOptions("x.1")
-		
+
 		## SetOptions ##
 		# Används för ex. radioknappar och kryssrutor
 		# För ett fält UTAN separerade värden:
 		self.SetOptions("x.1", Array[String](["Alternativ A", "Alternativ B", "Alternativ C"]))
 		# För ett fält MED separerade värden:
 		self.SetOptions("x.2", Array[String]((["Alternativ A|A", "Alternativ B|B", "Alternativ C|C"])))
-		# Text och värde separeras med | 
+		# Text och värde separeras med |
 		# Första svarsalternativet har då texten "Alternativ A" och värdet "A"
-		
+
 		## SetOptionHelpTexts ##
 		# Används för ex. radioknappar och kryssrutor
 		# Sätter hjälptext för vardera svarsalternativ
@@ -1198,40 +991,40 @@ class InfoPage(PageNode):
 		self.SetDisabled('x.1', True)
 		# Sätter fältet till aktiverat
 		self.SetDisabled('x.1', False)
-		
+
 		## SetRequired ##
 		# Sätter att ett fält ska vara obligatoriskt eller inte
 		# Sätter fältet till icke-obligatoriskt
 		self.SetRequired("x.1", False)
 		# Sätter fältet till obligatoriskt
 		self.SetRequired("x.1", True)
-		
+
 		## SetHidden ##
 		# Sätter att ett fält ska vara dolt eller inte.
 		# Sätter fältet till dolt
 		self.SetHidden("x.1", True)
 		# Sätter fältet till icke dolt
 		self.SetHidden("x.1", False)
-		
+
 		## SetHiddenBlock ##
 		# Sätter att ett block ska vara dolt eller inte.
 		# Sätter blocket till dolt
 		self.SetHiddenBlock("BLOCK1", True)
 		# Sätter blocket till icke dolt
 		self.SetHiddenBlock("BLOCK1", False)
-		
+
 		## SetHiddenAndClearBlock ##
 		# Tömmer alla fält i ett block och gömmer dem
 		self.SetHiddenAndClearBlock("BLOCK1", True)
 		# Visar ett block
 		self.SetHiddenAndClearBlock("BLOCK1", False)
-		
+
 		## CopyTo ##
 		# Kopierar svar mellan två fält. Bör vara samma sorts fält.
 		kopieraTillFält = "x.1"
 		kopieraFrånFält = "x.2"
 		self.CopyTo(kopieraFrånFält, kopieraTillFält)
-		
+
 		## Loggmetoder ##
 		## Dessa Loggar presenteras i "Visa skriptlogg" under "Förhandsvisa e-tjänst"
 		self.LogDebug("Sträng")
@@ -1243,19 +1036,19 @@ class InfoPage(PageNode):
 		self.LogError("Sträng")
 		värde = "Hej"
 		self.LogErrorObject({"Nyckel":värde})
-		
+
 		## GetAgeOnDate ##
 		personnummer = self.Citizen.UserIdentity
 		datum = "2026-03-03"
 		self.GetAgeOnDate(personnummer, datum)
-		
+
 		## GetFriendlyFieldIdFromFieldNumber ##
 		friendlyFieldId = self.GetFriendlyFieldIdFromFieldNumber(15)
-		
+
 		## SetValidationText ##
 		# OBS: sätt alltid return self.Page efter valideringen, annars stoppas inte invånaren från att gå vidare
 		self.SetValidationText("x.1", "Fel svar; Vänligen försök igen.")
-		
+
 		## Serialize / Deserialize / GetJsonDeserializedObjectSibling ##
 		data = {
 			"geometry": {
@@ -1268,35 +1061,35 @@ class InfoPage(PageNode):
 		coordinates = deserialized["geometry"]["coordinates"]
 		json_deserialized = self.Deserialize(json_string)
 		coordinates = self.GetJsonDeserializedObjectSibling(json_deserialized, "coordinates")
-		
+
 		## GetCasesByServiceAndQuestionAnswer
 		serviceShortName = "EX_TJANST"
 		fieldsAndValues = {"EX_TJANST.3": "Ja"}
 		statusWhiteList = []
 		statusBlackList = ["Avslutat"]
 		results = self.GetCasesByServiceAndQuestionAnswer(serviceShortName, Dictionary[str,str](fieldsAndValues), List[str](statusWhiteList), List[str](statusBlackList))
-		
+
 		## GetDetailed
 		caseId = "250204-EX_TJANST-KW03"
 		case = self.GetDetailed(caseId)
-		
+
 		## GetAnswerFromCase / GetAnswerFromPublishedCase / SetAnswerToPublishedCase
 		otherCaseAnswer = self.GetAnswerFromCase(caseId, "x.1")
 		otherCaseAnswer = self.GetAnswerFromPublishedCase(caseId, "x.1")
 		otherCaseAnswer = self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId, 'x.1')
 		self.SetAnswerToPublishedCase(self.Service.UniqueCaseId, 'x.1', "Ja")
 		self.SetAnswerToPublishedCase("201021-ABC-AB12", 'x.1', "Nej")
-		
+
 		## GetCitizenInfoLookUp — kringgår GDPR-strip på self.Citizen (session only)
 		citizen = self.GetCitizenInfoLookUp(self.Citizen.UserIdentity)
-		
+
 		## Service / Page / BLOCK / Field / Session — see mall comments in builder
 		self.Session['MyKey'] = "Mitt värde"
 		MyValue = self.Session['MyKey']
- 
+
 	def BeforeGetNextPage(self):
 		pass
-		
+
 	def GetNextPage(self):
 		return PageNode.GetNextPage(self)
 		# return self.GetPage('Sida2')
@@ -1305,10 +1098,7 @@ class InfoPage(PageNode):
 
 Citizen LookUp, Service, Page, Block, and Field property dumps are in the builder mall verbatim; copy from the UI if you need a property not listed above. Do not log real personnummer in production.
 
-
 ---
-
-## Källa: `references/logic-templates/standard.md`
 
 # Standard
 
@@ -1318,21 +1108,18 @@ Tab: **Logik**. Empty Python skeleton.
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def Initialize(self):
-        answer = self.GetAnswer('')
+ def Initialize(self):
+ answer = self.GetAnswer('')
 
-    def GetNextPage(self):
-        return PageNode.GetNextPage(self)
+ def GetNextPage(self):
+ return PageNode.GetNextPage(self)
 ```
-
 
 ---
 
-## Källa: `references/logic-templates/url-parameters.md`
-
 # Använda url-parametrar
 
-Tab: **Logik**. From **2019.2**. Prefill from query string, stored in `self.Service.SessionParameters` (string dict). Product page: [functionality.md](../../../abou-platform/references/functionality.md) *Värden som parametrar*.
+Tab: **Logik**. From **2019.2**. Prefill from query string, stored in `self.Service.SessionParameters` (string dict). Product page: *Värden som parametrar*.
 
 Example URL: `Siteurl/Etjänstenamn?Smak=sur&Frukt=citron` or `…/GRUSK?skola=Lyckoskolan&årskurs=3`. Missing keys throw — check `in` first. Dict keys are **case sensitive** (`Frukt` vs `frukt`).
 
@@ -1340,40 +1127,37 @@ Example URL: `Siteurl/Etjänstenamn?Smak=sur&Frukt=citron` or `…/GRUSK?skola=L
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def Initialize(self):
-        #I det här exemplet antas det att e-tjänsten har startats med parametrar
-        #Det betyder att man i anropet till e-tjänsten anget parametrar i urlen
-        #I det här exemplet anropas abou med parametrarna 'Smak' och 'Frukt'
-        #Urlen ser då ut såhär 'Siteurl/Etjänstenamn?Smak=sur&Frukt=citron'
-        #Dessa parametrar lagras i propertyn self.Service.SessionParameters
-        #self.Service.SessionParameters är en dictionary med strängar. 
-        
-        #Exempel på att hämta ut en parameter och förifylla ett fält
-        #notera att om Smak inte skulle finnas i dictionaryn kommer detta smälla. 
-        #Var noga med att kolla om nycklar finns vid implementation där parameterlistan är okänd innan man försöker hämta ut dom.
-        smak = self.Service.SessionParameters['Smak']
-        friendlyFieldId = 'x.1'
-        self.SetAnswer(friendlyFieldId, smak)
-        
-        #Ett säkrare sätt att kolla om värdet finns i dictionaryn.
-        #Exempel på användning
-        
-        #Försök hämta värdet för parametern 'Frukt'
-        friendlyFieldId2 = 'x.2'
-        
-        if 'frukt' in self.Service.SessionParameters:
-            self.SetAnswer(friendlyFieldId2, self.Service.SessionParameters['frukt'])
-        else:
-            self.SetAnswer(friendlyFieldId2, 'Värdet finns inte')
+ def Initialize(self):
+ #I det här exemplet antas det att e-tjänsten har startats med parametrar
+ #Det betyder att man i anropet till e-tjänsten anget parametrar i urlen
+ #I det här exemplet anropas abou med parametrarna 'Smak' och 'Frukt'
+ #Urlen ser då ut såhär 'Siteurl/Etjänstenamn?Smak=sur&Frukt=citron'
+ #Dessa parametrar lagras i propertyn self.Service.SessionParameters
+ #self.Service.SessionParameters är en dictionary med strängar.
 
-    def GetNextPage(self):        
-        return PageNode.GetNextPage(self)
+ #Exempel på att hämta ut en parameter och förifylla ett fält
+ #notera att om Smak inte skulle finnas i dictionaryn kommer detta smälla.
+ #Var noga med att kolla om nycklar finns vid implementation där parameterlistan är okänd innan man försöker hämta ut dom.
+ smak = self.Service.SessionParameters['Smak']
+ friendlyFieldId = 'x.1'
+ self.SetAnswer(friendlyFieldId, smak)
+
+ #Ett säkrare sätt att kolla om värdet finns i dictionaryn.
+ #Exempel på användning
+
+ #Försök hämta värdet för parametern 'Frukt'
+ friendlyFieldId2 = 'x.2'
+
+ if 'frukt' in self.Service.SessionParameters:
+ self.SetAnswer(friendlyFieldId2, self.Service.SessionParameters['frukt'])
+ else:
+ self.SetAnswer(friendlyFieldId2, 'Värdet finns inte')
+
+ def GetNextPage(self):
+ return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/payment.md`
 
 # Betalning (för PaymentPage.aspx)
 
@@ -1383,51 +1167,48 @@ Tab: **Logik** on the **Betalningssida**. Amount and order text. Read answers vi
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def Initialize(self):
-        answer = self.GetAnswer('')
+ def Initialize(self):
+ answer = self.GetAnswer('')
 
-    def GetNextPage(self):        
-        return PageNode.GetNextPage(self)
+ def GetNextPage(self):
+ return PageNode.GetNextPage(self)
 
-    #För att logiken för betalningen ska fungera som önskat ska fältsvar hämtas via den här metoden istället för den vanliga GetAnswer
-    def GetAnswerFromFieldId(self,fields,fieldId):
-        return filter(lambda f: f.FieldId == fieldId, fields)[0].Answer
+ #För att logiken för betalningen ska fungera som önskat ska fältsvar hämtas via den här metoden istället för den vanliga GetAnswer
+ def GetAnswerFromFieldId(self,fields,fieldId):
+ return filter(lambda f: f.FieldId == fieldId, fields)[0].Answer
 
-    def HasPaymentInfo(self):
-        return True
-    
-    #Ange ordertext här
-    def GetPaymentOrderText(self):
-        return 'MIN ORDERTEXT'
+ def HasPaymentInfo(self):
+ return True
 
-    #Ange ev. felsida här
-    #def GetPaymentErrorPage(self):
-        #return 'felsidan'
+ #Ange ordertext här
+ def GetPaymentOrderText(self):
+ return 'MIN ORDERTEXT'
 
-    #här beräknas summan
-    def CalculatePaymentAmount(self, fields):
-        #Definiera konstanter
-        baseAmount = 100
-        numItemsFieldId='ANGEFÄLTID'
-        nameFieldId='ANGEFÄLTID'
-        
-        #Hämta och parsa fältsvar från fields parametern istället för vanliga GetAnswer
-        numItems = int(self.GetAnswerFromFieldId(fields, numItemsFieldId))
-        strName = self.GetAnswerFromFieldId(fields, nameFieldId)
+ #Ange ev. felsida här
+ #def GetPaymentErrorPage(self):
+ #return 'felsidan'
 
-        #Beräkna summan
-        amount = numItems * baseAmount
-        
-        if(strName=='emelie'):
-            amount = amount * 0.75 # 25% rabatt !!
+ #här beräknas summan
+ def CalculatePaymentAmount(self, fields):
+ #Definiera konstanter
+ baseAmount = 100
+ numItemsFieldId='ANGEFÄLTID'
+ nameFieldId='ANGEFÄLTID'
 
-        return amount
+ #Hämta och parsa fältsvar från fields parametern istället för vanliga GetAnswer
+ numItems = int(self.GetAnswerFromFieldId(fields, numItemsFieldId))
+ strName = self.GetAnswerFromFieldId(fields, nameFieldId)
+
+ #Beräkna summan
+ amount = numItems * baseAmount
+
+ if(strName=='emelie'):
+ amount = amount * 0.75 # 25% rabatt !!
+
+ return amount
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/custom-validation.md`
 
 # Egen valideringstext
 
@@ -1437,32 +1218,29 @@ Tab: **Logik**. Custom check + `SetValidationText` + `return self.Page` so the c
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def GetNextPage(self):
-        #Vid en del användningsfall där validatorer inte täcker upp helt kan man skapa en egen validator med hjälp av Python.
-        #Men för att informera användaren om vad som gör att den kommer tillbaka till samma sida kan det vara bra att
-        #visa ett valideringsmeddelande på samma sätt som en validator gör. 
-        #Detta går att åstakomma med hjälp av: self.SetValidationText
+ def GetNextPage(self):
+ #Vid en del användningsfall där validatorer inte täcker upp helt kan man skapa en egen validator med hjälp av Python.
+ #Men för att informera användaren om vad som gör att den kommer tillbaka till samma sida kan det vara bra att
+ #visa ett valideringsmeddelande på samma sätt som en validator gör.
+ #Detta går att åstakomma med hjälp av: self.SetValidationText
 
-        #Hämta svar från det fält man vill basera valideringen på.
-        #I detta exempel antar vi ett radioknappsfält med svarsalternativ "Ja" och "Nej"
-        
-        fieldId = 'ANGE FÄLTID'
+ #Hämta svar från det fält man vill basera valideringen på.
+ #I detta exempel antar vi ett radioknappsfält med svarsalternativ "Ja" och "Nej"
 
-        answer = self.GetAnswer(fieldId)
+ fieldId = 'ANGE FÄLTID'
 
-        #Om man svarar nej i fältet får man inte gå vidare
-        if(answer.Contains('Nej')):
-            self.SetValidationText(fieldId, 'ANGE FELMEDDELANDE HÄR')
-            return self.Page
-        
-        #Annars går vi vidare till nästa sida
-        return PageNode.GetNextPage(self)
+ answer = self.GetAnswer(fieldId)
+
+ #Om man svarar nej i fältet får man inte gå vidare
+ if(answer.Contains('Nej')):
+ self.SetValidationText(fieldId, 'ANGE FELMEDDELANDE HÄR')
+ return self.Page
+
+ #Annars går vi vidare till nästa sida
+ return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/booking-filter.md`
 
 # Filtrera bokningsbara tillfällen
 
@@ -1473,48 +1251,44 @@ from Abou.Calamare.Web import PageNode
 from Abou.Calamare.Contracts.Reservation import SlotFilter
 
 class InfoPage(PageNode):
-    def Initialize(self):
-        reservationField = self.Service.GetField('Ange Fält-id för bokningsfältet')
-        slotFilter = SlotFilter() # Skapa SlotFilter-objekt för alla inställningar som önskas.
-        reservationField.SetSlotFilter(slotFilter) # ställ in fältet att använda inställningsobjektet
-        
-        # Alla inställningar läggs ihop för att utöka filtreringen. Tillfällen som inte matchar angivna filter förkastas.
-        # Om inget anges sker ingen filtrering på den inställningen.
-        
-        # Visa bokningstillfällen som ägs av handläggare med angivna inloggningsnamn.
-        slotFilter.Admins = ['adminuser1', 'adminuser2']
-        
-        # Filtrera på Fritext. Tar bara med tillfällen som innehåller angiven sträng.
-        # Följande inställning skulle exempelvis matcha 'Loppis i parken' och 'Loppis på torget'
-        slotFilter.ContainsText = 'loppis'
-        
-        # Följande inställningar bestämmer vilka kalenderdagar från dagens datum som skall visas
-        # Med följande inställning kan man aldrig boka ett tillfälle på samma dag, nästföljande dag, eller tillfällen längre fram än fem dagar
-        slotFilter.DaysUntilFirst = 2 # visar inte dagens eller nästföljande dags tillfällen
-        slotFilter.DaysUntilLast = 5  # visar bara tillfällen fem dagar framåt
-        
-        # ExcludeWeekend = True gör att lördagar och söndagar inte räknas med vid beräkning av DaysUntilFirst och DaysUntilLast.
-        # Varje vardag kommer då att räknas som en sammanhängande serie.
-        # Om vi bara har bokningstillfällen på vardagar och har DaysUntilFirst = 2
-        # vore det exempelvis inte möjligt att boka ett måndagstillfälle på föregående fredag
-        slotFilter.ExcludeWeekend = True # Grundinställning är False
-        
-        # ExcludeDays kan ses som en utökning av ExcludeWeekend.
-        # Här kan man skriva in en lista med datum som ska fungera som helger. Anges i formatet yyyy-MM-dd
-        slotFilter.ExcludeDays = ['2020-12-23', '2020-12-24', '2020-12-25', '2020-12-26', '2020-12-31', '2021-01-01']
-        
-        # En enklare inställning som säkerställer att bokning inte kan göras senare än x antal timmar innan tillfället
-        slotFilter.MinimumHoursBeforeTime = 2
-        
+ def Initialize(self):
+ reservationField = self.Service.GetField('Ange Fält-id för bokningsfältet')
+ slotFilter = SlotFilter # Skapa SlotFilter-objekt för alla inställningar som önskas.
+ reservationField.SetSlotFilter(slotFilter) # ställ in fältet att använda inställningsobjektet
 
-    def GetNextPage(self):        
-        return PageNode.GetNextPage(self)
+ # Alla inställningar läggs ihop för att utöka filtreringen. Tillfällen som inte matchar angivna filter förkastas.
+ # Om inget anges sker ingen filtrering på den inställningen.
+
+ # Visa bokningstillfällen som ägs av handläggare med angivna inloggningsnamn.
+ slotFilter.Admins = ['adminuser1', 'adminuser2']
+
+ # Filtrera på Fritext. Tar bara med tillfällen som innehåller angiven sträng.
+ # Följande inställning skulle exempelvis matcha 'Loppis i parken' och 'Loppis på torget'
+ slotFilter.ContainsText = 'loppis'
+
+ # Följande inställningar bestämmer vilka kalenderdagar från dagens datum som skall visas
+ # Med följande inställning kan man aldrig boka ett tillfälle på samma dag, nästföljande dag, eller tillfällen längre fram än fem dagar
+ slotFilter.DaysUntilFirst = 2 # visar inte dagens eller nästföljande dags tillfällen
+ slotFilter.DaysUntilLast = 5 # visar bara tillfällen fem dagar framåt
+
+ # ExcludeWeekend = True gör att lördagar och söndagar inte räknas med vid beräkning av DaysUntilFirst och DaysUntilLast.
+ # Varje vardag kommer då att räknas som en sammanhängande serie.
+ # Om vi bara har bokningstillfällen på vardagar och har DaysUntilFirst = 2
+ # vore det exempelvis inte möjligt att boka ett måndagstillfälle på föregående fredag
+ slotFilter.ExcludeWeekend = True # Grundinställning är False
+
+ # ExcludeDays kan ses som en utökning av ExcludeWeekend.
+ # Här kan man skriva in en lista med datum som ska fungera som helger. Anges i formatet yyyy-MM-dd
+ slotFilter.ExcludeDays = ['2020-12-23', '2020-12-24', '2020-12-25', '2020-12-26', '2020-12-31', '2021-01-01']
+
+ # En enklare inställning som säkerställer att bokning inte kan göras senare än x antal timmar innan tillfället
+ slotFilter.MinimumHoursBeforeTime = 2
+
+ def GetNextPage(self):
+ return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/file-upload.md`
 
 # Filuppladdningsfältet
 
@@ -1535,54 +1309,51 @@ fileUploadFieldId = "x.2"
 requiredTypes = ["Nåt vi vet att vi behöver|vi-behover", "Nåt mer vi redan känner till|nat-mer"]
 
 # Obligatoriska filtyper kollas med värdedelen av alternativen, dvs det efter '|'-tecknet
-requiredTypeValues =    ["vi-behover"               , "nat-mer"]
+requiredTypeValues = ["vi-behover" , "nat-mer"]
 requiredTypeDisplayed = ["Nåt vi vet att vi behöver", "Nåt mer vi redan känner till"]
 # Om vi inte har separerade värden räcker det att bara jobba med visningsvärdena.
 
 class InfoPage(PageNode):
-    # När vi anländer till sidan kan vi dynamiskt ange filtyper för filuppladdningsfältet
-    def Initialize(self):
-        # Sätt fältrubrik, för att indikera obligatoriska element
-        self.SetQuestionText(fileUploadFieldId, "Ladda up bilagor, (obligatoriska typer: " + ", ".join(requiredTypeDisplayed) + ")")
-        
-        # Vi hämtar alternativ som kan bero på andra system eller logik under e-tjänstekörningen
-        integrationTypes = self.GetIntegrationTypes()
-        
-        ## Vi lägger ihop listorna och sorterar för användarvänligheten
-        allTypes = sorted(integrationTypes + requiredTypes)
-    
-        # Och nu blir alternativen tillgängliga för fältet.
-        self.SetOptions(fileUploadFieldId, Array[str](allTypes))
+ # När vi anländer till sidan kan vi dynamiskt ange filtyper för filuppladdningsfältet
+ def Initialize(self):
+ # Sätt fältrubrik, för att indikera obligatoriska element
+ self.SetQuestionText(fileUploadFieldId, "Ladda up bilagor, (obligatoriska typer: " + ", ".join(requiredTypeDisplayed) + ")")
 
-    # Vid navigering till nästa sida kan vi lägga till validering som 
-    # verifierar att alla obligatoriska filtyper har blivit uppladdade
-    def GetNextPage(self):
-        fileUploadField = self.Service.GetField(fileUploadFieldId)
-        if (not fileUploadField.HasUploadedTypes(Array[str](requiredTypeValues))):
-            self.SetValidationText(fileUploadFieldId, "Det saknas filtyper. Du måste skicka med " + (", ".join(requiredTypeDisplayed)))
-            return self.Page
-        
-        return PageNode.GetNextPage(self)
-    
-    def GetIntegrationTypes(self):
-        integrationTypeSessionKey = "typesFromMyIntegration-" + self.Service.UniqueCaseId
-        if (self.Session[integrationTypeSessionKey] == None):
-            # Om alternativen ex. behöver hämtas från ett externt api kan det
-            # vara bra att spara listan i sessionen istället för skicka nya anrop när vi besöker sidan på nytt.
-            self.Session[integrationTypeSessionKey] = ["Bild på registreringsplåt|bild-registreringsplåt", "Bild på stötfångare|bild-stötfångare"]
-        return self.Session[integrationTypeSessionKey]
+ # Vi hämtar alternativ som kan bero på andra system eller logik under e-tjänstekörningen
+ integrationTypes = self.GetIntegrationTypes
+
+ ## Vi lägger ihop listorna och sorterar för användarvänligheten
+ allTypes = sorted(integrationTypes + requiredTypes)
+
+ # Och nu blir alternativen tillgängliga för fältet.
+ self.SetOptions(fileUploadFieldId, Array[str](allTypes))
+
+ # Vid navigering till nästa sida kan vi lägga till validering som
+ # verifierar att alla obligatoriska filtyper har blivit uppladdade
+ def GetNextPage(self):
+ fileUploadField = self.Service.GetField(fileUploadFieldId)
+ if (not fileUploadField.HasUploadedTypes(Array[str](requiredTypeValues))):
+ self.SetValidationText(fileUploadFieldId, "Det saknas filtyper. Du måste skicka med " + (", ".join(requiredTypeDisplayed)))
+ return self.Page
+
+ return PageNode.GetNextPage(self)
+
+ def GetIntegrationTypes(self):
+ integrationTypeSessionKey = "typesFromMyIntegration-" + self.Service.UniqueCaseId
+ if (self.Session[integrationTypeSessionKey] == None):
+ # Om alternativen ex. behöver hämtas från ett externt api kan det
+ # vara bra att spara listan i sessionen istället för skicka nya anrop när vi besöker sidan på nytt.
+ self.Session[integrationTypeSessionKey] = ["Bild på registreringsplåt|bild-registreringsplåt", "Bild på stötfångare|bild-stötfångare"]
+ return self.Session[integrationTypeSessionKey]
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/navet-dropdown.md`
 
 # Fördjupad Navet-slagning med enkel lista
 
 Tab: **Logik**. Children in a dropdown (`FetchMyChildren` / `FetchMyChildrenFlatList`), other guardian into multipelsigneringsfält. Relation `VF`. Children/guardians with protected identity are dropped or blocked. JSON for multi-sign: `SocialSecurityNumber`, `FirstName`, `LastName`, `Email`.
 
-Also see [integrations/navet.md](../integrations/navet.md).
+Also
 
 ```python
 from Abou.Calamare.Web import PageNode
@@ -1602,7 +1373,7 @@ class InfoPage(PageNode):
 	def Initialize(self):
 		# barn innehåller mer information om varje barn, medan barnFlatList innehåller namn och personnummer
 		# Barn med skyddad identitet följer inte med
-		barn, barnFlatList = self.HamtaBarnFranNavet()
+		barn, barnFlatList = self.HamtaBarnFranNavet
 
 		if barnFlatList:
 			self.SetOptions(self.dropDownFieldId, barnFlatList)
@@ -1610,17 +1381,16 @@ class InfoPage(PageNode):
 			self.SetOptions(self.dropDownFieldId, Array[String](""))
 			self.SetValidationText(self.dropDownFieldId, 'Du är inte vårdnadshavare för något barn.')
 
-	def GetNextPage(self):	
-		ssp = CitizenServiceProxy()
+	def GetNextPage(self):
+		ssp = CitizenServiceProxy
 		# Hämta ut valt barn ur rullgardingslistan
 		valtBarn = ssp.GetIdentityFromFlatListAnswer(self.GetAnswer(self.dropDownFieldId))
-
 
 		andraVardnadshavare = self.HamtaAndraVardnadshavareFranNavet(valtBarn)
 		if andraVardnadshavare:
 			if andraVardnadshavare == "Skyddad":
-				# Om den andra vårdnadshavaren har skyddad identitet bör dennes uppgifter 
-				# inte förifyllas i e-tjänsten. Det kan hanteras t.ex. genom att vårdnadshavaren 
+				# Om den andra vårdnadshavaren har skyddad identitet bör dennes uppgifter
+				# inte förifyllas i e-tjänsten. Det kan hanteras t.ex. genom att vårdnadshavaren
 				# utan skyddad identitet inte kan skicka in ärendet och får en instruktion för
 				# annan hantering av ärendet.
 				self.SetValidationText(self.dropDownFieldId, 'Du kan inte skicka in ett ärende i denna e-tjänst. Hör av dig till kontaktcenter för vidare hjälp med ditt ärende.')
@@ -1629,7 +1399,7 @@ class InfoPage(PageNode):
 				self.SetAnswer(self.multipleSignatureFieldId, andraVardnadshavare)
 				self.SetAnswer(self.radiobuttonFieldId, 'Ja')
 				return self.GetPage('Multipelsignatur')
-			
+
 		# Om det inte finns en andra vårdnadshavare, gå vidare. Skriv in nedan vilken sida, annars går den direkt till nästa
 		return PageNode.GetNextPage(self)
 
@@ -1637,10 +1407,10 @@ class InfoPage(PageNode):
 		# Barn med skyddad identitet följer inte med
 		if(self.Citizen is not None):
 			citizen = self.Citizen
-			ssp = CitizenServiceProxy()
-			
+			ssp = CitizenServiceProxy
+
 			# Skapa request för att hämta de barn den inloggade användaren är vårdnadshavare för
-			request = ProxyRequest()
+			request = ProxyRequest
 			request.ParentsTypeOfRelationToChild = 'VF'
 			request.RemoveDeregistratedRelation = True
 
@@ -1651,7 +1421,7 @@ class InfoPage(PageNode):
 			# Hämta barn från Navet
 			children = ssp.FetchMyChildren(citizen.UserIdentity, request)
 			children = self.TaBortBarnSkyddadIdentitet(children)
-			
+
 			# Hämta barn i kortare format från Navet
 			childrenFlatList = ssp.FetchMyChildrenFlatList(citizen.UserIdentity, request)
 			childrenFlatList = self.TaBortBarnSkyddadIdentitetFlatList(children, childrenFlatList)
@@ -1660,12 +1430,12 @@ class InfoPage(PageNode):
 		return None, None
 
 	def HamtaAndraVardnadshavareFranNavet(self, valtBarn):
-		ssp = CitizenServiceProxy()
+		ssp = CitizenServiceProxy
 		citizen = self.Citizen
-		serializer = JavaScriptSerializer()
-		
+		serializer = JavaScriptSerializer
+
 		# Skapa upp request för att hämta andra vårdnadshavare
-		request = ProxyRequest()
+		request = ProxyRequest
 		request.IdentityToRemoveInRelations = citizen.UserIdentity
 		request.ParentsTypeOfRelationToChild = 'VF'
 		request.RemoveDeregistratedRelation = True
@@ -1697,7 +1467,7 @@ class InfoPage(PageNode):
 		# Returnerar barnen i FlatList-format, dvs ["Förnamn efternamn, personnummer"]
 		kontrolleradLista = []
 		if children:
-			for child in children:			
+			for child in children:
 				if child['ProtectedIdentityCivilRegister'] == "False" and child['ProtectedIdentity'] == "False":
 					childWithNoProtectedIdentity = [x for x in childrenFlatList if child['SocialSecurityNumber'] in x]
 					childWithNoProtectedIdentity = str.format('{0} {1}, {2}', child['FirstName'], child['LastName'], child['SocialSecurityNumber'])
@@ -1705,10 +1475,7 @@ class InfoPage(PageNode):
 		return Array[String](kontrolleradLista)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/navet-table.md`
 
 # Fördjupad Navet-slagning med tabellfältet
 
@@ -1722,15 +1489,15 @@ from Abou.Calamare.Web.UI.EGovLib.Fields import TableFieldModel
 from System.Collections.Generic import List
 
 class InfoPage(PageNode):
-	
+
 	def GetTableFieldModel(self,headers,propertyNames,propertyList,widths):
 		# help method to support a dictionary with property names and values
-		model = TableFieldModel()
+		model = TableFieldModel
 		model.Widths = List[int](widths)
 		model.Headers = List[str](headers)
-		model.Rows = List[List[str]]()
+		model.Rows = List[List[str]]
 		for i, val in enumerate(propertyList):
-			vals = List[str]()
+			vals = List[str]
 			for i2, valname in enumerate(propertyNames):
 				if(valname in val):
 					vals.Add(val[valname])
@@ -1739,52 +1506,52 @@ class InfoPage(PageNode):
 			model.Rows.Add(vals)
 		return model
 
-	def Initialize(self):		
+	def Initialize(self):
 		if(self.Citizen is not None):
 			citizen = self.Citizen
-			ssp = CitizenServiceProxy()
-			serializer = JavaScriptSerializer()
-			
+			ssp = CitizenServiceProxy
+			serializer = JavaScriptSerializer
+
 			# define the id for you table field
 			tableFieldId = 'ANGEFÄLTID'
-			
+
 			# declare request to only get children logged in user is legal guardian for
-			request = ProxyRequest()
+			request = ProxyRequest
 			request.ParentsTypeOfRelationToChild = 'VF'
 			request.RemoveDeregistratedRelation = True
 			children = ssp.FetchMyChildren(citizen.UserIdentity, request)
-			
+
 			# define the table here, with column widths and column headers
 			model = self.GetTableFieldModel(['Förnamn','Efternamn','Personnummer','Födelseort'],['FirstName','LastName','SocialSecurityNumber','Community','SocialSecurityNumber'],children,[3,3,3,3])
-			
+
 			# serialize table
 			answer = serializer.Serialize(model)
-			
+
 			# write serialized table to table field
 			self.SetAnswerIfEmpty(tableFieldId,answer)
-			
+
 			# check if logged in user is legal guardian for any child, if not set validation text
 			if(ssp.HasChildren(citizen.UserIdentity, request) == False):
 				self.SetValidationText(tableFieldId,'Du är inte vårdnadshavare för något barn.')
 
-	def GetNextPage(self):	
+	def GetNextPage(self):
 		if(self.Citizen is not None):
 			citizen = self.Citizen
-			serializer = JavaScriptSerializer()
-			ssp = CitizenServiceProxy()
-			
+			serializer = JavaScriptSerializer
+			ssp = CitizenServiceProxy
+
 			# get answer, social security number for choosen child in this case, from table field
 			tableFieldId = 'ANGEFÄLTID'
 			tableAnswer = self.GetAnswer(tableFieldId)
 			tableAnswerModel = serializer.Deserialize[TableFieldModel](tableAnswer)
 			currentChildIdentity = tableAnswerModel.Answers[0]
-			
+
 			# declare request to only get other legal guardians for choosen child
-			request = ProxyRequest()
+			request = ProxyRequest
 			request.IdentityToRemoveInRelations = citizen.UserIdentity
 			request.ParentsTypeOfRelationToChild = 'VF'
 			request.RemoveDeregistratedRelation = True
-			
+
 			radiobuttonFieldId = 'ANGEFÄLTID'
 			multipleSignatureFieldId = 'ANGEFÄLTID'
 
@@ -1803,14 +1570,11 @@ class InfoPage(PageNode):
 				self.SetAnswer(radiobuttonFieldId, 'Nej')
 				self.SetAnswer(multipleSignatureFieldId, otherLegalGuardianjson)
 				return self.GetPage('SummaryPage')
-		
+
 		return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/prefill-multisign.md`
 
 # Förifyll från Multipelsigneringsfält
 
@@ -1821,25 +1585,22 @@ from System.Web.Script.Serialization import JavaScriptSerializer
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def Initialize(self):
-        # Hämtar information från multipelsigneringsfältet
-        answer = self.GetAnswer('ANGE FÄLTID')
-        # Skapar en Dictionary<string, object> av svaret
-        data = JavaScriptSerializer().DeserializeObject(answer)
-        # Kopierar personnumret (SocialSecurityNumber) till fältet med det ID man väljer
-        self.SetAnswer('ANGE FÄLTID', data['SocialSecurityNumber'])
-        # Kopierar Förnamnet (FirstName) till fältet med det ID man väljer
-        self.SetAnswer('ANGE FÄLTID', data['FirstName'])
-        # Kopierar Efternamnet (LastName) till fältet med det ID man väljer
-        self.SetAnswer('ANGE FÄLTID', data['LastName'])
-        # Kopierar Epost (Email) till fältet med det ID man väljer
-        self.SetAnswer('ANGE FÄLTID', data['Email'])
+ def Initialize(self):
+ # Hämtar information från multipelsigneringsfältet
+ answer = self.GetAnswer('ANGE FÄLTID')
+ # Skapar en Dictionary<string, object> av svaret
+ data = JavaScriptSerializer.DeserializeObject(answer)
+ # Kopierar personnumret (SocialSecurityNumber) till fältet med det ID man väljer
+ self.SetAnswer('ANGE FÄLTID', data['SocialSecurityNumber'])
+ # Kopierar Förnamnet (FirstName) till fältet med det ID man väljer
+ self.SetAnswer('ANGE FÄLTID', data['FirstName'])
+ # Kopierar Efternamnet (LastName) till fältet med det ID man väljer
+ self.SetAnswer('ANGE FÄLTID', data['LastName'])
+ # Kopierar Epost (Email) till fältet med det ID man väljer
+ self.SetAnswer('ANGE FÄLTID', data['Email'])
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/prefill-case-selector.md`
 
 # Förifyll värde med Ärendeväljarfältet
 
@@ -1849,25 +1610,22 @@ Tab: **Logik** on a page **after** the ärendeväljare. `GetAnswerFromCase` need
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def Initialize(self):
-        
-        #hämta ärendenumret från Ärendeväljarfältet
-        caseId = self.GetAnswer("ANGEFÄLTID")
-        
-        #hämta det gamla fältsvaret från ärendet
-        answer = self.GetAnswerFromCase(caseId,"FältID för det fält du vill att svaret ska hämtas från")
-        
-        # skriv in det gamla fältsvaret i ett fält
-        self.SetAnswer("ANGEFÄLTID",answer)
+ def Initialize(self):
 
-    def GetNextPage(self):        
-        return PageNode.GetNextPage(self)
+ #hämta ärendenumret från Ärendeväljarfältet
+ caseId = self.GetAnswer("ANGEFÄLTID")
+
+ #hämta det gamla fältsvaret från ärendet
+ answer = self.GetAnswerFromCase(caseId,"FältID för det fält du vill att svaret ska hämtas från")
+
+ # skriv in det gamla fältsvaret i ett fält
+ self.SetAnswer("ANGEFÄLTID",answer)
+
+ def GetNextPage(self):
+ return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/prefill.md`
 
 # Förifyll värden
 
@@ -1878,71 +1636,65 @@ from System import Array
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def Initialize(self):
+ def Initialize(self):
 
-        #Förifyllnad
+ #Förifyllnad
 
-        #Byta rubrik för fält
-        self.SetQuestionText('ANGEFÄLTID', 'ANGE ÖNSKAD RUBRIK')
-    
-        #Hämta ett fältsvar
-        answer = self.GetAnswer("ANGEFÄLTID")
+ #Byta rubrik för fält
+ self.SetQuestionText('ANGEFÄLTID', 'ANGE ÖNSKAD RUBRIK')
 
-        #Skriv in fältsvaret i ett annat fält om det är tomt
-        self.SetAnswerIfEmpty("ANGEFÄLTID", answer)
- 
-        #Kopiera ett värde från ett fält till ett annat
-        self.CopyTo('ANGE_FRÅN_FÄLTID', 'ANGE_TILL_FÄLTID')
+ #Hämta ett fältsvar
+ answer = self.GetAnswer("ANGEFÄLTID")
 
-    
-        #Förifyllnad av Lägg till rad-fält
-    
-        personuppgifter = '[{"Answer1":"196305011234","Answer2":"Ulla","Answer3":"Andersson","Answer4":"070-1122334","Answer5":"mamma"},{"Answer1":"199010075678","Answer2":"Kalle","Answer3":"Andersson","Answer4":"070-55667788","Answer5":"barn"}]' 
-        self.SetAnswer("ANGEFÄLTID",personuppgifter)
-    
+ #Skriv in fältsvaret i ett annat fält om det är tomt
+ self.SetAnswerIfEmpty("ANGEFÄLTID", answer)
 
-        #Förifyll dynamiska värden till rullgardinslista-fält
-    
-        #hämta ett svar med ålder valt
-        alder = self.GetAnswer("ANGEFÄLTID")
-        #skapa en array-variabel
-        kurs= []        
-    
-        #skriv in värden i arrayen beroende på valet för ålder 
-        if alder.Equals("20-25"):
-            kurs = ["Balett","Bugg"]
-    
-        if alder.Equals("26-30"):
-            kurs = ["Vals","Hip-hop","Tango"]
-    
-        if alder.Equals("31-35"):
-            kurs=["Salsa","Samba"]
-    
-        #skriv in valet i ett rullgardinslista-fält
-        self.SetOptions("ANGEFÄLTID", Array[str]((kurs)))
+ #Kopiera ett värde från ett fält till ett annat
+ self.CopyTo('ANGE_FRÅN_FÄLTID', 'ANGE_TILL_FÄLTID')
 
-        #Hantera hemliga värden i flervalsfält.
-        #Använd hemliga värden när det inte är önskvärt att visa det valda värdet för användaren.
-        
-        #Förifyll ett flervalsfält med "synligt värde|hemligt värde"
-        #För användaren visas valen aaa, bbb och cccc.
-        self.SetOptions("ANGEFÄLTID",Array[str](["aaa|hemligt1","bbb|hemligt2","cccc|hemligt3"]))
+ #Förifyllnad av Lägg till rad-fält
 
-        #Hämta dolt värde från en flervalslista med separerade värden.
-        self.GetValueFromQuestionAlternative('ANGEFÄLTID')
+ personuppgifter = '[{"Answer1":"196305011234","Answer2":"Ulla","Answer3":"Andersson","Answer4":"070-1122334","Answer5":"mamma"},{"Answer1":"199010075678","Answer2":"Kalle","Answer3":"Andersson","Answer4":"070-55667788","Answer5":"barn"}]'
+ self.SetAnswer("ANGEFÄLTID",personuppgifter)
 
-        #Hämta synligt värde från en flervalslista med separerade värden.
-        self.GetAnswerFromQuestionAlternative('ANGEFÄLTID')
+ #Förifyll dynamiska värden till rullgardinslista-fält
 
+ #hämta ett svar med ålder valt
+ alder = self.GetAnswer("ANGEFÄLTID")
+ #skapa en array-variabel
+ kurs= []
 
-    def GetNextPage(self):        
-        return PageNode.GetNextPage(self)
+ #skriv in värden i arrayen beroende på valet för ålder
+ if alder.Equals("20-25"):
+ kurs = ["Balett","Bugg"]
+
+ if alder.Equals("26-30"):
+ kurs = ["Vals","Hip-hop","Tango"]
+
+ if alder.Equals("31-35"):
+ kurs=["Salsa","Samba"]
+
+ #skriv in valet i ett rullgardinslista-fält
+ self.SetOptions("ANGEFÄLTID", Array[str]((kurs)))
+
+ #Hantera hemliga värden i flervalsfält.
+ #Använd hemliga värden när det inte är önskvärt att visa det valda värdet för användaren.
+
+ #Förifyll ett flervalsfält med "synligt värde|hemligt värde"
+ #För användaren visas valen aaa, bbb och cccc.
+ self.SetOptions("ANGEFÄLTID",Array[str](["aaa|hemligt1","bbb|hemligt2","cccc|hemligt3"]))
+
+ #Hämta dolt värde från en flervalslista med separerade värden.
+ self.GetValueFromQuestionAlternative('ANGEFÄLTID')
+
+ #Hämta synligt värde från en flervalslista med separerade värden.
+ self.GetAnswerFromQuestionAlternative('ANGEFÄLTID')
+
+ def GetNextPage(self):
+ return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/required-when-hidden.md`
 
 # Hantera obligatoriska fält som döljs i klient-logik
 
@@ -1952,23 +1704,20 @@ Tab: **Logik**. If JS hides a required field, clear required in `BeforeGetNextPa
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def Initialize(self):
-        #Ett obligatoriskt fält där logik påverkar om det är obligatoriskt eller inte bör alltid initialt sättas som obligatoriskt:
-        self.SetRequired("ANGEFÄLTID", True)
+ def Initialize(self):
+ #Ett obligatoriskt fält där logik påverkar om det är obligatoriskt eller inte bör alltid initialt sättas som obligatoriskt:
+ self.SetRequired("ANGEFÄLTID", True)
 
-    def BeforeGetNextPage(self):
-        #Om ett obligatoriskt fält döljs i klient-logik måste man ange att fältet ej ska vara obligatoriskt
-        #för att undvika stoppande och osynlig validering i samband med att sidhopp sker:
-        self.SetRequired("ANGEFÄLTID", False)
+ def BeforeGetNextPage(self):
+ #Om ett obligatoriskt fält döljs i klient-logik måste man ange att fältet ej ska vara obligatoriskt
+ #för att undvika stoppande och osynlig validering i samband med att sidhopp sker:
+ self.SetRequired("ANGEFÄLTID", False)
 
-    def GetNextPage(self):        
-        return PageNode.GetNextPage(self)
+ def GetNextPage(self):
+ return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/hide-fields-blocks.md`
 
 # Hantera visning av fält och block
 
@@ -1978,30 +1727,26 @@ Tab: **Logik**. Server-side hide/disable (also after Nästa). For same-page inst
 from Abou.Calamare.Web import PageNode
 # Hantera visning av fält och block
 class InfoPage(PageNode):
-    def Initialize(self):
-        friendlyFieldId = 'x.1'
-        shouldHide = True
-        shouldDisable = True
-        # Döljer eller visar ett fält med matchande id
-        self.SetHidden(friendlyFieldId, shouldHide)
+ def Initialize(self):
+ friendlyFieldId = 'x.1'
+ shouldHide = True
+ shouldDisable = True
+ # Döljer eller visar ett fält med matchande id
+ self.SetHidden(friendlyFieldId, shouldHide)
 
-        # Sätter ett fält inaktivt så att det inte kan redigeras.
-        self.SetDisabled(friendlyFieldId, shouldDisable)
-        
-        blockId = 'BLOCK1'
-        # Döljer eller visar ett helt block med matchande ID och gör
-        # SetHidden på alla fält som ingår i blocket
-        self.SetHiddenBlock(blockId, shouldHide)
+ # Sätter ett fält inaktivt så att det inte kan redigeras.
+ self.SetDisabled(friendlyFieldId, shouldDisable)
 
+ blockId = 'BLOCK1'
+ # Döljer eller visar ett helt block med matchande ID och gör
+ # SetHidden på alla fält som ingår i blocket
+ self.SetHiddenBlock(blockId, shouldHide)
 
-    def GetNextPage(self):        
-        return PageNode.GetNextPage(self)
+ def GetNextPage(self):
+ return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/ad-lookup.md`
 
 # Hämta uppgifter om inloggad från AD
 
@@ -2015,52 +1760,49 @@ from System.Collections.Generic import Dictionary, List
 from System.Web.Script.Serialization import JavaScriptSerializer
 
 class page(PageNode):
-    debugFieldId = 'x.8'
-    def Initialize(self):
-        #Följande konfiguration behöver finnas i Abou.Calamare.Framework.Integration.RestWrapper.RestWrapperConfiguration i sysadmin
-        # "InternalWebSearch": {
-        #     "IsEnabled": true,
-        #     "IsCaseEventsEnabled": false,
-        #     "ServiceType": "Abou.Calamare.Framework.Integration.RestWrapper.V2.RestWrapperServiceV2",
-        #     "Url": "{addresstillinternalweb}/api/v1/activedirectoryuser/Search?apiapplication={apiapplication}&apikey={apikey}",
-        #     "Password": lösenord,
-        #     "UserName": användarnamn,
-        #     "ExtendedConfigurationData": {
-        #         "integrationHttpRequest.Data": "{'searchString':'{searchString}','searchProperty':'{searchProperty}','resultProperties':{resultProperties}}",
-        #     }
-        # }
-        internalWebSearch = self.Resolve[IRestWrapperServiceFactory]().Create(self.IntegrationContext, "InternalWebSearch")
+ debugFieldId = 'x.8'
+ def Initialize(self):
+ #Följande konfiguration behöver finnas i Abou.Calamare.Framework.Integration.RestWrapper.RestWrapperConfiguration i sysadmin
+ # "InternalWebSearch": {
+ # "IsEnabled": true,
+ # "IsCaseEventsEnabled": false,
+ # "ServiceType": "Abou.Calamare.Framework.Integration.RestWrapper.V2.RestWrapperServiceV2",
+ # "Url": "{addresstillinternalweb}/api/v1/activedirectoryuser/Search?apiapplication={apiapplication}&apikey={apikey}",
+ # "Password": lösenord,
+ # "UserName": användarnamn,
+ # "ExtendedConfigurationData": {
+ # "integrationHttpRequest.Data": "{'searchString':'{searchString}','searchProperty':'{searchProperty}','resultProperties':{resultProperties}}",
+ # }
+ # }
+ internalWebSearch = self.Resolve[IRestWrapperServiceFactory].Create(self.IntegrationContext, "InternalWebSearch")
 
-        request = IntegrationHttpRequest()
-        request.Parameters = Dictionary[str,str](
-            {
-                "integrationHttpRequest.data.searchString":self.Citizen.UserIdentity, #värdet som ska sökas på, här satt till inloggad användares användarnamn. Obligatoriskt
-                "integrationHttpRequest.data.searchProperty":"sAMAccountName", #egenskapen i AD:t som skall matcha värdet, här satt till kontonamn ett annat intressant värde kan vara distinguishedname. Obligatoriskt
-                "integrationHttpRequest.data.resultProperties":"['sAMAccountName','manager','givenName','sn','mail','telephoneNumber','homePhone','mobile']", #exempel på egenskaper som skall hämtas alla värden som finns på avändaren kan hämtas, förnamn, efternamn, kontonamn och epost är default om ett tomt värde anges
-            })
+ request = IntegrationHttpRequest
+ request.Parameters = Dictionary[str,str](
+ {
+ "integrationHttpRequest.data.searchString":self.Citizen.UserIdentity, #värdet som ska sökas på, här satt till inloggad användares användarnamn. Obligatoriskt
+ "integrationHttpRequest.data.searchProperty":"sAMAccountName", #egenskapen i AD:t som skall matcha värdet, här satt till kontonamn ett annat intressant värde kan vara distinguishedname. Obligatoriskt
+ "integrationHttpRequest.data.resultProperties":"['sAMAccountName','manager','givenName','sn','mail','telephoneNumber','homePhone','mobile']", #exempel på egenskaper som skall hämtas alla värden som finns på avändaren kan hämtas, förnamn, efternamn, kontonamn och epost är default om ett tomt värde anges
+ })
 
-        #Hämta inloggad användare i AD
-        try:
-            result = internalWebSearch.Post(request)
-            
-            if (not result is None and not result.Result is None):
-                properties = JavaScriptSerializer().Deserialize[Dictionary[str,List[str]]](result.Result)
-                self.SetAnswer('x.1', properties['givenName'][0]) #Förnamn
-                self.SetAnswer('x.2', properties['sn'][0]) #Efternamn
-                self.SetAnswer('x.3', properties['sAMAccountName'][0]) #Användarnamn
-                self.SetAnswer('x.4', properties['mail'][0]) #Epost
-                self.SetAnswer('x.5', properties['telephoneNumber'][0]) #Telefon
-                self.SetAnswer('x.6', properties['mobile'][0]) #Mobil
-                self.SetAnswer('x.7', properties['manager'][0]) #Chef
-        except:
-            self.SetAnswer(self.debugFieldId, 'FEL vid hämtning av inloggad användare i AD')
-            return
+ #Hämta inloggad användare i AD
+ try:
+ result = internalWebSearch.Post(request)
+
+ if (not result is None and not result.Result is None):
+ properties = JavaScriptSerializer.Deserialize[Dictionary[str,List[str]]](result.Result)
+ self.SetAnswer('x.1', properties['givenName'][0]) #Förnamn
+ self.SetAnswer('x.2', properties['sn'][0]) #Efternamn
+ self.SetAnswer('x.3', properties['sAMAccountName'][0]) #Användarnamn
+ self.SetAnswer('x.4', properties['mail'][0]) #Epost
+ self.SetAnswer('x.5', properties['telephoneNumber'][0]) #Telefon
+ self.SetAnswer('x.6', properties['mobile'][0]) #Mobil
+ self.SetAnswer('x.7', properties['manager'][0]) #Chef
+ except:
+ self.SetAnswer(self.debugFieldId, 'FEL vid hämtning av inloggad användare i AD')
+ return
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/logging.md`
 
 # Inloggning (loggning)
 
@@ -2071,34 +1813,31 @@ from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
 
-    def Initialize(self):
+ def Initialize(self):
 
-        #Exempel på loggning till Systemloggen i Abou
-        #Du kan logga valfri text, fältsvar, svar från integrationer med mer
-        
-        #Debug-loggning
-        self.LogDebug('DEBUGTEXT');
+ #Exempel på loggning till Systemloggen i Abou
+ #Du kan logga valfri text, fältsvar, svar från integrationer med mer
 
-        #DebugObject-loggning
-        self.LogDebugObject(self);
+ #Debug-loggning
+ self.LogDebug('DEBUGTEXT');
 
-        #Info-loggning
-        self.LogInfo('INFOTEXT');
+ #DebugObject-loggning
+ self.LogDebugObject(self);
 
-        #InfoObject-loggning
-        self.LogInfoObject(self);
+ #Info-loggning
+ self.LogInfo('INFOTEXT');
 
-        #Fel-loggning
-        self.LogError('FELTEXT');
+ #InfoObject-loggning
+ self.LogInfoObject(self);
 
-        #FelObject-loggning
-        self.LogErrorObject(self);
+ #Fel-loggning
+ self.LogError('FELTEXT');
+
+ #FelObject-loggning
+ self.LogErrorObject(self);
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/page-skip.md`
 
 # Logikhopp
 
@@ -2108,38 +1847,33 @@ Tab: **Logik**. `GetNextPage` must return a page. `GetPage('Systemnamn')` jumps.
 from Abou.Calamare.Web import PageNode
 
 class InfoPage(PageNode):
-    def GetNextPage(self):
-        #exempel: logikhopp beroende på val i tjänsten 
-        answer = self.GetAnswer('ANGEFÄLTID')
-        if answer.Contains('Bil'):
-            return self.GetPage('UppgifterBil')
-        if answer.Contains('Båt'):
-            return self.GetPage('UppgifterBat')
-        return self.GetPage('SummaryPage')
+ def GetNextPage(self):
+ #exempel: logikhopp beroende på val i tjänsten
+ answer = self.GetAnswer('ANGEFÄLTID')
+ if answer.Contains('Bil'):
+ return self.GetPage('UppgifterBil')
+ if answer.Contains('Båt'):
+ return self.GetPage('UppgifterBat')
+ return self.GetPage('SummaryPage')
 
+ #exempel: logikhopp beroende på flera val i tjänsten
+ answer1 = self.GetAnswer('ANGEFÄLTID')
+ answer2 = self.GetAnswer('ANGEFÄLTID')
+ if answer1.Contains('Bil') and answer2.Contains('Flygplan'):
+ return self.GetPage('UppgifterBil&Flyg')
+ return self.GetPage('SummaryPage')
 
-        #exempel: logikhopp beroende på flera val i tjänsten 
-        answer1 = self.GetAnswer('ANGEFÄLTID')
-        answer2 = self.GetAnswer('ANGEFÄLTID')
-        if answer1.Contains('Bil') and answer2.Contains('Flygplan'):
-            return self.GetPage('UppgifterBil&Flyg')
-        return self.GetPage('SummaryPage')
+ #exempel: logikhopp beroende på om ett val är ifyllt eller inte
+ answer = self.GetAnswer('ANGEFÄLTID')
+ if not answer:
+ return self.GetPage('Fastighetsbeteckning2')
+ return self.GetPage('Karta')
 
-        
-        #exempel: logikhopp beroende på om ett val är ifyllt eller inte
-        answer = self.GetAnswer('ANGEFÄLTID')
-        if not answer:
-            return self.GetPage('Fastighetsbeteckning2')
-        return self.GetPage('Karta')
-
-        #exempel: logikhopp obereoende av val i e-tjänsten
-        return self.GetPage('Kontaktperson')
+ #exempel: logikhopp obereoende av val i e-tjänsten
+ return self.GetPage('Kontaktperson')
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/calculations.md`
 
 # Summeringar och beräkningar
 
@@ -2151,51 +1885,48 @@ from Abou.Calamare.Web.UI.EGovLib.Fields.Models import AnswersModel
 
 class InfoPage(PageNode):
 
-    #hämtar ett fältsvar och returnerar det konverterat till siffra, 0 returneras om det ej går att konvertera till siffra.
-    def GetAnswerAsInt(self, friendlyFieldId):
-        answer = self.GetAnswer(friendlyFieldId)
-        result = int.TryParse(answer)
-        if result[0]:
-            return result[1]        
-        return 0;
+ #hämtar ett fältsvar och returnerar det konverterat till siffra, 0 returneras om det ej går att konvertera till siffra.
+ def GetAnswerAsInt(self, friendlyFieldId):
+ answer = self.GetAnswer(friendlyFieldId)
+ result = int.TryParse(answer)
+ if result[0]:
+ return result[1]
+ return 0;
 
-    def Initialize(self):
+ def Initialize(self):
 
-        #addera flera fältsvar som heltal och skriv in dem i fält 
+ #addera flera fältsvar som heltal och skriv in dem i fält
 
-        #hämta värden som heltal
-        arvoden = self.GetAnswerAsInt('ANGEFÄLTID')
-        socialaavgifter = self.GetAnswerAsInt('ANGEFÄLTID')
-        lokalhyra = self.GetAnswerAsInt('ANGEFÄLTID')
+ #hämta värden som heltal
+ arvoden = self.GetAnswerAsInt('ANGEFÄLTID')
+ socialaavgifter = self.GetAnswerAsInt('ANGEFÄLTID')
+ lokalhyra = self.GetAnswerAsInt('ANGEFÄLTID')
 
-        #summera
-        summa = arvoden + socialaavgifter + lokalhyra
+ #summera
+ summa = arvoden + socialaavgifter + lokalhyra
 
-        #skriv in summan i ett fält
-        self.SetAnswer('ANGEFÄLTID', str(summa))
+ #skriv in summan i ett fält
+ self.SetAnswer('ANGEFÄLTID', str(summa))
 
-        #Beräkna med läggtill radfält
-        #Läggtillradfälts bryter ur celler som answer1 och answer2 = kolumn 1,2 
-        
-        #Hämta fältsvar från läggtill-radfält
-        pubTot = self.GetAnswer("ANGEFÄLTID")
-        
-        #deserialisera svaret
-        pubTotModels = AnswersModel.Deserialize(pubTot)
-        #om det gick att deserialisera, loopa igenom raderna och multiplicera cellerna Answer1 & Answer2
-        if pubTotModels is not None:
-            sum = 0
-            for pubTotModel in pubTotModels:
-                Answer1 = int.Parse(pubTotModel.Answer1)
-                Answer2 = int.Parse(pubTotModel.Answer2)         
-                sum += Answer1 * Answer2                                  
-            self.SetAnswer("ANGEFÄLTID",str(sum))
+ #Beräkna med läggtill radfält
+ #Läggtillradfälts bryter ur celler som answer1 och answer2 = kolumn 1,2
+
+ #Hämta fältsvar från läggtill-radfält
+ pubTot = self.GetAnswer("ANGEFÄLTID")
+
+ #deserialisera svaret
+ pubTotModels = AnswersModel.Deserialize(pubTot)
+ #om det gick att deserialisera, loopa igenom raderna och multiplicera cellerna Answer1 & Answer2
+ if pubTotModels is not None:
+ sum = 0
+ for pubTotModel in pubTotModels:
+ Answer1 = int.Parse(pubTotModel.Answer1)
+ Answer2 = int.Parse(pubTotModel.Answer2)
+ sum += Answer1 * Answer2
+ self.SetAnswer("ANGEFÄLTID",str(sum))
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/table-field.md`
 
 # Tabellfältet
 
@@ -2207,118 +1938,112 @@ from System.Web.Script.Serialization import JavaScriptSerializer
 
 class InfoPage(PageNode):
 
-    def Initialize(self):        
-        #ange fältid för din tabell
-        tableFieldId = 'ANGEFÄLTID'
-        
-        #definera raderna i tabellen
-        rowList =   [
-                        ['ABC123','Nybyggnad','2015-01-01','0'],
-                        ['ABC234','Rivning','2012-05-20','1'],
-                        ['ABD567','Utbyggnad','2013-03-10','2'],
-                    ]
-        
-        #observera att kolumner som inte har motsvarande rubriker, kommer bli gömda i tabellen, men kan
-        #användas för att få ut värden genom att sätta fältargumentet AnswerIndex till kolumnen.
+ def Initialize(self):
+ #ange fältid för din tabell
+ tableFieldId = 'ANGEFÄLTID'
 
-        #definera tabellen här, med kolumnbredder och kolumnrubriker och rader.
-        #summan av bredderna bör inte överskrida 12.
-        table = dict(Widths=[4,5,3],Headers=['Diarienummer','Ärendemening','Inkommet'],Rows=rowList)
-        
-        #här är ett exempel på en tabell med styling
-        #table = dict(Widths=[4,5,2,1],Headers=['Diarienummer','Ärendemening','Inkommet','id'],Rows=rowList,
-        #HeaderStyle="background-color:#ffffff !important;border:1px solid #000000;color:#000000 !important",
-        #RowStyle="background-color:#bbbbbb;border:1px solid #000000;",
-        #TableStyle="font-family: 'Times New Roman', Georgia, Serif;font-size:18px;",
-        #SummaryType="SelectedRows"
-        #)
-        #SummaryType styr hur tabellfältet presenteras i ärendepdf, sammanfattningssida och ärendeyv för handläggare
-        #SummaryType = "SelectedRows" används för att visa valda rader
-        #SummaryType = "Table" används för att visa hela tabellen
-        #Lämna SummaryType tom för att endast visa valda svar
+ #definera raderna i tabellen
+ rowList = [
+ ['ABC123','Nybyggnad','2015-01-01','0'],
+ ['ABC234','Rivning','2012-05-20','1'],
+ ['ABD567','Utbyggnad','2013-03-10','2'],
+ ]
 
-        #serialisera tabellen
-        serializedTable = JavaScriptSerializer().Serialize(table)
-        
-        #skriv in den serialiserade tabellen till fältet
-        self.SetAnswerIfEmpty(tableFieldId,serializedTable)
+ #observera att kolumner som inte har motsvarande rubriker, kommer bli gömda i tabellen, men kan
+ #användas för att få ut värden genom att sätta fältargumentet AnswerIndex till kolumnen.
 
-    def GetNextPage(self):
-        #tableFieldId 'x.1'
-        self.LogDebugObject(self.GetAnswers('x.1'))
-        
-        return PageNode.GetNextPage(self)
+ #definera tabellen här, med kolumnbredder och kolumnrubriker och rader.
+ #summan av bredderna bör inte överskrida 12.
+ table = dict(Widths=[4,5,3],Headers=['Diarienummer','Ärendemening','Inkommet'],Rows=rowList)
+
+ #här är ett exempel på en tabell med styling
+ #table = dict(Widths=[4,5,2,1],Headers=['Diarienummer','Ärendemening','Inkommet','id'],Rows=rowList,
+ #HeaderStyle="background-color:#ffffff !important;border:1px solid #000000;color:#000000 !important",
+ #RowStyle="background-color:#bbbbbb;border:1px solid #000000;",
+ #TableStyle="font-family: 'Times New Roman', Georgia, Serif;font-size:18px;",
+ #SummaryType="SelectedRows"
+ #)
+ #SummaryType styr hur tabellfältet presenteras i ärendepdf, sammanfattningssida och ärendeyv för handläggare
+ #SummaryType = "SelectedRows" används för att visa valda rader
+ #SummaryType = "Table" används för att visa hela tabellen
+ #Lämna SummaryType tom för att endast visa valda svar
+
+ #serialisera tabellen
+ serializedTable = JavaScriptSerializer.Serialize(table)
+
+ #skriv in den serialiserade tabellen till fältet
+ self.SetAnswerIfEmpty(tableFieldId,serializedTable)
+
+ def GetNextPage(self):
+ #tableFieldId 'x.1'
+ self.LogDebugObject(self.GetAnswers('x.1'))
+
+ return PageNode.GetNextPage(self)
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/thankyou.md`
 
 # Tacksida
 
 Tab: **Logik** on thank-you. Hook is `Published(self)`, not `GetAnswer`. Return `PublishedResult` (`Success`, `Message`). `Success = False` mails via `CalamareErrorNotificationServiceConfiguration` and sets `Cases.FailedIntegration`.
 
-Also: [pagenode-api.md](pagenode-api.md) thank-you methods, Confluence `IPythonCaseService` in `../logic.md`.
+Also: thank-you methods, Confluence `IPythonCaseService` in .
 
 ```python
 from Abou.Calamare.Web import PageNode
 from Abou.Calamare.Contracts import PublishedResult
 
 class InfoPage(PageNode):
-    # Tacksidans python-skript anropas efter att ett ärende har skickats in
-    def Published(self):
-        ###
-        ## PageNode innehåller en referens till ärendets ID (self.Service.UniqueCaseId)
-        ## som kan användas till att slå upp eller uppdatera ärendets fältsvar
-        ## Men det är möjligt att ange vilket UniqueCaseId som helst
-        ## om det hör till ett inlämnat ärende.
-        # self.SetAnswerToPublishedCase('101010-kortnamnet-XX00', 'x.1', 'Updated in another case')
-        
-        ###
-        ## Hämta ett fältsvar från det publicerade ärendet.
-        answer1 = self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId,'x.1')
-        self.LogDebug("self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId,'x.1') => " + answer1)
-        
-        ###
-        ## Sätta fältsvar på ett publicerat ärende
-        self.SetAnswerToPublishedCase(self.Service.UniqueCaseId, 'x.1', 'Nytt värde angivet')
-        self.LogDebug("self.SetAnswerToPublishedCase(self.Service.UniqueCaseId, 'x.1', 'Nytt värde angivet')")
-        
-        answer1 = self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId,'x.1')
-        self.LogDebug("self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId,'x.1') => " + answer1)
-        
-        ###
-        ## Hämta ärende-PDF för ett publicerat ärende (från FileStorageArea om den redan existerar annars som en ny renderad case-PDF) för att skicka ärende-PDF vidare till ett annat system
-        ## Metoden GetPublishedCasePdf har parametrar CustomerId (Integer), CaseUniqueId (String) och WriteToFileStorageArea (Bool) returnerar ett objekt som består av egenskaperna Name och Data
-        ## Name - String (filnamn för ärende-PDF i Abou)
-        ## Data - Byte[] (ärende-PDF innehåll)
-        ## Vill man även spara ärende-PDF till FileStorageArea i filsystemet (den kommer inte att ersättas om den redan existerar) anger man True som sista parameter (WriteToFileStorageArea) i anropet
-        casePdf = self.GetPublishedCasePdf(self.Service.CustomerId, self.Service.UniqueCaseId, False)
-        self.LogDebug(casePdf.Name)
-        
-        ###
-        ## Returtypen är PublishedResult med medlemmarna Success och Message
-        result = PublishedResult()
-        
-        # När Success = False skickas ett felmeddelande till epost enligt inställningar i
-        # Abou.Calamare.Framework.Configurations.CalamareErrorNotificationServiceConfiguration
-        # (Det samma gäller när skriptkörningen får exekveringsfel)
-        # Ange True för att indikera att allt gått bra.
-        # Sparas i databasen på kolumn Cases.FailedIntegration
-        result.Success = True
-        
-        # Message kan innehålla info om hur skriptkörningen gått eller annan information
-        # Sparas i databasen på kolumn Cases.PluginData
-        result.Message = "Tacksidans skript körde utan fel."
-        
-        return result
+ # Tacksidans python-skript anropas efter att ett ärende har skickats in
+ def Published(self):
+ ###
+ ## PageNode innehåller en referens till ärendets ID (self.Service.UniqueCaseId)
+ ## som kan användas till att slå upp eller uppdatera ärendets fältsvar
+ ## Men det är möjligt att ange vilket UniqueCaseId som helst
+ ## om det hör till ett inlämnat ärende.
+ # self.SetAnswerToPublishedCase('101010-kortnamnet-XX00', 'x.1', 'Updated in another case')
+
+ ###
+ ## Hämta ett fältsvar från det publicerade ärendet.
+ answer1 = self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId,'x.1')
+ self.LogDebug("self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId,'x.1') => " + answer1)
+
+ ###
+ ## Sätta fältsvar på ett publicerat ärende
+ self.SetAnswerToPublishedCase(self.Service.UniqueCaseId, 'x.1', 'Nytt värde angivet')
+ self.LogDebug("self.SetAnswerToPublishedCase(self.Service.UniqueCaseId, 'x.1', 'Nytt värde angivet')")
+
+ answer1 = self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId,'x.1')
+ self.LogDebug("self.GetAnswerFromPublishedCase(self.Service.UniqueCaseId,'x.1') => " + answer1)
+
+ ###
+ ## Hämta ärende-PDF för ett publicerat ärende (från FileStorageArea om den redan existerar annars som en ny renderad case-PDF) för att skicka ärende-PDF vidare till ett annat system
+ ## Metoden GetPublishedCasePdf har parametrar CustomerId (Integer), CaseUniqueId (String) och WriteToFileStorageArea (Bool) returnerar ett objekt som består av egenskaperna Name och Data
+ ## Name - String (filnamn för ärende-PDF i Abou)
+ ## Data - Byte[] (ärende-PDF innehåll)
+ ## Vill man även spara ärende-PDF till FileStorageArea i filsystemet (den kommer inte att ersättas om den redan existerar) anger man True som sista parameter (WriteToFileStorageArea) i anropet
+ casePdf = self.GetPublishedCasePdf(self.Service.CustomerId, self.Service.UniqueCaseId, False)
+ self.LogDebug(casePdf.Name)
+
+ ###
+ ## Returtypen är PublishedResult med medlemmarna Success och Message
+ result = PublishedResult
+
+ # När Success = False skickas ett felmeddelande till epost enligt inställningar i
+ # Abou.Calamare.Framework.Configurations.CalamareErrorNotificationServiceConfiguration
+ # (Det samma gäller när skriptkörningen får exekveringsfel)
+ # Ange True för att indikera att allt gått bra.
+ # Sparas i databasen på kolumn Cases.FailedIntegration
+ result.Success = True
+
+ # Message kan innehålla info om hur skriptkörningen gått eller annan information
+ # Sparas i databasen på kolumn Cases.PluginData
+ result.Message = "Tacksidans skript körde utan fel."
+
+ return result
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/extended-citizen.md`
 
 # Utökad invånarinformation
 
@@ -2331,89 +2056,86 @@ from Abou.Calamare.Framework.CitizenService import ICitizenServicePluginFactory,
 from System.Web.Script.Serialization import JavaScriptSerializer
 
 class InfoPage(PageNode):
-    def GetNextPage(self):
-        # Exempel på hur man kan hämta en fullständig personpost för en invånare
+ def GetNextPage(self):
+ # Exempel på hur man kan hämta en fullständig personpost för en invånare
 
-        citizenServicePluginFactory = self.Resolve[ICitizenServicePluginFactory]()
-        configReader = self.Resolve[IConfigurationReader]()
-        citizenServiceConfiguration = configReader.GetConfiguration[CitizenServiceConfiguration](self.Service.CustomerId)
-        citizenService = citizenServicePluginFactory.CreateCitizenServicePlugin(citizenServiceConfiguration.CitizenServicePluginType, self.Service.CustomerId)
+ citizenServicePluginFactory = self.Resolve[ICitizenServicePluginFactory]
+ configReader = self.Resolve[IConfigurationReader]
+ citizenServiceConfiguration = configReader.GetConfiguration[CitizenServiceConfiguration](self.Service.CustomerId)
+ citizenService = citizenServicePluginFactory.CreateCitizenServicePlugin(citizenServiceConfiguration.CitizenServicePluginType, self.Service.CustomerId)
 
-        socialSecurityNumber = self.Citizen.UserIdentity.replace('-', '')
-        citizenDataJson = citizenService.GetCitizenAsJson(socialSecurityNumber)
+ socialSecurityNumber = self.Citizen.UserIdentity.replace('-', '')
+ citizenDataJson = citizenService.GetCitizenAsJson(socialSecurityNumber)
 
-        # Deserialisera personposten och lagra som sessionsvariabel
-        citizenData = JavaScriptSerializer().DeserializeObject(citizenDataJson)
-        self.Session['personPost'] = citizenData
-        # OBS: Sessionsvariabeln ska sedan användas i efterkommande sidor istället för att hämta på nytt!
+ # Deserialisera personposten och lagra som sessionsvariabel
+ citizenData = JavaScriptSerializer.DeserializeObject(citizenDataJson)
+ self.Session['personPost'] = citizenData
+ # OBS: Sessionsvariabeln ska sedan användas i efterkommande sidor istället för att hämta på nytt!
 
-        return PageNode.GetNextPage(self)
+ return PageNode.GetNextPage(self)
 
-        # ------- En efterkommande sida -------
+ # ------- En efterkommande sida -------
 
-        citizenData = self.Session['personPost']
-        if (not citizenData is None):
-            self.LogDebug(JavaScriptSerializer().Serialize(citizenData))
+ citizenData = self.Session['personPost']
+ if (not citizenData is None):
+ self.LogDebug(JavaScriptSerializer.Serialize(citizenData))
 
-            ## Invånarinformation från Navet, ex:
-            #if(not citizenData['Namn'] is None):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Namn']['Fornamn']))
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Namn']['Efternamn']))
-            #if(not citizenData['Folkbokforing'] is None):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Folkbokforing']['Fastighetsbeteckning']))
-            #if (not citizenData['Adresser'] is None and not citizenData['Adresser']['Folkbokforingsadress'] is None):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Adresser']['Folkbokforingsadress']['CareOf']))
-            #if (not citizenData['Civilstand'] is None):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Civilstand']['CivilstandKod']))
-            #if (not citizenData['Relationer'] is None and citizenData['Relationer'].Count > 0):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Relationer'][0]['Relationstyp']))
-            #if (not citizenData['Fodelse'] is None and not citizenData['Fodelse']['HemortSverige'] is None):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Fodelse']['HemortSverige']['Fodelseforsamling']))
+ ## Invånarinformation från Navet, ex:
+ #if(not citizenData['Namn'] is None):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Namn']['Fornamn']))
+ # self.SetAnswer('Field.Id', unicode(citizenData['Namn']['Efternamn']))
+ #if(not citizenData['Folkbokforing'] is None):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Folkbokforing']['Fastighetsbeteckning']))
+ #if (not citizenData['Adresser'] is None and not citizenData['Adresser']['Folkbokforingsadress'] is None):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Adresser']['Folkbokforingsadress']['CareOf']))
+ #if (not citizenData['Civilstand'] is None):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Civilstand']['CivilstandKod']))
+ #if (not citizenData['Relationer'] is None and citizenData['Relationer'].Count > 0):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Relationer'][0]['Relationstyp']))
+ #if (not citizenData['Fodelse'] is None and not citizenData['Fodelse']['HemortSverige'] is None):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Fodelse']['HemortSverige']['Fodelseforsamling']))
 
-            ## Invånarinformation från Abou TEST, ex:
-            #self.SetAnswer('Field.Id', unicode(citizenData['FirstName']))
-            #self.SetAnswer('Field.Id', unicode(citizenData['LastName']))
-            #self.SetAnswer('Field.Id', unicode(citizenData['MaritalStatusCode']))
-            #if (not citizenData['Address'] is None):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Address']['CareOf']))
-            #if (not citizenData['Relatives'] is None and citizenData['Relatives'].Count > 0):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Relatives'][0]['TypeOfRelation']))                       
-            #if (not citizenData['BirthPlace'] is None):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['BirthPlace']['Community']))
+ ## Invånarinformation från Abou TEST, ex:
+ #self.SetAnswer('Field.Id', unicode(citizenData['FirstName']))
+ #self.SetAnswer('Field.Id', unicode(citizenData['LastName']))
+ #self.SetAnswer('Field.Id', unicode(citizenData['MaritalStatusCode']))
+ #if (not citizenData['Address'] is None):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Address']['CareOf']))
+ #if (not citizenData['Relatives'] is None and citizenData['Relatives'].Count > 0):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Relatives'][0]['TypeOfRelation']))
+ #if (not citizenData['BirthPlace'] is None):
+ # self.SetAnswer('Field.Id', unicode(citizenData['BirthPlace']['Community']))
 
-            ## Invånarinformation från TEIS, ex:
-            #self.SetAnswer('Field.Id', unicode(citizenData['GivenName']))
-            #self.SetAnswer('Field.Id', unicode(citizenData['LastName']))
-            #self.SetAnswer('Field.Id', unicode(citizenData['CivilStatus']))
-            #if (not citizenData['Relations'] is None and citizenData['Relations'].Count > 0):
-            #    self.SetAnswer('Field.Id', unicode(citizenData['Relations'][0]['Relationship']))
+ ## Invånarinformation från TEIS, ex:
+ #self.SetAnswer('Field.Id', unicode(citizenData['GivenName']))
+ #self.SetAnswer('Field.Id', unicode(citizenData['LastName']))
+ #self.SetAnswer('Field.Id', unicode(citizenData['CivilStatus']))
+ #if (not citizenData['Relations'] is None and citizenData['Relations'].Count > 0):
+ # self.SetAnswer('Field.Id', unicode(citizenData['Relations'][0]['Relationship']))
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/client/api.md`
 
 # Klientlogik API (`PageLogic`)
 
 This **is** the supported browser library (from builder mallar, 2026-08-21). Use it to explain and review JavaScript, not only to copy a new `PageLogic`.
 
-How it fits with Python and fältregler: [../libraries.md](../libraries.md).
+How it fits with Python and fältregler.
 
 Only on **Layoutsida**. Runs when answers **on this page** change — no Nästa, no other pages, no Navet/REST.
 
 Wrapper is always:
 
 ```javascript
-PageLogic = function() {
-    var self = this;
-    // ...
+PageLogic = function {
+ var self = this;
+ // ...
 };
 ```
 
 `x.1` = current service short name + field number. Block ids like `BLOCK1`.
 
-Hide/show in JS is **only client-side**. Pair with Python [required-when-hidden.md](../required-when-hidden.md) if the field is obligatory. Prefer **fältregler** if the rule is simple and can wait until Nästa.
+Hide/show in JS is **only client-side**. Pair with Python if the field is obligatory. Prefer **fältregler** if the rule is simple and can wait until Nästa.
 
 ## How to use
 
@@ -2443,109 +2165,100 @@ Hide/show in JS is **only client-side**. Pair with Python [required-when-hidden.
 | Method | Meaning |
 | --- | --- |
 | `SetAnswer(value)` / `SetAnswerIfEmpty(value)` | Set |
-| `GetAnswer()` | Raw answer |
-| `GetValueFromQuestionAlternative()` | Separated **value** |
-| `GetAnswerFromQuestionAlternative()` | Separated **display text** |
+| `GetAnswer` | Raw answer |
+| `GetValueFromQuestionAlternative` | Separated **value** |
+| `GetAnswerFromQuestionAlternative` | Separated **display text** |
 | `SetHidden(true/false)` | Hide / show |
-| `EmptyField()` | Clear |
+| `EmptyField` | Clear |
 | `When("equals"\|"notequals"\|"contains"\|"notcontains", value, fn)` | React to answer. Checkboxes: `"Ja;Nej"` in alternative order. contains/notcontains are **case sensitive** |
 | `WhenEvent(fn, "change")` | Run on change (e.g. read split text/value) |
 
-Mall files: [empty.md](empty.md), [handle-field.md](handle-field.md), [handle-many.md](handle-many.md), [hide-block-on-value.md](hide-block-on-value.md).
-
+Mall files.
 
 ---
-
-## Källa: `references/logic-templates/client/empty.md`
 
 # Tom mall
 
 Tab: **Klientlogik**. Empty skeleton.
 
 ```javascript
-PageLogic = function() {
-    var self = this;
+PageLogic = function {
+ var self = this;
 
-    //infoga kod här
+ //infoga kod här
 
 };
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/client/handle-field.md`
 
 # Hantera fält
 
 Tab: **Klientlogik**. Get/set/hide/empty one field, with or without a field instance. Split text/value on change.
 
 ```javascript
-PageLogic = function() {
-    var self = this;
+PageLogic = function {
+ var self = this;
 
-    //Fältid
-    var friendlyfieldid = "x.1";
+ //Fältid
+ var friendlyfieldid = "x.1";
 
-    //Exempel på fält-logik med fält-instans
-    //--------------------------------------
+ //Exempel på fält-logik med fält-instans
+ //--------------------------------------
 
-    //Hämta ett fält
-    var field = self.GetField(friendlyfieldid);
-    //Sätt svar
-    //field.SetAnswer("test");
+ //Hämta ett fält
+ var field = self.GetField(friendlyfieldid);
+ //Sätt svar
+ //field.SetAnswer("test");
 
-    //Sätt svar om fältet är tomt
-    //field.SetAnswerIfEmpty("test");
+ //Sätt svar om fältet är tomt
+ //field.SetAnswerIfEmpty("test");
 
-    //Göm ett fält
-    //field.SetHidden(true);
+ //Göm ett fält
+ //field.SetHidden(true);
 
-    //Visa ett fält som är dolt via klient-logik
-    // field.SetHidden(false);
+ //Visa ett fält som är dolt via klient-logik
+ // field.SetHidden(false);
 
-    //Töm ett fält
-    //field.EmptyField();
+ //Töm ett fält
+ //field.EmptyField;
 
-    //Hämta fältsvar
-    //var myanswer = field.GetAnswer();
-    //alert(myanswer);
+ //Hämta fältsvar
+ //var myanswer = field.GetAnswer;
+ //alert(myanswer);
 
-    // Hämta olika typer av fältsvar för kryssrutor och radioknappar med inställningen "Separera text och värde" när fältsvar ändras    
-    // field.WhenEvent(function () {
-    //     var myanswerFull = field.GetAnswer();
-    //     var myanswerValue = field.GetValueFromQuestionAlternative();
-    //     var myanswerDisplay = field.GetAnswerFromQuestionAlternative();
-    //     self.SetAnswer("test.6", myanswerDisplay)
-    // }, "change");
+ // Hämta olika typer av fältsvar för kryssrutor och radioknappar med inställningen "Separera text och värde" när fältsvar ändras
+ // field.WhenEvent(function {
+ // var myanswerFull = field.GetAnswer;
+ // var myanswerValue = field.GetValueFromQuestionAlternative;
+ // var myanswerDisplay = field.GetAnswerFromQuestionAlternative;
+ // self.SetAnswer("test.6", myanswerDisplay)
+ // }, "change");
 
-    //Exempel på fält-logik utan fält-instans
-    //--------------------------------------
-    //Sätt svar
-    //self.SetAnswer(friendlyfieldid, "test");
+ //Exempel på fält-logik utan fält-instans
+ //--------------------------------------
+ //Sätt svar
+ //self.SetAnswer(friendlyfieldid, "test");
 
-    //Sätt svar om fältet är tomt
-    //self.SetAnswerIfEmpty(friendlyfieldid, "test");
+ //Sätt svar om fältet är tomt
+ //self.SetAnswerIfEmpty(friendlyfieldid, "test");
 
-    //Göm ett fält
-    //self.SetHidden(friendlyfieldid, true);
+ //Göm ett fält
+ //self.SetHidden(friendlyfieldid, true);
 
-    //Visa ett fält som är dolt via klient-logik
-    //self.SetHidden(friendlyfieldid, false);
+ //Visa ett fält som är dolt via klient-logik
+ //self.SetHidden(friendlyfieldid, false);
 
-    //Töm ett fält
-    //self.EmptyField(friendlyfieldid);
+ //Töm ett fält
+ //self.EmptyField(friendlyfieldid);
 
-    //Hämta fältsvar
-    //var myanswer = self.GetAnswer(friendlyfieldid);
-    //alert(myanswer);    
+ //Hämta fältsvar
+ //var myanswer = self.GetAnswer(friendlyfieldid);
+ //alert(myanswer);
 };
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/client/handle-many.md`
 
 # Hantera flera fält och block samtidigt
 
@@ -2554,109 +2267,103 @@ Tab: **Klientlogik**. Batch empty/hide/show fields and blocks.
 The mall as shipped uses `ffidMoreInfo` without declaring it. Declare that id (or reuse `ffidYesno`) before calling `EmptyFields` / `SetHiddenFields`.
 
 ```javascript
-PageLogic = function() {
-    var self = this;
+PageLogic = function {
+ var self = this;
 
-    //Fältids och blockids
-    var ffidYesno = "x.3";
-    var ffidDropdown = "x.4";
-    var block1 = "BLOCK1";
-    var block2 = "BLOCK2";
-    var block3 = "BLOCK3";
+ //Fältids och blockids
+ var ffidYesno = "x.3";
+ var ffidDropdown = "x.4";
+ var block1 = "BLOCK1";
+ var block2 = "BLOCK2";
+ var block3 = "BLOCK3";
 
-    //Töm flera fält samtidigt
-    self.EmptyFields([ffidMoreInfo, ffidDropdown]);
+ //Töm flera fält samtidigt
+ self.EmptyFields([ffidMoreInfo, ffidDropdown]);
 
-    //Göm flera fält samtidigt
-    self.SetHiddenFields([ffidMoreInfo, ffidDropdown], true);
-    
-    //Visa flera fält  som är dolda via klient-logik samtidigt
-    self.SetHiddenFields([ffidMoreInfo, ffidDropdown], false);
-    
-    //Göm flera block samtidigt
-    self.SetHiddenBlocks([block1, block2, block3], true);
+ //Göm flera fält samtidigt
+ self.SetHiddenFields([ffidMoreInfo, ffidDropdown], true);
 
-    //Visa flera block som är dolda via klient-logik samtidigt
-    self.SetHiddenBlocks([block1, block2, block3], false);
+ //Visa flera fält som är dolda via klient-logik samtidigt
+ self.SetHiddenFields([ffidMoreInfo, ffidDropdown], false);
+
+ //Göm flera block samtidigt
+ self.SetHiddenBlocks([block1, block2, block3], true);
+
+ //Visa flera block som är dolda via klient-logik samtidigt
+ self.SetHiddenBlocks([block1, block2, block3], false);
 };
 ```
 
-
 ---
-
-## Källa: `references/logic-templates/client/hide-block-on-value.md`
 
 # Göm block när fält får ett visst värde
 
 Tab: **Klientlogik**. `field.When` equals / notequals / contains / notcontains, plus custom compare.
 
 ```javascript
-PageLogic = function() {
-    var self = this;
+PageLogic = function {
+ var self = this;
 
-    //Fältids och blockids
-    var ffidYesno = "x.3";
-    var bidMoreInfo = "BLOCK1";
+ //Fältids och blockids
+ var ffidYesno = "x.3";
+ var bidMoreInfo = "BLOCK1";
 
-    //Hämta ett fält med radioknappar med svarsalternativ Ja och Nej
-    var field = self.GetField(ffidYesno);
+ //Hämta ett fält med radioknappar med svarsalternativ Ja och Nej
+ var field = self.GetField(ffidYesno);
 
-    //Ange initialt värde
-    field.SetAnswer("Ja");
+ //Ange initialt värde
+ field.SetAnswer("Ja");
 
-    //När fältsvaret blir Ja, visa blocket
-    field.When("equals", "Ja", function() {
-        //visa ett block som är dolt via klient-logik
-        self.SetHiddenBlock(bidMoreInfo, false);
-    });
+ //När fältsvaret blir Ja, visa blocket
+ field.When("equals", "Ja", function {
+ //visa ett block som är dolt via klient-logik
+ self.SetHiddenBlock(bidMoreInfo, false);
+ });
 
-    //När fältsvaret blir Nej, göm blocket
-    field.When("equals", "Nej", function() {
-        //dölj blocket
-        self.SetHiddenBlock(bidMoreInfo, true);
-    });
+ //När fältsvaret blir Nej, göm blocket
+ field.When("equals", "Nej", function {
+ //dölj blocket
+ self.SetHiddenBlock(bidMoreInfo, true);
+ });
 
-    //För kryssrutor anges flera svar samtidigt så här (i samma ordning som svarsalternativen):
-    //field.When("equals", "Ja;Nej", function(){
-    //	self.SetHiddenBlock(bidMoreInfo, false);		
-    //});
+ //För kryssrutor anges flera svar samtidigt så här (i samma ordning som svarsalternativen):
+ //field.When("equals", "Ja;Nej", function{
+ //	self.SetHiddenBlock(bidMoreInfo, false);
+ //});
 
-    //Det går även att göra detta inverterat dvs när svaret skiljer sig från det man jämför med
-    //field.When("notequals", "Nej", function() {
-        //visa om svaret inte är "Nej"
-        //self.SetHiddenBlock(bidMoreInfo, true);
-    //});
-    
-    //Det går även att kolla om fältets svar innehåller en sträng man jämför med (Obs case sensetive)
-    //field.When("contains", "Nej", function() {
-        //visa om svaret innehåller "Nej"
-        //self.SetHiddenBlock(bidMoreInfo, true);
-    //});
-    
-    //Det går även att kolla om fältets svar inte innehåller en sträng man jämför med (OBS case sensetive)
-    //field.When("notcontains", "Nej", function() {
-        //visa om svaret inte innehåller "Nej"
-        //self.SetHiddenBlock(bidMoreInfo, true);
-    //});
-    
-    //Skulle inte ovanstånde jämförelser räcka till kan man skriva en egendefinerad function som tar emot ett svar och ett värde och jämför på ett eget sätt.
-    //Definera egen jämförelsefunktion
-    //var ownFunc = function (answer, compareTo){
-        //här skriver man egen logik, i det här exemplet så blir resultatet samma som att använda 'equals' men man kan alltså skriva vad man vill här och skicka med det till self.When
-    //    return answer === compareTo;
-    //};
-    
-    //Skicka med funktionen till self.When
-    //self.When(ownFunc, value, function (){
-        //self.SetHiddenBlock(bidMoreInfo, true);
-    //});
+ //Det går även att göra detta inverterat dvs när svaret skiljer sig från det man jämför med
+ //field.When("notequals", "Nej", function {
+ //visa om svaret inte är "Nej"
+ //self.SetHiddenBlock(bidMoreInfo, true);
+ //});
+
+ //Det går även att kolla om fältets svar innehåller en sträng man jämför med (Obs case sensetive)
+ //field.When("contains", "Nej", function {
+ //visa om svaret innehåller "Nej"
+ //self.SetHiddenBlock(bidMoreInfo, true);
+ //});
+
+ //Det går även att kolla om fältets svar inte innehåller en sträng man jämför med (OBS case sensetive)
+ //field.When("notcontains", "Nej", function {
+ //visa om svaret inte innehåller "Nej"
+ //self.SetHiddenBlock(bidMoreInfo, true);
+ //});
+
+ //Skulle inte ovanstånde jämförelser räcka till kan man skriva en egendefinerad function som tar emot ett svar och ett värde och jämför på ett eget sätt.
+ //Definera egen jämförelsefunktion
+ //var ownFunc = function (answer, compareTo){
+ //här skriver man egen logik, i det här exemplet så blir resultatet samma som att använda 'equals' men man kan alltså skriva vad man vill här och skicka med det till self.When
+ // return answer === compareTo;
+ //};
+
+ //Skicka med funktionen till self.When
+ //self.When(ownFunc, value, function {
+ //self.SetHiddenBlock(bidMoreInfo, true);
+ //});
 };
 ```
 
-
 ---
-
-## Källa: `references/integrations/INDEX.md`
 
 # Integrations
 
@@ -2666,7 +2373,7 @@ This folder documents **how each integration is used in an e-tjänst** (what it 
 
 Read the matching file whenever you **explain, choose, configure, or write logic against** that integration — not only when adding a new field. Most products need Sokigo **sysadmin** enablement; do not invent a plugin the site does not have.
 
-**Do not load this whole folder.** Pick one file. Python/JS types that call these products: [../logic-templates/libraries.md](../logic-templates/libraries.md).
+**Do not load this whole folder.** Pick one file. Python/JS types that call these products.
 
 ## How integrations are used
 
@@ -2675,7 +2382,7 @@ Typical layers (use what the site actually has):
 1. **Builder only** — e.g. integrerade personfält (Navet), e-legitimation on login/sign pages, Betalningssida, GEO/FB fields. No extra library.
 2. **Builder + PageNode mall** — e.g. fördjupad Navet (`CitizenServiceProxy`), AD via `RestWrapper`, payment amount on Payment.aspx, booking `SlotFilter`.
 3. **Sysadmin named REST** — Adapter REST / `IRestWrapperServiceFactory`. Python names the JSON; sysadmin owns URL and secrets.
-4. **Thank-you plugin** — `IPythonCaseService` after submit ([../logic.md](../logic.md)).
+4. **Thank-you plugin** — `IPythonCaseService` after submit .
 
 The Integrationer Confluence page often describes the **product**, not the Python API. **Method names live in the mallar / EDP Future method list / RestWrapper config**, not in the blurb.
 
@@ -2683,27 +2390,24 @@ The Integrationer Confluence page often describes the **product**, not the Pytho
 
 | Need | How it is used | File |
 | --- | --- | --- |
-| Personuppgifter / barn / vårdnadshavare | Integrerade fält, session LookUp, or `CitizenServiceProxy` mallar | [navet.md](navet.md) |
-| Företag / organisationsnummer | SSBTGU/SSBTGO; builder/plugin, not a PageNode mall in this skill | [bolagsverket.md](bolagsverket.md) |
-| Valfritt REST-API from Python | `IRestWrapperServiceFactory` + named sysadmin config | [adapter-rest.md](adapter-rest.md) |
-| BankID / e-leg (login, sign) | Service settings + signeringsida; not PageLogic | [e-legitimation.md](e-legitimation.md) |
-| Fastighet / adress / detaljplan | Sokigo FB fields | [sokigo-fb.md](sokigo-fb.md) |
-| Karta in vs GEO ut | GEO fields / publish | [geo.md](geo.md) |
-| Betalning | Betalningssida + [payment mall](../logic-templates/payment.md) | [payment.md](payment.md) |
-| SMS | Notices / sysadmin | [sms.md](sms.md) |
-| DIGG Mina meddelanden | Sysadmin + messages | [mina-meddelanden.md](mina-meddelanden.md) |
-| Intern AD-inloggning | LDAP/IdP; lookup mall [ad-lookup.md](../logic-templates/ad-lookup.md) | [active-directory.md](active-directory.md) |
-| VA/avfall EDP Future | Published Python method list (clone a working service) | [edp-future.md](edp-future.md) |
-| Namngivet verksamhetssystem (ByggR, Ecos, …) | Site-specific; often Adapter REST | [verksamhetssystem.md](verksamhetssystem.md) |
-| Mule / TEIS | Platform in front of APIs | [plattformar.md](plattformar.md) |
-| Arkiv (Formpipe LTA, AGS) | After case handling | [arkiv.md](arkiv.md) |
-| Analytics | Product blurb | [ovrigt.md](ovrigt.md) |
-| Full name list | Catalog only | [catalog.md](catalog.md) |
-
+| Personuppgifter / barn / vårdnadshavare | Integrerade fält, session LookUp, or `CitizenServiceProxy` mallar | |
+| Företag / organisationsnummer | SSBTGU/SSBTGO; builder/plugin, not a PageNode mall in this skill | |
+| Valfritt REST-API from Python | `IRestWrapperServiceFactory` + named sysadmin config | |
+| BankID / e-leg (login, sign) | Service settings + signeringsida; not PageLogic | |
+| Fastighet / adress / detaljplan | Sokigo FB fields | |
+| Karta in vs GEO ut | GEO fields / publish | |
+| Betalning | Betalningssida + payment mall | |
+| SMS | Notices / sysadmin | |
+| DIGG Mina meddelanden | Sysadmin + messages | |
+| Intern AD-inloggning | LDAP/IdP; lookup mall | |
+| VA/avfall EDP Future | Published Python method list (clone a working service) | |
+| Namngivet verksamhetssystem (ByggR, Ecos, …) | Site-specific; often Adapter REST | |
+| Mule / TEIS | Platform in front of APIs | |
+| Arkiv (Formpipe LTA, AGS) | After case handling | |
+| Analytics | Product blurb | |
+| Full name list | Catalog only | |
 
 ---
-
-## Källa: `references/integrations/catalog.md`
 
 # Integrationer — catalog
 
@@ -2726,10 +2430,7 @@ Adapter Rest; Artvise; Barium Live; Bolagsverket SSBTGU/SSBTGO; CGI Treserva; Di
 
 Full IronPython libraries (except EDP Future methods, ThankYou `IPythonCaseService`, and Navet mallar in the builder). Adapter REST has no method list.
 
-
 ---
-
-## Källa: `references/integrations/navet.md`
 
 # Skatteverkets Navet (registerslagning)
 
@@ -2749,7 +2450,7 @@ What PersonPost actually returns is limited by the municipality’s **avtal with
 ## Three ways to use PersonPost in an e-tjänst
 
 1. **Integrerade personfält** (simplest). Common properties marked `*` below are stored in Abou’s database. Login recommended.
-2. **Fördjupad Navetslagning** — relations (children, other guardians). Those people are **not** stored in the DB. Builder mallar: [navet-dropdown.md](../logic-templates/navet-dropdown.md) / [navet-table.md](../logic-templates/navet-table.md).
+2. **Fördjupad Navetslagning** — relations (children, other guardians). Those people are **not** stored in the DB. Builder mallar: / .
 3. **Python from the session** — any PersonPost property from the last Navet call, session-only, not stored.
 
 ## PersonPost properties (docs list)
@@ -2774,20 +2475,17 @@ This page is **how the integration is used**, not a SDK dump. Types and calls:
 | Need | Library | Docs |
 | --- | --- | --- |
 | Prefill from login (stored fields) | Integrerade personfält — no Python | Builder |
-| Session PersonPost (GDPR bypass on `self.Citizen`) | `GetCitizenInfoLookUp` | [pagenode-api.md](../logic-templates/pagenode-api.md) |
-| Children + other vårdnadshavare (`VF`) | `CitizenServiceProxy` / `ProxyRequest` | [navet-dropdown.md](../logic-templates/navet-dropdown.md), [navet-table.md](../logic-templates/navet-table.md) |
-| Full PersonPost JSON, reuse in `Session` | `ICitizenServicePluginFactory.GetCitizenAsJson` | [extended-citizen.md](../logic-templates/extended-citizen.md) |
+| Session PersonPost (GDPR bypass on `self.Citizen`) | `GetCitizenInfoLookUp` | |
+| Children + other vårdnadshavare (`VF`) | `CitizenServiceProxy` / `ProxyRequest` | , |
+| Full PersonPost JSON, reuse in `Session` | `ICitizenServicePluginFactory.GetCitizenAsJson` | |
 
-Map of all extra types: [libraries.md](../logic-templates/libraries.md). Clone from a working service on the same site if the mall needs adapting (certificates, avtal).
+Map of all extra types. Clone from a working service on the same site if the mall needs adapting (certificates, avtal).
 
 ## KIR
 
 The integration **sammanställning** also lists **KIR (Kommuninvånarregister)** as a registerslagning. There is **no** child page under Integrationer for KIR. Combined Navet+KIR+KID is documented as not supported without new development (TEIS page).
 
-
 ---
-
-## Källa: `references/integrations/bolagsverket.md`
 
 # Bolagsverket — SSBTGU / SSBTGO
 
@@ -2809,10 +2507,7 @@ Do not write SSBTGU Python for a new service if the site is on SSBTGO. Ask which
 
 Builder: company/role integrated fields + login as **Företag**. Copy Python from the mall-e-tjänst on that site, not from guesses.
 
-
 ---
-
-## Källa: `references/integrations/adapter-rest.md`
 
 # Adapter REST
 
@@ -2824,14 +2519,11 @@ Generic adapter toward **one or more REST APIs**.
 - The adapter handles **security** and **which endpoints** to call (sysadmin).
 - You must know the target API. Examples in docs: Ängelholm → Procapita Education via Mule; Täby → BookIT.
 
-There is **no method list** on this Confluence page. The library in Python is `IRestWrapperServiceFactory` + a **named** sysadmin config (URL, auth, `ExtendedConfigurationData`). Example of how to call it: [ad-lookup.md](../logic-templates/ad-lookup.md) (`InternalWebSearch`). How it fits: [libraries.md](../logic-templates/libraries.md).
+There is **no method list** on this Confluence page. The library in Python is `IRestWrapperServiceFactory` + a **named** sysadmin config (URL, auth, `ExtendedConfigurationData`). Example of how to call it: (`InternalWebSearch`). How it fits.
 
 Clone a working service on the same site, or get the API contract from the municipality. Do not put API keys in field help text or git.
 
-
 ---
-
-## Källa: `references/integrations/e-legitimation.md`
 
 # E-legitimation (authentication and signing)
 
@@ -2845,12 +2537,9 @@ Sammanställning also names federation/IdP options: CGI, Sirius, Portwise, McAfe
 
 **Builder:** tick **Kräva inloggning** / **signering** on the service. Sokigo wires the IdP. You do not pick CGI vs Sirius in the layout builder.
 
-See `../create-and-settings.md` for service checkboxes.
-
+See for service checkboxes.
 
 ---
-
-## Källa: `references/integrations/sokigo-fb.md`
 
 # Sokigo FB (fastighet och befolkning)
 
@@ -2866,10 +2555,7 @@ From an e-tjänst, docs say you can:
 
 No Python method names on this page. Sokigo enables the plugin. Clone a working FB e-tjänst on the site for field types and scripts.
 
-
 ---
-
-## Källa: `references/integrations/geo.md`
 
 # Maps and GEO
 
@@ -2877,7 +2563,7 @@ Read 2026-08-21.
 
 ## Inside the e-tjänst (builder)
 
-Field type **Kartfält, generellt** — see `../field-types.md`. Sammanställning: Lantmäteriet WMS, Google Maps, Mapbox tiles URL, OpenStreetMap tiles URL.
+Field type **Kartfält, generellt** — Sammanställning: Lantmäteriet WMS, Google Maps, Mapbox tiles URL, OpenStreetMap tiles URL.
 
 Hub listed **Esri GEOSECMA for ArcGIS** as a registerslagning, but that page was **not** a live child of Integrationer when crawled.
 
@@ -2885,14 +2571,11 @@ Hub listed **Esri GEOSECMA for ArcGIS** as a registerslagning, but that page was
 
 [Gränssnitt för geografisk data](https://dok.sokigo.com/pages/viewpage.action?pageId=58524196): publish incoming cases’ map points to another GIS (felanmälan on the municipal web, grävtillstånd for caseworkers). Sokigo configures which services/fields. The GIS must read Abou **spatial views**. Not something you finish with a field argument alone.
 
-
 ---
-
-## Källa: `references/integrations/payment.md`
 
 # Payment
 
-Read 2026-08-21. Builder: `../create-and-settings.md` (Betalningssida). How the **library** on Payment.aspx is used (`HasPaymentInfo`, `GetPaymentOrderText`, `CalculatePaymentAmount`, `GetAnswerFromFieldId`): [payment mall](../logic-templates/payment.md), [libraries.md](../logic-templates/libraries.md).
+Read 2026-08-21. Builder: (Betalningssida). How the **library** on Payment.aspx is used (`HasPaymentInfo`, `GetPaymentOrderText`, `CalculatePaymentAmount`, `GetAnswerFromFieldId`): payment mall.
 
 | Provider | Status in docs |
 | --- | --- |
@@ -2902,10 +2585,7 @@ Read 2026-08-21. Builder: `../create-and-settings.md` (Betalningssida). How the 
 
 All need provider avtal + Sokigo config. Do not add a payment page unless that stack is live.
 
-
 ---
-
-## Källa: `references/integrations/sms.md`
 
 # SMS notification
 
@@ -2915,12 +2595,9 @@ Vendors with pages: Generic, GotaSMS, SMS Teknik, Solid Park M3 (formerly Mawell
 
 Sammanställning also lists **Bosbec** (no child page in the tree).
 
-Builder: **Integrerat kontaktfält** + standardmeddelanden (`../messages.md`). You do not pick Telenor vs Tele2 in the e-tjänst; that is the installed plugin.
-
+Builder: **Integrerat kontaktfält** + standardmeddelanden . You do not pick Telenor vs Tele2 in the e-tjänst; that is the installed plugin.
 
 ---
-
-## Källa: `references/integrations/mina-meddelanden.md`
 
 # DIGG Mina meddelanden
 
@@ -2947,12 +2624,9 @@ If the citizen opted in, **all** Abou message sends to them go to their chosen s
 - On **beslut**, case files **including the decision file** always go with the MM send.
 - Does **not** replace SMS (own kortmeddelande mall).
 
-Builder: mall editor has a Mina meddelanden body (or falls back). Coupling: `../messages.md`.
-
+Builder: mall editor has a Mina meddelanden body (or falls back). Coupling.
 
 ---
-
-## Källa: `references/integrations/active-directory.md`
 
 # Microsoft AD (internal login)
 
@@ -2960,15 +2634,12 @@ Docs: [AD för inloggning](https://dok.sokigo.com/pages/viewpage.action?pageId=5
 
 LDAP or IdP. Can cover external admin, internal admin, and **internal citizen node** (internal e-tjänster + Min sida).
 
-- **Abou LDAP:** users sign with AD; signing in the internal citizen view is possible. Rights in Abou users **or** AD groups synced into Abou groups (same names). Highest of user+group wins. **Behörigheter → Grupper → Synkronisera användare** copies name/email into Abou for those group members (creates missing users; does **not** delete leavers). Synced users cannot be edited or given individual rights in Abou — [functionality.md](../../abou-platform/references/functionality.md).
+- **Abou LDAP:** users sign with AD; signing in the internal citizen view is possible. Rights in Abou users **or** AD groups synced into Abou groups (same names). Highest of user+group wins. **Behörigheter → Grupper → Synkronisera användare** copies name/email into Abou for those group members (creates missing users; does **not** delete leavers). Synced users cannot be edited or given individual rights in Abou.
 - **IdP:** IdP owns login (can combine SMS 2FA). **No signing** in the citizen view. Cannot drive Abou rights from AD groups.
 
-Builder mall: [ad-lookup.md](../logic-templates/ad-lookup.md) — `IRestWrapperServiceFactory` + sysadmin key **InternalWebSearch**. How RestWrapper is used: [adapter-rest.md](adapter-rest.md), [libraries.md](../logic-templates/libraries.md). Attestlista med sök is the internal multi-approve field (`../field-types.md`).
-
+Builder mall: — `IRestWrapperServiceFactory` + sysadmin key **InternalWebSearch**. How RestWrapper is used. Attestlista med sök is the internal multi-approve field .
 
 ---
-
-## Källa: `references/integrations/edp-future.md`
 
 # EDP Future (VA / avfall)
 
@@ -2976,7 +2647,7 @@ Docs: [EDP Future](https://dok.sokigo.com/pages/viewpage.action?pageId=58524206)
 
 Abou ↔ EDP Webb. E-tjänster in docs: invoices, subscriptions, water meter history/reading, applications, collection schedule/history, new/change subscription, contacts, reklamation.
 
-Python methods take a **Request** object. Only use if this adapter is on the site. This file **is** the method documentation (Sokigo publishes this list). There is no builder mall — clone a working Future e-tjänst for the exact Python types. How it fits: [libraries.md](../logic-templates/libraries.md).
+Python methods take a **Request** object. Only use if this adapter is on the site. This file **is** the method documentation (Sokigo publishes this list). There is no builder mall — clone a working Future e-tjänst for the exact Python types. How it fits.
 
 | Method | Request fields |
 | --- | --- |
@@ -2998,10 +2669,7 @@ Request properties listed: UserIdentity, CustomerId, CustomerIDs[], ApplicationI
 
 Clone a working Future e-tjänst for the exact Python types.
 
-
 ---
-
-## Källa: `references/integrations/verksamhetssystem.md`
 
 # Named verksamhetssystem
 
@@ -3029,12 +2697,9 @@ Read 2026-08-21 from Integrationer children. These are **Sokigo-built adapters**
 | Sokigo Skolskjuts | Prefill elev; send application; prelim decisions (Trelleborg) |
 | Solarplexus Lex | XML on disk → Lex Talk (Upplands Väsby) |
 
-AlkT and ByggR/Ecos are the richest Sokigo ones. No Python method tables except EDP Future ([edp-future.md](edp-future.md)).
-
+AlkT and ByggR/Ecos are the richest Sokigo ones. No Python method tables except EDP Future .
 
 ---
-
-## Källa: `references/integrations/plattformar.md`
 
 # Integrationsplattformar
 
@@ -3058,10 +2723,7 @@ Builder (docs “tänkt lösning”): field arguments map e-tjänst fields → t
 
 Sammanställning: a TEIS adapter still needs a **second** adapter to the real target system.
 
-
 ---
-
-## Källa: `references/integrations/arkiv.md`
 
 # Arkiv
 
@@ -3071,16 +2733,12 @@ Read 2026-08-21.
 
 **Ida Infront AGS:** enter fastighetsbeteckning, fetch related cases/documents (Norrtälje).
 
-
 ---
-
-## Källa: `references/integrations/ovrigt.md`
 
 # Other
 
 **Google Analytics:** Sokigo puts the municipality tracker in **production** (deploy). Not configured per e-tjänst in the builder.
 
 **Integrationsloggen:** video on the sammanställning page — how to debug calls. Use that in Admin when an integration fails; do not open citizen cases.
-
 
 ---

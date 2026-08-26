@@ -50,7 +50,26 @@ Nullables: never dereference when null.
 | ApplicantSignature | Signature | Applicant |
 | SortedRecentCoApplicantSignatures | List | Co-signers by name |
 | SortedRecentAttestSignatures | List of SignatureAttest | Attest |
+| FirstSignedByAll | DateTime? | When all required signatures existed; use `.HasValue` before `.Value` |
+| Pages | enumerable | Layout pages for the PDF dump |
+| Supplements | enumerable | Requested kompletteringar |
 | `Model[friendlyId]` | Field | Lookup by FriendlyFieldId |
+| HasValue(friendlyId) | bool | True when that field should print |
+
+### Page / Block (dokumentmall)
+
+| Name | Meaning |
+| --- | --- |
+| page.DisplayName | Page title in the PDF |
+| page.HasAnyValues | Skip empty pages |
+| page.IsBlockPage | Blocks have their own headers |
+| page.Blocks | Blocks on the page |
+| block.Header | Caption when IsBlockPage |
+| block.Fields | Fields to loop (prefer this over `page.Fields` in new mallar) |
+
+`Model.HasValue(field.FriendlyFieldId)` — skip unanswered questions on the PDF.
+
+Table-like answers: `field.Answer.Contains("<table ")` (substring, including the space). Then print Answer as HTML, not as a plain cell.
 
 ### Administrator
 
@@ -62,11 +81,11 @@ Id, SocialSecurityNumber (personnummer or AD identity), FirstName, LastName, Ema
 
 ### Decision
 
-Date, Comment, DecisionText (**Avslaget** or **Godkänt**), Administrator (full name, else username, else empty / API).
+Date, Comment, DecisionText (**Avslaget** or **Godkänt**), **Adminstrator** (spelling in the model — full name, else username, else empty / API).
 
 ### Service
 
-DisplayName, Name, ShortName, RequiresMultipleSignatures, RequiresAuthentication, RequiresSignature, ServiceNr (stable across versions).
+RequiresEid / RequiresAuthentication / RequiresSignature / RequiresMultipleSignatures, DisplayName, Name, ShortName, ServiceNr (stable across versions).
 
 ### Field
 
@@ -84,14 +103,22 @@ DisplayName, Name, ShortName, RequiresMultipleSignatures, RequiresAuthentication
 
 ### Payment
 
-Amount (provider units may differ), PayedBy (Citizen; docs note it “borde heta PaidBy”), PaymentType, TransactionId.
+Amount (provider units may differ), OrderId, Date, PayedBy (Citizen; docs note it “borde heta PaidBy”), PaymentType, TransactionId.
 
-## Signatures (examples)
+## Signatures
+
+`ApplicantSignature` — the sökande. `SortedRecentCoApplicantSignatures` — medsökande. `SortedRecentAttestSignatures` — attest; extra `SignatureAttest.AnswerString`, `.Comment`, `.Attachment` (FileName). `Signatures` — full list; filter with `SignatureType.Applicant` (namespace `Abou.Calamare.Framework.HtmlTemplate`).
+
+Each signature: `Signed` (DateTime), `Issuer`, `SignedBy` (FirstName, LastName, SocialSecurityNumber, DisplayName).
 
 ```
 @Model.ApplicantSignature.SignedBy.DisplayName
 @foreach (var signature in Model.SortedRecentCoApplicantSignatures){@(signature.SignedBy.DisplayName + "\n")}
 ```
+
+## Supplements
+
+Title, DateRequested, DateCompleted, OriginalFileNamesJoined, CitizenComment. Loop `Model.Supplements`.
 
 ## Enums (UPPRÄKNINGAR)
 
@@ -101,4 +128,4 @@ Amount (provider units may differ), PayedBy (Citizen; docs note it “borde heta
 
 **ProposalFilterType** (e-förslag list filters): *Inväntar publicering*, *Röstning pågår*, *Inväntar ställningstagande*, plus decided statuses *Godkänt* / *Avslaget* / *Besvarat* / *Avslutad*. URL example: `/Citizen/Proposal?status=Godkänt&status=Avslaget` (space as `%20`).
 
-Substitution **`$token$`** list: [../message-tokens.md](../message-tokens.md).
+Substitution tokens `$name$` are listed under meddelandemallar / tokens.

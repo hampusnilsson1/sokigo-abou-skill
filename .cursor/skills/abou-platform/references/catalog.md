@@ -1,8 +1,8 @@
 # Abou space catalog (outside builder + integrations)
 
-Ingested 2026-08-25 from Confluence space Abou. **Answer from the notes files**, not from wiki URLs.
+Ingested 2026-08-25 from Confluence space Abou.
 
-**Already in `build-abou-etjanst-web`:** *Att bygga e-tjänster* and *Integrationer*. Do not duplicate those here.
+**Already covered with the builder notes:** *Att bygga e-tjänster* and *Integrationer*. Do not duplicate those here.
 
 **Not ingested (intentionally):** Release-note bodies, Community presentations, Webinar videos, Minut Bygg, Minut Miljö. REST API request/response schemas (PDF). On-prem hosting PDFs (headings only in compliance). Testpersoner personnummer (never copy into git).
 

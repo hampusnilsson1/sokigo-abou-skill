@@ -66,4 +66,4 @@ Citizen pays from Min sida / Mina ärenden.
 
 ## Kömeddelanden tokens
 
-`$Comment$`, `$QueuePosition$`, `$QueueName$` — [message-tokens.md](message-tokens.md).
+`$Comment$`, `$QueuePosition$`, `$QueueName$`.

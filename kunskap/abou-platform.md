@@ -2,127 +2,15 @@
 
 All kunskap utanför byggaren: behörigheter, admin, ärenden, Min sida, köer, bokning, register, e-förslag, schemaläggning, dokumentmallar, FAQ, Funktionalitet, REST-metodnamn, CitizenInfo, HtmlCaseModel, GDPR/TLS.
 
-Detta är en **sammanslagen kunskapsfil** för en AI. All kunskap från skillen `abou-platform` ligger här. Svara från den här filen. Hitta inte på API:er, behörigheter eller fält som inte står här. Svenska UI-namn från Abou gäller.
-
-Källfiler (samma innehåll som under `.cursor/skills/`):
-
-- `SKILL.md`
-- `references/INDEX.md`
-- `references/catalog.md`
-- `references/permissions.md`
-- `references/scheduling.md`
-- `references/min-sida.md`
-- `references/queues.md`
-- `references/modules.md`
-- `references/document-templates.md`
-- `references/admin.md`
-- `references/cases.md`
-- `references/booking.md`
-- `references/registers.md`
-- `references/e-forslag.md`
-- `references/functionality.md`
-- `references/faq.md`
-- `references/sharing.md`
-- `references/operations.md`
-- `references/message-tokens.md`
-- `references/technical/INDEX.md`
-- `references/technical/rest-api.md`
-- `references/technical/citizeninfo.md`
-- `references/technical/htmlcasemodel.md`
-- `references/technical/compliance.md`
+Detta är en **självständig kunskapsfil för RAG**. Svara från den här texten. Hitta inte på API:er, behörigheter eller fält som inte står här. Svenska UI-namn från Abou gäller. Referera inte till interna dokumentationsfiler.
 
 ---
-
-## Källa: `SKILL.md`
-
-# Abou platform (not the layout builder)
-
-This skill **is** the Abou space on dok.sokigo.com minus *Att bygga e-tjänster* and *Integrationer* (those live in [build-abou-etjanst-web](../build-abou-etjanst-web/SKILL.md)).
-
-The wiki is behind login. Agents **cannot** open it. Answer from these files. Do not send the user a Confluence URL as the answer. Do **not** open live Abou admin, Mina ärenden, or citizen cases to look around. Read [abou-web-guard](../abou-web-guard/SKILL.md) before any browser work.
-
-## Source
-
-- Ingested from logged-in Confluence space Abou (last bulk read 2026-08-25).
-- Skip in this skill: Minut Bygg, Minut Miljö, Community presentations, webinar videos, full release-note bodies.
-
-If a live UI label disagrees with these notes, **trust the live UI** and update the matching file.
-
-## Do not load this whole folder
-
-Start at [references/INDEX.md](references/INDEX.md). Read **one** topic file. Catalog of every page: [references/catalog.md](references/catalog.md).
-
-| Need | File |
-| --- | --- |
-| Who can do what (system vs e-tjänst roles) | [permissions.md](references/permissions.md) |
-| Nightly jobs, reminders, soft/permanent delete | [scheduling.md](references/scheduling.md) |
-| Citizen portal, Att göra, villkor, versions | [min-sida.md](references/min-sida.md) |
-| Köer (create, handlägg, payment, citizen flow) | [queues.md](references/queues.md) |
-| Which add-on modules exist | [modules.md](references/modules.md) |
-| Dokumentmallar, blankett-PDF, editerbar PDF | [document-templates.md](references/document-templates.md) |
-| Admin pages (publish, import, organisations, …) | [admin.md](references/admin.md) |
-| Ärendelista, loggbok, diarienummer | [cases.md](references/cases.md) |
-| Bokningsmodulen | [booking.md](references/booking.md) |
-| Registermodulen | [registers.md](references/registers.md) |
-| E-förslag | [e-forslag.md](references/e-forslag.md) |
-| Feature pages under Funktionalitet | [functionality.md](references/functionality.md) |
-| FAQ (Q&A from the wiki) | [faq.md](references/faq.md) |
-| Dela e-tjänster | [sharing.md](references/sharing.md) |
-| Driftsättning / deploy notes | [operations.md](references/operations.md) |
-| REST API, CitizenInfo, HtmlCaseModel, GDPR, TLS | [technical/INDEX.md](references/technical/INDEX.md) |
-
-Builder pages, fields, Python mallar: **not here** — use `build-abou-etjanst-web`.
-
-## Guardrails
-
-- These notes are for **explaining and configuring**. They are not a licence to open production ärenden, impersonate, or change live data.
-- Do not invent REST methods, Razor fields, or permission rights. If it is not in these files, say so. Naming the old wiki title in [catalog.md](references/catalog.md) is for maintainers filling gaps — not something to tell the user to open.
-- Python in the builder still needs systembehörighet **Redigera och exekvera Python-kod** ([permissions.md](references/permissions.md)).
-
-
----
-
-## Källa: `references/INDEX.md`
-
-# Abou platform — pick one file
-
-These files **are** the documentation. The wiki is behind login; do not send the user there. Read 2026-08-25.
-
-**Do not load this whole folder.** Builder pages/fields/Python: [build-abou-etjanst-web](../../build-abou-etjanst-web/SKILL.md). Page list: [catalog.md](catalog.md).
-
-| Need | File |
-| --- | --- |
-| Roles: sysadmin, systembehörighet, e-tjänst (redaktör … verksamhetsadmin) | [permissions.md](permissions.md) |
-| Schemalagda jobb (påminnelser, status, radering, Navet-sync, fil) | [scheduling.md](scheduling.md) |
-| Min sida / Min sida Plus, Att göra, villkor, 2021.2 / 2024.2 | [min-sida.md](min-sida.md) |
-| Köfält, skapa kö, handlägg, årsavgift, medborgarflöde | [queues.md](queues.md) |
-| Which modules Sokigo switches on | [modules.md](modules.md) |
-| Admin: publicera, import/export, organisationer, statistik | [admin.md](admin.md) |
-| Ärendelista, loggbok, diarienummer | [cases.md](cases.md) |
-| Bokningsmodulen | [booking.md](booking.md) |
-| Registermodulen | [registers.md](registers.md) |
-| E-förslag | [e-forslag.md](e-forslag.md) |
-| Dokumentmallar, blankett, editerbar PDF | [document-templates.md](document-templates.md) |
-| Feature pages under Funktionalitet | [functionality.md](functionality.md) |
-| FAQ Q&A | [faq.md](faq.md) |
-| Dela e-tjänster med andra kommuner | [sharing.md](sharing.md) |
-| Checklista driftsättning / deploy | [operations.md](operations.md) |
-| `$uniqueID$`, kö/bokning tokens, Razor in mallar | [message-tokens.md](message-tokens.md) |
-| REST API method names | [technical/rest-api.md](technical/rest-api.md) |
-| `self.Citizen` vs `GetCitizen` vs GetCitizenAsJson | [technical/citizeninfo.md](technical/citizeninfo.md) |
-| `@Model` in dokumentmall / ThankYouAdvanced / e-post | [technical/htmlcasemodel.md](technical/htmlcasemodel.md) |
-| GDPR, eIDAS, TLS, browsers, WCAG, hosting | [technical/INDEX.md](technical/INDEX.md) |
-
-
----
-
-## Källa: `references/catalog.md`
 
 # Abou space catalog (outside builder + integrations)
 
-Ingested 2026-08-25 from Confluence space Abou. **Answer from the notes files**, not from wiki URLs.
+Ingested 2026-08-25 from Confluence space Abou.
 
-**Already in `build-abou-etjanst-web`:** *Att bygga e-tjänster* and *Integrationer*. Do not duplicate those here.
+**Already covered with the builder notes:** *Att bygga e-tjänster* and *Integrationer*. Do not duplicate those here.
 
 **Not ingested (intentionally):** Release-note bodies, Community presentations, Webinar videos, Minut Bygg, Minut Miljö. REST API request/response schemas (PDF). On-prem hosting PDFs (headings only in compliance). Testpersoner personnummer (never copy into git).
 
@@ -131,46 +19,46 @@ Ingested 2026-08-25 from Confluence space Abou. **Answer from the notes files**,
 ### Administrationsidorna
 Administrera Organisationer; Administrera Text Och Bild I Abou; Aktivera/Inaktivera E-Tjänst; Ange Öppettider För En E-Tjänst; Forcera Ärenden (Signera Som Ombud); Frågor Och Svar; Hantera Behörigheter; Hantera Dokument; Importera Och Exportera E-Tjänster; Integrationslogg; Menygrupper; Permanent Borttagning Av Ärenden; Publicera E-Tjänst Och/Eller Blankett; Skicka In Ärende Som Ombud; Statistik Och Rapporter; Systemhändelser; Sök Och Ta Bort Invånare (Personpost); Ta Bort E-Tjänst I Admin; Ändra Organisation För En E-Tjänst; Ändra Texter I E-Tjänster.
 
-Notes: [admin.md](admin.md). PDF/dokumentmallar: [document-templates.md](document-templates.md).
+Notes. PDF/dokumentmallar.
 
 ### Ärendehantering
 Ärendelistan Och Ärendedetaljvy; Ärendets Diarienummer; Handlägga Ärenden; Loggboken.
 
-Notes: [cases.md](cases.md).
+Notes.
 
 ### Behörighetsnivåer
 Introduktion Behörigheter; Systembehörigheter; Systemadministrator; E-Tjänstebehörighet: Verksamhetsadministrator; Beslutsfattare; Statusuppdaterare; Läsbehörighet; Skicka In Ärende; Redaktör; Behörighet På Individ-Eller Gruppnivå.
 
-Notes: [permissions.md](permissions.md).
+Notes.
 
 ### Bokningsmodulen
 Beskrivning; Handläggning Av Bokningar; Skapa Nytt Bokningstillfälle; Återkommande Bokningstillfällen; Boka Om Och Avboka; Konfigurera Bokningar; Bokningsmeddelanden.
 
-Notes: [booking.md](booking.md).
+Notes.
 
 ### Dela e-tjänster med andra
-Notes: [sharing.md](sharing.md).
+Notes.
 
 ### E-Förslag
 Beskrivning; Skapa E-Tjänst För Att Lämna Förslag; Inställningar; Handlägga Förslag; Handlägga Kommentarer; Rösta Som Ombud; Läsa, Rösta, Dela Och Kommentera; Texter I Invånarvy; E-Förslagsmeddelanden.
 
-Notes: [e-forslag.md](e-forslag.md).
+Notes.
 
 ### FAQ
-All Q&A pairs: [faq.md](faq.md).
+All Q&A pairs.
 
 ### Funktionalitet
-Feature pages: [functionality.md](functionality.md).
+Feature pages.
 
 ### Kömodulen
 Beskrivning; Komma Igång; Skapa Ny Kö; Konfigurera En Kö; Handlägga Köer (+ byt köplats, digital betalning, lägg till manuellt, ta bort, uppdatera kontakt, uppdatera registreringsdatum, uppdatera status); Köbetalning; Köer: Hur Gör Invånaren; Köfilter; Kömeddelanden.
 
-Notes: [queues.md](queues.md).
+Notes.
 
 ### Meddelandemallar
 Exempel; Exempel (multipelsignering); Koppla Meddelandemall Till E-Tjänst; Skapa/Redigera/Ta Bort; Statusnotifieringar; Värden I Meddelandemallar.
 
-Builder-adjacent: `build-abou-etjanst-web/references/messages.md`. Tokens: [message-tokens.md](message-tokens.md). Razor model: [technical/htmlcasemodel.md](technical/htmlcasemodel.md).
+Builder-adjacent. Tokens. Razor model.
 
 ### Min sida
 Att Göra; Beskrivning (2020.11 och tidigare); Direktmeddelanden; Händelser; Köplatser Och Bokningar; Publicering Och Villkorsstyrning; Tjänster.
@@ -178,22 +66,22 @@ Att Göra; Beskrivning (2020.11 och tidigare); Direktmeddelanden; Händelser; K�
 ### Min sida 2021.2 och 2024.2
 Funktioner Som Stöds; Övergripande Beskrivning Min Sida Och Min Sida Plus; Video; Min sida efter 2024.2, med sidor som översta nivå.
 
-Notes: [min-sida.md](min-sida.md).
+Notes.
 
 ### Moduler
 Schemaläggningsmodul; E-Förslagsmodulen; Betalningsfunktion; Min Sida; Användningsmodulen; Kömodulen; Bokningsmodulen; Register.
 
-Notes: [modules.md](modules.md).
+Notes.
 
 ### Projektdokument, Checklistor Och Processer
 Kundservice/Support; Deployprocess; Checklista: Driftsättning Av E-Tjänst.
 
-Notes: [operations.md](operations.md).
+Notes.
 
 ### Registermodulen
 Fokuswebinar; Beskrivning; Import Och Export; Redigera Register; Koppla Register Och E-Tjänst; Behörigheter För Register; Text/Värdeseparering.
 
-Notes: [registers.md](registers.md).
+Notes.
 
 ### Release notes
 V26; 2025.11 … back through 2021 and earlier. **Not copied** into the skill (too large / version-specific). Ask Sokigo or the live wiki for a named version.
@@ -201,22 +89,19 @@ V26; 2025.11 … back through 2021 and earlier. **Not copied** into the skill (t
 ### Schemaläggning
 Beskrivning; Ärendepåminnelser; Bokningspåminnelser; Köplatspåminnelser; Notifiering Vid Röstningsperiodens Slut; Signeringspåminnelse; Skapa Fil; Synkronisera Personuppgifter; Ta Bort Ärenden Mjukt; Ta Bort Ärenden Permanent; Uppdatera Status På Ärende.
 
-Notes: [scheduling.md](scheduling.md). From version **2018.2**.
+Notes. From version **2018.2**.
 
 ### Teknisk Information & Dokumentation
 Abou REST API; Ansvarsfördelning vid drift On Prem; CitizenInfo; HtmlCaseModel; Information Om GDPR; Penetrationstester Av Abou; Teknisk Kravspecifikation - Abou Intern Hosting; Testpersoner I Abou; Tillgänglighetsredogörelse; Vad Är EIDAS; Vilka Protokoll Stödjer Abou; Vilka Webbläsare Stödjer Abou.
 
-Notes: [technical/INDEX.md](technical/INDEX.md).
+Notes.
 
 ## Other top-level in the space
 
 - **Community** — användarträffar, webinars (not ingested).
 - **Minut Bygg / Minut Miljö** — other Sokigo products; do not open.
 
-
 ---
-
-## Källa: `references/permissions.md`
 
 # Behörigheter
 
@@ -285,10 +170,7 @@ Text editing includes: e-tjänstens namn, uppskattad handläggningstid (flik **H
 
 Cannot delete a meddelandemall that is still coupled to a service.
 
-
 ---
-
-## Källa: `references/scheduling.md`
 
 # Schemaläggning
 
@@ -348,10 +230,7 @@ Soft: flag in DB; then permanent job (or Admin batch) erases. Permanent **cannot
 
 Name; one-shot vs recurring; e-tjänst; current status → new status; days since last status change.
 
-
 ---
-
-## Källa: `references/min-sida.md`
 
 # Min sida
 
@@ -386,7 +265,7 @@ Two-way thread in **logged-in** mode (e-leg). Needs the Min sida module. Casewor
 - Handläggare can **always** start a thread from a case: case → tab **Direktmeddelande** → write → **Skicka meddelande**. Optional notifiering so the citizen logs in to Min sida.
 - Citizen can start a thread only if the service setting **Tillåt invånaren att starta Direktmeddelanden** is on (**from 3.48**). Otherwise they can only reply in an existing thread.
 - Ärendelista: **blue** speech bubble = unread; **grey** = thread exists, already read.
-- Unread threads also appear under **Att göra**. Permanent case delete drops the messages ([admin.md](admin.md)).
+- Unread threads also appear under **Att göra**. Permanent case delete drops the messages .
 
 ## Publicering och villkorsstyrning
 
@@ -419,7 +298,7 @@ Same Lägg till / namn / mall / Testa / Spara / Sortera flow as Tjänster, but t
 **Funktioner som stöds** on Min sida (2021.2 list):
 
 - Signera som medsökande / attestera
-- Ångra ärende not yet signed by medsökande ([functionality.md](functionality.md))
+- Ångra ärende not yet signed by medsökande
 - Komplettera where the service allows it
 - Komplettera when handläggare begärt komplettering
 - Tacka ja/nej till köerbjudande
@@ -453,10 +332,7 @@ Two sidor:
 
 Customers with Plus can arrange sidor and komponenter themselves. External content from other systems is often put on **own sidor**. Do not invent extra widget types; if the live site disagrees, trust the live site.
 
-
 ---
-
-## Källa: `references/queues.md`
 
 # Kömodulen
 
@@ -526,12 +402,9 @@ Citizen pays from Min sida / Mina ärenden.
 
 ## Kömeddelanden tokens
 
-`$Comment$`, `$QueuePosition$`, `$QueueName$` — [message-tokens.md](message-tokens.md).
-
+`$Comment$`, `$QueuePosition$`, `$QueueName$`.
 
 ---
-
-## Källa: `references/modules.md`
 
 # Moduler
 
@@ -539,21 +412,18 @@ Sokigo enables add-ons (often without a new deploy). Do not assume a site has a 
 
 | Module | What it is | Notes in this skill |
 | --- | --- | --- |
-| Schemaläggningsmodul | Nightly/hourly jobs | [scheduling.md](scheduling.md) |
-| Kömodulen | Waiting lists + köfält | [queues.md](queues.md) |
-| Bokningsmodulen | Slots / appointments | [booking.md](booking.md) |
-| Min sida (modul) | Citizen portal | [min-sida.md](min-sida.md) |
-| E-förslagsmodulen | Suggestions + voting | [e-forslag.md](e-forslag.md) |
-| Betalningsfunktion | Swedbank Pay (and others per integrations) | Builder: payment page; kö yearly fee in [queues.md](queues.md) |
+| Schemaläggningsmodul | Nightly/hourly jobs | |
+| Kömodulen | Waiting lists + köfält | |
+| Bokningsmodulen | Slots / appointments | |
+| Min sida (modul) | Citizen portal | |
+| E-förslagsmodulen | Suggestions + voting | |
+| Betalningsfunktion | Swedbank Pay (and others per integrations) | Builder: payment page; kö yearly fee in |
 | Användningsmodulen | Usage stats / reports | Needs system **Statistik och rapporter** |
-| Register | Lists for dropdowns / mapping | [registers.md](registers.md) |
+| Register | Lists for dropdowns / mapping | |
 
 Hub: *Abou → Moduler*. Each child is a short product page pointing at the detailed section.
 
-
 ---
-
-## Källa: `references/document-templates.md`
 
 # Dokumentmallar och PDF
 
@@ -584,7 +454,59 @@ Changes do **not** rewrite old PDFs already generated.
 
 Editor actions: search (visible text / e-tjänst / organisation), filter malltyp, sort, add, **couple to e-tjänst or organisation**, duplicate, delete.
 
-Razor object in the mall: [technical/htmlcasemodel.md](technical/htmlcasemodel.md). Changing organisation on a service switches to that org’s PDF mall, else kund/standard ([admin.md](admin.md)).
+Razor object in the mall is **HtmlCaseModel** (`@Model`). Changing organisation on a service switches to that org’s PDF mall, else kund/standard.
+
+These PDFs are **not** the same thing as **meddelandemallar** (e-post/SMS). A notifiering can *attach* the ärende-PDF or beslut-PDF. The HTML/Razor below is what Abou turns into those PDFs.
+
+## Two PDF jobs (the ones customers edit most)
+
+| Mall | When Abou generates it | Typical attach-on |
+| --- | --- | --- |
+| **Ärende-mall** (Medborgare/Företag) | When the case is created (after submit / after last medsökande sign) | Inkommet-mail, Min sida, Admin |
+| **Beslutsmall** (Medborgare/Företag) | When handläggare **Godkänn** or **Avslå** | Beslutsmail, Min sida “ta del av beslut” |
+
+Same editor, same `@Model`, different body: ärende-mallen is a **sammanfattning of answers**; beslutsmallen leads with **the decision** then usually repeats the answers.
+
+Both are a full HTML document: `<style>` in `<head>`, Razor in `<body>` inside `@{ … }`. CSS is customer-owned (font, left margin, zebra `bgcolor="efefef"`, table ~80% wide, `th.table-key` ~45%). Use `<caption class="sr-only">` when a table has no visible heading. Screen-reader captions and `scope="row"` on the question cell are the a11y pattern.
+
+Do **not** hard-code a municipality name, logo path, or inbox in the shared kund-mall if organisation mallar should differ — put those in sidhuvud/sidfot or org-level mall.
+
+### Ärende-PDF — what the mall must do
+
+1. **Title of the case** — `@Model.Service.DisplayName` (h1).
+2. **Ärende meta** — at least `@Model.UniqueId` and `@Model.Submitted` (`ToString("yyyy-MM-dd HH:mm")`). If `@Model.FirstSignedByAll.HasValue`, show that timestamp as signed-time (nullable — guard it).
+3. **Answers** — only pages that have data: `foreach (var page in Model.Pages)` + `if (page.HasAnyValues)`. Page title = `@page.DisplayName` (h2). Then `foreach (var block in page.Blocks)`. On a block page (`page.IsBlockPage`) the block header is a table `<caption>` when not empty.
+4. **Fields** — `block.Fields`; skip empty with `Model.HasValue(FriendlyFieldId)`.
+ - If the answer is itself a table (`Answer.Contains("<table ")`), print question as a full-width header and `@field.Answer` as HTML (do not escape).
+ - Otherwise two columns: question | answer, zebra rows (`j++ % 2`).
+5. **Payments** (optional) — `Model.Payments` with culture `sv-SE`: amount (`ToString("C")`), `OrderId`, `Date`. Skip the block if the list is null/empty.
+6. **Signing**
+ - **Alternativ signering** (`Model.IsSignedAlternatively`): empty lines for Datum/Ort and Underskrift (paper sign after print).
+ - Else **sökande**: `Model.ApplicantSignature` — Submitted, `SignedBy.FirstName` + `LastName`, `SignedBy.SocialSecurityNumber`, `Issuer`, `Signed`.
+ - **Medsökande**: `Model.SortedRecentCoApplicantSignatures` (same columns, loop).
+ - **Attestanter**: `Model.SortedRecentAttestSignatures` plus `SignatureAttest.AnswerString` (Bevilja/Avslå), `Comment`, optional `Attachment.FileName`.
+7. **Kompletteringar** — `Model.Supplements`: Title, DateRequested, DateCompleted, OriginalFileNamesJoined, CitizenComment. Skip empty strings.
+
+Older mallar loop `page.Fields` instead of `page.Blocks` / `block.Fields`. New kund-mallar should use **blocks** so layout matches the builder.
+
+`HasValue` vs printing every field: ärende-PDF that should hide unanswered questions uses `HasValue`. Editerbar PDF mallar sometimes print all fields as inputs instead.
+
+### Beslut-PDF — what the mall must do
+
+1. **Service name** + caption **Beslutat**.
+2. **Decision block first** — `@Model.Decision.DecisionText` (Godkänt / Avslaget), `@Model.Decision.Date`, handläggare, `@Model.Decision.Comment`. The property for the caseworker name on Decision is spelled **`Adminstrator`** in the template model (no “i”). Null-check `Model.Decision` if a mall can render before a decision exists.
+3. **Same answer dump as the ärende-PDF** (pages → blocks → HasValue fields).
+4. **Signing on the decision PDF** is usually gated with `Model.Service.RequiresEid`. Then either the paper-sign blanks (`IsSignedAlternatively`) or the applicant row from `Model.Signatures.FirstOrDefault(s => s.SignatureType == …SignatureType.Applicant)`.
+5. Leave room after the decision for **överklagandehänvisning** (CSS hook `.overklaga` is common). Different Godkänt vs Avslaget wording belongs in this mall (or in sidhuvud/beslutstext), not in the e-tjänst layout.
+
+### Razor pitfalls in dokumentmallar
+
+- Guard nulls (`FirstSignedByAll`, `ApplicantSignature`, `Payments`, `Decision`, attest attachment).
+- Table-valued answers must be detected before you wrap them in a two-column `<td>` or the nested table breaks the PDF.
+- Field answers that contain a raw `@` without `@Model["fältid"]` can break PDF generation.
+- Date format in Swedish PDFs: `yyyy-MM-dd HH:mm`.
+- Money: `CultureInfo.CreateSpecificCulture("sv-SE")` + currency format.
+- Alternativ signering and e-leg blocks are mutually exclusive in a well-written mall (`IsSignedAlternatively`).
 
 ## Hantera dokument (file library)
 
@@ -624,34 +546,34 @@ Intent: loop all pages and fields; non-table answers become PDF form inputs.
 ```
 foreach (var page in Model.Pages) { var j = 0;
 <table>
-  <caption>@page.DisplayName</caption>
-  <tbody> @for (int i = 0; i < page.Fields.Count(); i++) {
-    if (@page.Fields[i].AnswerContains("table")) {
-      <tr bgcolor="efefef">
-        <td colspan="2">@page.Fields[i].Question</td>
-      </tr>
-      <tr>
-        <td colspan="2">@page.Fields[i].Answer</td>
-      </tr>
-    } else {
-      if (i++ % 2 == 0) {
-      <tr bgcolor="efefef">
-        <td>@page.Fields[i].Question</td>
-        <td>
-          <input data-pdf-form-field="true" type="text" name=@page.Fields[i].FriendlyFieldId value="@System.Web.HttpUtility.HtmlAttributeEncode(page.Fields[i].Answer ?? string.Empty)"/>
-        </td>
-      </tr>
-      } else {
-      <tr>
-        <td>@page.Fields[i].Question</td>
-        <td>
-          <input data-pdf-form-field="true" type="text" name=@page.Fields[i].FriendlyFieldId value="@System.Web.HttpUtility.HtmlAttributeEncode(page.Fields[i].Answer ?? string.Empty)"/>
-        </td>
-      </tr>
-      }
-    }
-  }
-  </tbody>
+ <caption>@page.DisplayName</caption>
+ <tbody> @for (int i = 0; i < page.Fields.Count; i++) {
+ if (@page.Fields[i].AnswerContains("table")) {
+ <tr bgcolor="efefef">
+ <td colspan="2">@page.Fields[i].Question</td>
+ </tr>
+ <tr>
+ <td colspan="2">@page.Fields[i].Answer</td>
+ </tr>
+ } else {
+ if (i++ % 2 == 0) {
+ <tr bgcolor="efefef">
+ <td>@page.Fields[i].Question</td>
+ <td>
+ <input data-pdf-form-field="true" type="text" name=@page.Fields[i].FriendlyFieldId value="@System.Web.HttpUtility.HtmlAttributeEncode(page.Fields[i].Answer ?? string.Empty)"/>
+ </td>
+ </tr>
+ } else {
+ <tr>
+ <td>@page.Fields[i].Question</td>
+ <td>
+ <input data-pdf-form-field="true" type="text" name=@page.Fields[i].FriendlyFieldId value="@System.Web.HttpUtility.HtmlAttributeEncode(page.Fields[i].Answer ?? string.Empty)"/>
+ </td>
+ </tr>
+ }
+ }
+ }
+ </tbody>
 </table> }
 ```
 
@@ -662,47 +584,47 @@ Wiki heading: only fields the citizen filled. Outer guard is `page.HasAnyValues`
 ```
 foreach (var page in Model.Pages)
 {
-    if (page.HasAnyValues)
-    {
-        var j = 0;
-        <table>
-            <caption>@page.DisplayName</caption>
-            <tbody>
-                @for (int i = 0; i < page.Fields.Count(); i++)
-                {
-                    if (!Model.HasValue(@page.Fields[i].FriendlyFieldId))
-                    {
-                        if (@page.Fields[i].AnswerContains("table"))
-                        {
-                            <tr bgcolor="efefef">
-                                <td colspan="2">@page.Fields[i].Question</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">@page.Fields[i].Answer</td>
-                            </tr>
-                        }
-                        else
-                        {
-                            if (i++ % 2 == 0)
-                            {
-                                <tr bgcolor="efefef">
-                                    <td>@page.Fields[i].Question</td>
-                                    <td><input data-pdf-form-field="true" type="text" name=@page.Fields[i].FriendlyFieldId value="@System.Web.HttpUtility.HtmlAttributeEncode(page.Fields[i].Answer ?? string.Empty)"/></td>
-                                </tr>
-                            }
-                            else
-                            {
-                                <tr>
-                                    <td>@page.Fields[i].Question</td>
-                                    <td><input data-pdf-form-field="true" type="text" name=@page.Fields[i].FriendlyFieldId value="@System.Web.HttpUtility.HtmlAttributeEncode(page.Fields[i].Answer ?? string.Empty)"/></td>
-                                </tr>
-                            }
-                        }
-                    }
-                }
-            </tbody>
-        </table>
-    }
+ if (page.HasAnyValues)
+ {
+ var j = 0;
+ <table>
+ <caption>@page.DisplayName</caption>
+ <tbody>
+ @for (int i = 0; i < page.Fields.Count; i++)
+ {
+ if (!Model.HasValue(@page.Fields[i].FriendlyFieldId))
+ {
+ if (@page.Fields[i].AnswerContains("table"))
+ {
+ <tr bgcolor="efefef">
+ <td colspan="2">@page.Fields[i].Question</td>
+ </tr>
+ <tr>
+ <td colspan="2">@page.Fields[i].Answer</td>
+ </tr>
+ }
+ else
+ {
+ if (i++ % 2 == 0)
+ {
+ <tr bgcolor="efefef">
+ <td>@page.Fields[i].Question</td>
+ <td><input data-pdf-form-field="true" type="text" name=@page.Fields[i].FriendlyFieldId value="@System.Web.HttpUtility.HtmlAttributeEncode(page.Fields[i].Answer ?? string.Empty)"/></td>
+ </tr>
+ }
+ else
+ {
+ <tr>
+ <td>@page.Fields[i].Question</td>
+ <td><input data-pdf-form-field="true" type="text" name=@page.Fields[i].FriendlyFieldId value="@System.Web.HttpUtility.HtmlAttributeEncode(page.Fields[i].Answer ?? string.Empty)"/></td>
+ </tr>
+ }
+ }
+ }
+ }
+ </tbody>
+ </table>
+ }
 }
 ```
 
@@ -714,19 +636,16 @@ The e-tjänst **is** the blankett. Every **Ladda hem blankett** / **Generera bla
 - Help texts can print at the end: service **Inställningar → Visa hjälptexter i genererad blankett**
 - Manual page breaks: page **Inställningar** or field **Avancerat**
 - Header/footer follow ärende-PDF
-- Signing block: Sokigo can require it on all blanketter or only e-leg services. In the **Ärendeblankett** mall, wrap “Sökandes underskrift” in `if (Model.RequireId) { … }` so unsigned services omit it ([faq.md](faq.md))
+- Signing block: Sokigo can require it on all blanketter or only e-leg services. In the **Ärendeblankett** mall, wrap “Sökandes underskrift” in `if (Model.RequireId) { … }` so unsigned services omit it
 - Unique layout from 3.26 = this editor (customer-editable)
 
 Publish as menygrupp type **Blankett genererad från e-tjänst**, or generate from Admin. Role **Skicka in ärende** can generate PDF. The blankett is **not** a fillable computer form — print, fill by hand, post.
 
-
 ---
-
-## Källa: `references/admin.md`
 
 # Administrationsidorna
 
-How-to for Admin screens. Do **not** open live cases unless the user asked. Rights: [permissions.md](permissions.md).
+How-to for Admin screens. Do **not** open live cases unless the user asked. Rights.
 
 ## Organisationer (from 3.36)
 
@@ -734,7 +653,7 @@ Flik **Administration → Organisationer**. **Skapa ny organisation**. Pencil = 
 
 ## Texter och bild
 
-System **Uppdatera vanliga texter**. Flik **Texter**. Citizen pages + **Handläggarstöd**. Not sammanfattning/tacksida in the e-tjänst help column. **Välj roll**: only infotext + rubrik, not body. Images: upload under **Dokument** first ([document-templates.md](document-templates.md)). Generic theme: **Visa i meny**, **Ordning i menyn**; infobox above body. Tab **Lavinmeddelande**: banner on every external page ([functionality.md](functionality.md)). Sysadmin **Uppdatera innehåll** can set one banner for **all nodes**.
+System **Uppdatera vanliga texter**. Flik **Texter**. Citizen pages + **Handläggarstöd**. Not sammanfattning/tacksida in the e-tjänst help column. **Välj roll**: only infotext + rubrik, not body. Images: upload under **Dokument** first . Generic theme: **Visa i meny**, **Ordning i menyn**; infobox above body. Tab **Lavinmeddelande**: banner on every external page . Sysadmin **Uppdatera innehåll** can set one banner for **all nodes**.
 
 E-tjänst texts: left **Redigera texter** (needs **Redaktör** or **Verksamhetsadministrator**). Tabs **Sidtexter** (sidnamn, huvudrubrik, infobox) and **Block och fält** (hjälp, text ovan/under, sometimes svarsalternativ).
 
@@ -764,7 +683,7 @@ System **Administrera vanliga frågor**. Menu **Frågor och svar → Ny fråga**
 
 ## Behörigheter UI
 
-Menu **Behörigheter**. First login: username = password, then change. Per-choice rights: [functionality.md](functionality.md) *Behörighet givet val*. LDAP: **Grupper → Synkronisera användare** ([functionality.md](functionality.md)).
+Menu **Behörigheter**. First login: username = password, then change. Per-choice rights: *Behörighet givet val*. LDAP: **Grupper → Synkronisera användare** .
 
 ## Integrationslogg
 
@@ -797,14 +716,11 @@ Right **Statistik och rapporter** (+ at least Läs on the service for case expor
 
 Sokigo enables; sysadmin **Felsökning**. Filter by type/time: deploys, config, deletes (case/service/Min sida/menygrupp/kö/integration/person), saves, admin login, users, rights, scheduled jobs, import, API users, email settings, document upload/delete.
 
-
 ---
-
-## Källa: `references/cases.md`
 
 # Ärendehantering
 
-Menu **Ärenden**. Rights: [permissions.md](permissions.md).
+Menu **Ärenden**. Rights.
 
 ## Ärendelistan
 
@@ -822,8 +738,8 @@ Default statuses (change under service **Inställningar**): Inkommet, Registrera
 | Tilldela handläggare | Selectable users = **Statusuppdaterare**. Optional personal text + attachments if tilldelning-mail is coupled |
 | Ladda upp bilaga | Citizen sees on Min sida if linked. Optional **läskvitto**. Same allowed types/signature check as filuppladdning. Cannot delete ärende-PDF or beslut; other files are permanent delete |
 | Godkänn / Avslå | Service setting **Beslut** + **Beslutsfattare** + person link. Comment and/or file; system builds beslut-PDF; download = läskvitto. Statusnotifiering Godkänd/Avslagen |
-| Forcera / ombud sign | [admin.md](admin.md) |
-| Skicka meddelande | Needs login, integrated personnummer, or configured email field — builder `messages.md` |
+| Forcera / ombud sign | |
+| Skicka meddelande | Needs login, integrated personnummer, or configured email field — builder |
 | Ta bort | Soft delete |
 | Loggbok | Headings defined **on the e-tjänst**. Same headings for all cases of that service. Cannot delete a heading that has entries; can close a heading for new entries. Deleted entries are struck through (who/when) and omitted from Excel. Read: Läs+; write: Statusuppdaterare+ |
 
@@ -833,10 +749,7 @@ Default statuses (change under service **Inställningar**): Inkommet, Registrera
 
 UI or API `UpdateDiaryNumber`. Message when **När diarienummer sätts**.
 
-
 ---
-
-## Källa: `references/booking.md`
 
 # Bokningsmodulen
 
@@ -882,12 +795,9 @@ Admin: confirm avbokning (slot free again; avbokning-mail if configured). Boka o
 
 ## Bokningsmeddelanden
 
-Service **Redigera meddelanden → Bokningsmeddelanden → Lägg till ny**. When: **Bokning** (citizen book or admin rebook), **Avbokning** (citizen or admin), **Vid påminnelse** (scheduled). Prefer **Bokning** over “ärendet inkommit” as confirmation — inkommit does not mean a slot was booked. One mall per recipient (invånare / funktionsbrevlåda / handläggare). Tokens: [message-tokens.md](message-tokens.md). Reminders: [scheduling.md](scheduling.md).
-
+Service **Redigera meddelanden → Bokningsmeddelanden → Lägg till ny**. When: **Bokning** (citizen book or admin rebook), **Avbokning** (citizen or admin), **Vid påminnelse** (scheduled). Prefer **Bokning** over “ärendet inkommit” as confirmation — inkommit does not mean a slot was booked. One mall per recipient (invånare / funktionsbrevlåda / handläggare). Tokens. Reminders.
 
 ---
-
-## Källa: `references/registers.md`
 
 # Registermodulen
 
@@ -917,10 +827,7 @@ Anyone in Admin can **see** registers and coupling. Editors can couple. Create/u
 
 In a row: `visningstext:::värde` (three colons). Hidden value for fältregler / logikhopp.
 
-
 ---
-
-## Källa: `references/e-forslag.md`
 
 # E-förslag
 
@@ -966,18 +873,13 @@ When: **Vid publicering**; **Vid förberedande för ställningstagande** (beslut
 
 Citizen texts: resource strings on list + proposal page (button, empty list, vote/comment help).
 
-
 ---
-
-## Källa: `references/functionality.md`
 
 # Funktionalitet
 
-How Abou behaves after the builder. Builder how-to (pages, fields, Python mallar) stays in `build-abou-etjanst-web`. FAQ: [faq.md](faq.md). These notes are the knowledge — do not send the user to Confluence.
+How Abou behaves after the builder. Builder how-to (pages, fields, Python mallar) stays in . FAQ. These notes are the knowledge — do not send the user to Confluence.
 
 ## Dokumentmallar / blankett / editerbar PDF
-
-[document-templates.md](document-templates.md)
 
 ## Behörighet givet val i e-tjänsten
 
@@ -1016,7 +918,7 @@ Same or another e-tjänst. Needs e-leg + **ärendeväljarfält** early + sidlogi
 
 ## Komplettering med bilaga via Min sida
 
-After submit. Login or integrated personnummer. **One file at a time** (each gets its own description) → Relaterade filer. Works even if the service has no filuppladdningsfält. Optional notifiering to handläggare / funktionsbrevlåda / invånare. Handläggare file-komplettering from 2021.2: [cases.md](cases.md).
+After submit. Login or integrated personnummer. **One file at a time** (each gets its own description) → Relaterade filer. Works even if the service has no filuppladdningsfält. Optional notifiering to handläggare / funktionsbrevlåda / invånare. Handläggare file-komplettering from 2021.2.
 
 ## Spara och återuppta ärende
 
@@ -1062,19 +964,17 @@ Needs payment integration. Sysadmin: which service, amount, which page after **A
 
 ## Betalning via Min sida
 
-Same integration. Use when payment in the service is optional, or for **årlig köavgift** (mail → log in → pay). List of unpaid cases; **Tillbaka** = fail → error page with link back to the payment overview. [queues.md](queues.md), [min-sida.md](min-sida.md).
+Same integration. Use when payment in the service is optional, or for **årlig köavgift** (mail → log in → pay). List of unpaid cases; **Tillbaka** = fail → error page with link back to the payment overview. .
 
 ## Ombud / forcera signering
 
-[admin.md](admin.md)
-
 ## Multipelsignering
 
-Builder: `create-and-settings.md`. FAQ for one vs two guardians: [faq.md](faq.md). Field **Attestlista med sök** is **internal** attest (AD), not citizen guardians — see Attestering below.
+Builder. FAQ for one vs two guardians. Field **Attestlista med sök** is **internal** attest (AD), not citizen guardians — see Attestering below.
 
 ## Ångra ett ärende som inte har signerats av medsökande
 
-Service Inställningar **Tillåt sökande att ångra ärendet under Min sida** (off by default). While status is **Väntar på medsökandes signatur**, the applicant on Min sida can **Ångra ärende**. The case returns to **utkast** (spara/återuppta): they can change answers and submit again. Related setting **Tillåt sökande att ändra ärendet under Min sida** (builder `create-and-settings.md` / `messages.md`) is the same family of “revert while waiting for co-sign”.
+Service Inställningar **Tillåt sökande att ångra ärendet under Min sida** (off by default). While status is **Väntar på medsökandes signatur**, the applicant on Min sida can **Ångra ärende**. The case returns to **utkast** (spara/återuppta): they can change answers and submit again. Related setting **Tillåt sökande att ändra ärendet under Min sida** (builder / ) is the same family of “revert while waiting for co-sign”.
 
 ## Attestering
 
@@ -1082,7 +982,7 @@ Variant of multipelsignering: one or more **attestanter** must answer (with e-si
 
 ### Attestlista med sök
 
-Searchable dropdown. Alternatives: `Efternamn|Förnamn|UID|E-postadress` (all four, pipe-separated). UID = personnummer **or** AD short name, depending how the site identifies users. Or Python `SetOptions`. Optional 5th help segment with `{1}` `{2}`. Common: AD lookup of the user’s chef (`InternalWebSearch`). Builder: `field-types.md`.
+Searchable dropdown. Alternatives: `Efternamn|Förnamn|UID|E-postadress` (all four, pipe-separated). UID = personnummer **or** AD short name, depending how the site identifies users. Or Python `SetOptions`. Optional 5th help segment with `{1}` `{2}`. Common: AD lookup of the user’s chef (`InternalWebSearch`). Builder.
 
 ### Notifiering
 
@@ -1105,13 +1005,13 @@ Like multi-sign: handläggare **Hantera attest** on the case — answer as ombud
 
 ## Värden som parametrar till e-tjänst (from 2019.2)
 
-Query string `?namn=värde` (`&` between pairs) lands in `self.Service.SessionParameters` (string dict, **case sensitive**). Use to know *where* the service was started or to prefill. Builder mall: *Starta e-tjänst med parametrar i url och sedan använda dom* (`logic-templates/url-parameters.md`). Check `in` before indexing.
+Query string `?namn=värde` (`&` between pairs) lands in `self.Service.SessionParameters` (string dict, **case sensitive**). Use to know *where* the service was started or to prefill. Builder mall: *Starta e-tjänst med parametrar i url och sedan använda dom* . Check `in` before indexing.
 
 Example: `https://service.kommunnamn.se/GRUSK?skola=Lyckoskolan&årskurs=3` then Python can prefill school/year or skip pages.
 
 ## Mina meddelanden (DIGG)
 
-Encrypted digital mailbox (Kivra, Min myndighetspost, Bring Digimail). Full product notes: builder `integrations/mina-meddelanden.md`.
+Encrypted digital mailbox (Kivra, Min myndighetspost, Bring Digimail). Full product notes: builder .
 
 - Citizen must have joined Mina meddelanden **and** chosen this kommun.
 - Service needs **login or integrated personnummer** (lookup is on personnummer). Mallar must be coupled. Sokigo plugin + customer avtal.
@@ -1128,7 +1028,7 @@ Encrypted digital mailbox (Kivra, Min myndighetspost, Bring Digimail). Full prod
 
 On **rullistor, kryssrutor, radioknappar**: field argument **Svar redigerbart av handläggare** = `True`. After submit, handläggare change that answer on the **ärendedetaljvy**.
 
-Typical: felanmälan where the citizen picked the wrong förvaltning — change the choice so the case routes internally. If **Meddelande per svarsalternativ** is on, a **new** funktionsbrevlåda mail goes out for the new choice (builder `messages.md`).
+Typical: felanmälan where the citizen picked the wrong förvaltning — change the choice so the case routes internally. If **Meddelande per svarsalternativ** is on, a **new** funktionsbrevlåda mail goes out for the new choice (builder ).
 
 Combined with behörighet-per-alternativ: dialog warns that the field drives rights; picking an alternative they do not have makes the case unavailable to them.
 
@@ -1142,7 +1042,7 @@ Import/create service: Redaktör is **not** auto-granted to the synced user; the
 
 **Sluta synkronisera** on the user: then edit rights in Abou (or inactivate to remove).
 
-Lookups also run at login, on the rights UI, and when showing assigned handläggare. LDAP vs IdP product: builder `integrations/active-directory.md`.
+Lookups also run at login, on the rights UI, and when showing assigned handläggare. LDAP vs IdP product: builder .
 
 ## Krypterad e-post (tilläggsbeställning, from 3.28)
 
@@ -1156,7 +1056,7 @@ Banner on **all pages of the external UI** (maintenance, outage). Admin **Texter
 
 ## Meddelanden per svarsalternativ
 
-Funktionsbrevlåda to different addresses from choice fields. Several such fields allowed on one service. Full builder steps: `build-abou-etjanst-web/references/messages.md`. One address per alternative; optional default address/mall/attachments when an alternative has no override.
+Funktionsbrevlåda to different addresses from choice fields. Several such fields allowed on one service. Full builder steps. One address per alternative; optional default address/mall/attachments when an alternative has no override.
 
 ## Skapa ett nytt ärende baserat på ett befintligt (from 2019.11)
 
@@ -1166,7 +1066,7 @@ Not “edit the old case”. A **kompletteringstjänst** maps fields onto a **ur
 
 Sysadmin mail to a fixed mailbox on failures, including: Paynova/payment, file upload, save case, update status, REST API in/out, menygrupp page load, menygrupp save in Admin, e-leg login, e-leg signing, outbound mail, Navet, SMS, other integrations.
 
-Example: `Abou.Security.Eid.EidProvider.Logout()` with Sirius — logout abort; citizen sees no error page, but ops still get mail.
+Example: `Abou.Security.Eid.EidProvider.Logout` with Sirius — logout abort; citizen sees no error page, but ops still get mail.
 
 ## Stöd för olika typer av e-tjänster
 
@@ -1180,22 +1080,19 @@ Example: `Abou.Security.Eid.EidProvider.Logout()` with Sirius — logout abort; 
 
 ## Responsiv anpassning
 
-Abou **always** ships a responsive citizen UI (phone / tablet / desktop). Wiki browser matrix is historical (iOS 5–9, Android 4.3–6, old Firefox/IE/Chrome/Edge) — do not treat as current support; browsers: [technical/compliance.md](technical/compliance.md).
-
+Abou **always** ships a responsive citizen UI (phone / tablet / desktop). Wiki browser matrix is historical (iOS 5–9, Android 4.3–6, old Firefox/IE/Chrome/Edge) — do not treat as current support; browsers.
 
 ---
 
-## Källa: `references/faq.md`
-
 # FAQ (Abou Confluence)
 
-Operational answers from the Abou space FAQ. Read 2026-08-25. Builder-only FAQ (Excel vs txt, several addresses on meddelande per svarsalternativ): `build-abou-etjanst-web`.
+Operational answers from the Abou space FAQ. Read 2026-08-25. Builder-only FAQ (Excel vs txt, several addresses on meddelande per svarsalternativ).
 
 Do **not** invent extra Q&A. If the live product disagrees, trust the live UI.
 
 ## Ärende-PDF i mailnotifieringar
 
-Attach the case PDF on the message mall (videoguide on the wiki). Coupling/attachments: builder `messages.md`.
+Attach the case PDF on the message mall (videoguide on the wiki). Coupling/attachments: builder .
 
 ## Fler taggar för sökfunktionen
 
@@ -1228,7 +1125,7 @@ Wiki figures **from April 2016** (confirm current Skatteverket tariffs before qu
 | Load/urval ≤ 2 000 000 posts | 0,03 kr / post |
 | Load/urval > 2 000 000 posts | 0,01 kr / post |
 
-More: Skatteverket. What data Navet can return: builder `integrations/navet.md`.
+More: Skatteverket. What data Navet can return: builder .
 
 ## Enkel vs avancerad grafisk anpassning
 
@@ -1238,11 +1135,11 @@ More: Skatteverket. What data Navet can return: builder `integrations/navet.md`.
 
 ## Första inloggning — lösenord
 
-New Abou user: **username as password** the first time, then change password. Same as [admin.md](admin.md).
+New Abou user: **username as password** the first time, then change password. Same as .
 
 ## Dela e-tjänster med andra kommuner
 
-There is a service on **Provrummet** used for this: *Dela e-tjänster med andra*. Details: [sharing.md](sharing.md).
+There is a service on **Provrummet** used for this: *Dela e-tjänster med andra*. Details.
 
 ## Blankettgeneratorn
 
@@ -1253,11 +1150,11 @@ The generated blankett is **not** a fillable computer form. It is for people who
 ```
 if (Model.RequireId)
 {
-  <label class="signLabel signLabelFirst">Sökandes underskrift</label>
-  <table class="signTable">
-    <tr><td><strong>Ort och datum</strong></td></tr>
-    <tr><td><strong>Underskrift</strong></td></tr>
-  </table>
+ <label class="signLabel signLabelFirst">Sökandes underskrift</label>
+ <table class="signTable">
+ <tr><td><strong>Ort och datum</strong></td></tr>
+ <tr><td><strong>Underskrift</strong></td></tr>
+ </table>
 }
 ```
 
@@ -1270,7 +1167,7 @@ If the e-tjänst does not require e-leg, that block is omitted.
 3. Choose the service, tick **Blankett genereras från e-tjänst**
 4. Save
 
-The portal can then show **Till e-tjänst** and/or **Blankett**. The module must be enabled. Full behaviour: [document-templates.md](document-templates.md).
+The portal can then show **Till e-tjänst** and/or **Blankett**. The module must be enabled. Full behaviour.
 
 ## När görs AD-uppslag?
 
@@ -1278,7 +1175,7 @@ The portal can then show **Till e-tjänst** and/or **Blankett**. The module must
 - Someone with rights admin opens the rights UI (update user / add user)
 - Assigned handläggare is loaded/shown in the case list and on case details
 
-Product: builder `integrations/active-directory.md`. Sync users: [functionality.md](functionality.md).
+Product: builder . Sync users.
 
 ## Handläggare notifierad när något hänt på dennes ärende
 
@@ -1292,11 +1189,11 @@ Configure a **statusmeddelande** to the assigned caseworker. Triggers:
 
 Yes. Field **ServiceRequestEmail**: alternatives in a dropdown; each alternative maps to **one** email (same address may be reused). Mapping is **database configuration** (Sokigo). Typical: felanmälan by förvaltning, school services by school.
 
-Builder also has **Meddelande per svarsalternativ** on choice fields (`messages.md`) — that is the self-serve field argument, not this ServiceRequestEmail DB map.
+Builder also has **Meddelande per svarsalternativ** on choice fields — that is the self-serve field argument, not this ServiceRequestEmail DB map.
 
 ## Filtrera/söka i ärendelistan (Admin)
 
-Date submitted, ärendetyp (only services you may see), status, diarienummer, ärendenummer, handläggare username. Optional extra columns = chosen fältsvar — **cannot** filter/search on those. [cases.md](cases.md).
+Date submitted, ärendetyp (only services you may see), status, diarienummer, ärendenummer, handläggare username. Optional extra columns = chosen fältsvar — **cannot** filter/search on those. .
 
 ## Vilka SQL-databaser?
 
@@ -1304,17 +1201,17 @@ Wiki list (historical): SQL 2012, SQL 2008 R2, SQL 2008; recommendation at the t
 
 ## Visa/dölja fält direkt på sidan
 
-Yes: **klientlogik** or **fältregler**. Builder `rules-validators.md` and client mallar.
+Yes: **klientlogik** or **fältregler**. Builder and client mallar.
 
 ## Ibland en, ibland två signaturer (vårdnadshavare)
 
 Build **multipelsignering**. The extra page has the second guardian’s fields plus a radio: sole guardian or not. If sole guardian, the other fields are not required (and vice versa).
 
-Sokigo can also wire a **Skatteverket** check of one vs two guardians. Builder: `create-and-settings.md` *Multipelsignering*.
+Sokigo can also wire a **Skatteverket** check of one vs two guardians. Builder: *Multipelsignering*.
 
 ## Vilka data från Navet?
 
-Among others: personnummer, namn, adress, civilstånd, födelseort. Full property list: builder `integrations/navet.md`.
+Among others: personnummer, namn, adress, civilstånd, födelseort. Full property list: builder .
 
 ## Roller (invånare, företag, förening)
 
@@ -1328,7 +1225,7 @@ If the citizen uses a service **with e-legitimation**, personuppgifter are store
 
 ## Kan kunden editera sidor (text och bild)?
 
-Yes: ordinary pages (Kontakta oss, FAQ, Handläggningstider, …) in Admin. E-tjänst editorial (help, tacksida) too. Links and images: upload under **Dokument** first. [admin.md](admin.md).
+Yes: ordinary pages (Kontakta oss, FAQ, Handläggningstider, …) in Admin. E-tjänst editorial (help, tacksida) too. Links and images: upload under **Dokument** first. .
 
 ## Kan ärendet skrivas ut?
 
@@ -1359,16 +1256,13 @@ Builder: field help text.
 
 Wiki FAQ names: CGI (fd Logica), Visma Sirius, BankID, Nordic Edge, Svensk e-identitet, Medborgarkonto from Svensk e-identitet.
 
-**Current signing providers** on the Funktionalitet page (prefer this): Twoday (f.d. Visma Sirius), CGI, Svensk e-identitet, Signport/KnowIT (fd Cybercom). Login: any SAML2 IdP; methods Mobilt BankID, Freja, Freja eID+, eIDAS. Avtal + Sokigo config. [functionality.md](functionality.md).
+**Current signing providers** on the Funktionalitet page (prefer this): Twoday (f.d. Visma Sirius), CGI, Svensk e-identitet, Signport/KnowIT (fd Cybercom). Login: any SAML2 IdP; methods Mobilt BankID, Freja, Freja eID+, eIDAS. Avtal + Sokigo config. .
 
 ## AD — vad är det?
 
-Microsoft Active Directory for **internal** login (LDAP or IdP). Full product notes: builder `integrations/active-directory.md`. When lookups run: section above.
-
+Microsoft Active Directory for **internal** login (LDAP or IdP). Full product notes: builder . When lookups run: section above.
 
 ---
-
-## Källa: `references/sharing.md`
 
 # Dela e-tjänster med andra
 
@@ -1376,12 +1270,9 @@ Microsoft Active Directory for **internal** login (LDAP or IdP). Full product no
 
 To publish one of yours into Provrummet, Sokigo provides an e-tjänst on Provrummet named **Dela e-tjänster med andra**. That is not the same as Admin zip export between your own test/prod.
 
-After import: only **Redaktör** is granted ([faq.md](faq.md), [admin.md](admin.md)). Booking slots do not import; Python `SlotFilter` code does. Rights and editorial texts follow the usual import rules ([operations.md](operations.md)).
-
+After import: only **Redaktör** is granted (, ). Booking slots do not import; Python `SlotFilter` code does. Rights and editorial texts follow the usual import rules .
 
 ---
-
-## Källa: `references/operations.md`
 
 # Checklista och deploy
 
@@ -1390,7 +1281,7 @@ After import: only **Redaktör** is granted ([faq.md](faq.md), [admin.md](admin.
 ### First time (service not in prod yet)
 
 1. Export in **test**
-2. Import in **prod** (grants **Redaktör** only — [faq.md](faq.md), [admin.md](admin.md))
+2. Import in **prod** (grants **Redaktör** only — , )
 3. Tell Sokigo if the service needs **database wiring** they own (payment, bokning, …) and **when** you will go live
 4. Set handläggare/redaktör rights — **rights do not travel with the import**
 5. Submit a **test case** in prod: logic, texts, messages, PDF. Warn whoever owns the funktionsbrevlåda
@@ -1406,7 +1297,7 @@ After import: only **Redaktör** is granted ([faq.md](faq.md), [admin.md](admin.
 5. Import into **prod** — normally **do not** take editorial texts with the import
 6. Submit a test case again; warn the funktionsbrevlåda owners
 
-Also: publishing ≠ activating; empty menygrupper stay hidden; blankett is a separate publish tick; Python needs **Redigera och exekvera Python-kod**; ThankYou Python plugin may need app-pool recycle (builder `logic.md`); test mail often hits a generic mailbox ([faq.md](faq.md)); do not delete a production e-tjänst until cases/köer/bokningar are gone ([admin.md](admin.md)).
+Also: publishing ≠ activating; empty menygrupper stay hidden; blankett is a separate publish tick; Python needs **Redigera och exekvera Python-kod**; ThankYou Python plugin may need app-pool recycle (builder ); test mail often hits a generic mailbox ; do not delete a production e-tjänst until cases/köer/bokningar are gone .
 
 ## Deployprocess (Sokigo platform release)
 
@@ -1433,20 +1324,17 @@ Customer-facing process for a **new Abou version** (not the same as importing on
 
 Do not invent IIS slots or who clicks the actual deploy.
 
-
 ---
-
-## Källa: `references/message-tokens.md`
 
 # Tokens in meddelandemallar
 
 Source: *Värden i meddelandemallar* (pageId `60096729`) plus builder messages notes. Read 2026-08-25.
 
-Always `$name$` (case-sensitive). Field answers: Razor `@this.Model["AVB.2"]` (FriendlyFieldId). Razor **does not** work in **scheduled reminder** mallar or in SMS.
+Always `$name$` (case-sensitive: `$serviceName$` not `$ServiceName$`). Field answers: Razor `@this.Model["AVB.2"]` (FriendlyFieldId). Razor **does not** work in **scheduled reminder** mallar or in SMS.
 
 If you write a field id with a raw `@` in the answer and skip `@Model[]`, PDF generation can fail.
 
-Builder coupling (when/to/attachments): `build-abou-etjanst-web/references/messages.md`. Object model: [technical/htmlcasemodel.md](technical/htmlcasemodel.md).
+How to write status/kö mail and couple attachments: see meddelandemallar (when/to/attachments). HtmlCaseModel is the Razor object in dokumentmall and in e-post that uses `@Model`.
 
 ## General
 
@@ -1481,10 +1369,7 @@ Min sida case URL pattern (builder docs): `…/Citizen/MyPage2#/cases/$uniqueID$
 
 `@Model.ApplicantPayment.Amount`, `.TransactionId`, `.PayedBy`.
 
-
 ---
-
-## Källa: `references/technical/INDEX.md`
 
 # Technical documentation
 
@@ -1492,21 +1377,18 @@ Hub: *Teknisk Information & Dokumentation*. Read 2026-08-25.
 
 | Need | File |
 | --- | --- |
-| REST methods to update/fetch cases | [rest-api.md](rest-api.md) |
-| `self.Citizen`, Citizen vs CitizenInfo, Navet/KIR mapping | [citizeninfo.md](citizeninfo.md) |
-| `@Model` Razor in dokumentmall, e-post, ThankYouAdvanced | [htmlcasemodel.md](htmlcasemodel.md) |
-| GDPR, eIDAS, TLS, browsers, WCAG, pentest, hosting | [compliance.md](compliance.md) |
+| REST methods to update/fetch cases | |
+| `self.Citizen`, Citizen vs CitizenInfo, Navet/KIR mapping | |
+| `@Model` Razor in dokumentmall, e-post, ThankYouAdvanced | |
+| GDPR, eIDAS, TLS, browsers, WCAG, pentest, hosting | |
 
 **Testpersoner i Abou:** official Sokigo test identities (including sekretess / avliden). Use that Confluence page for numbers — do not copy personnummer into git.
 
 **Ansvarsfördelning vid drift On Prem** and **Teknisk kravspecifikation - Abou Intern Hosting** are PDFs on Confluence; not transcribed here.
 
-**Abou REST API** is a PDF (*Abou REST API version 2.5.2*, 56 pages). Method names: [rest-api.md](rest-api.md). Request/response schemas were not transcribed (too large). Ask Sokigo support for the PDF / test endpoints — do not tell the user to log into the wiki.
-
+**Abou REST API** is a PDF (*Abou REST API version 2.5.2*, 56 pages). Method names. Request/response schemas were not transcribed (too large). Ask Sokigo support for the PDF / test endpoints — do not tell the user to log into the wiki.
 
 ---
-
-## Källa: `references/technical/rest-api.md`
 
 # Abou REST API
 
@@ -1568,16 +1450,13 @@ RequestSupplementRequest, CancelSupplementRequest, CaseDecisionRequest, CitizenR
 
 Do not invent property lists for these.
 
-
 ---
-
-## Källa: `references/technical/citizeninfo.md`
 
 # CitizenInfo and Citizen
 
 Source: *CitizenInfo*. Read 2026-08-25.
 
-Person data always comes from an **external plugin** (Navet, KIR, PulsenId, TEIS, …). Builder Python: also [navet.md](../../../build-abou-etjanst-web/references/integrations/navet.md) and mallar.
+Person data always comes from an **external plugin** (Navet, KIR, PulsenId, TEIS, …). Builder Python: also and mallar.
 
 ## CitizenInfo (stored)
 
@@ -1623,10 +1502,7 @@ self.GetCitizenInfoLookup(socialSecurityNumber)
 
 Do not log real personnummer.
 
-
 ---
-
-## Källa: `references/technical/htmlcasemodel.md`
 
 # HtmlCaseModel (Razor)
 
@@ -1680,7 +1556,26 @@ Nullables: never dereference when null.
 | ApplicantSignature | Signature | Applicant |
 | SortedRecentCoApplicantSignatures | List | Co-signers by name |
 | SortedRecentAttestSignatures | List of SignatureAttest | Attest |
+| FirstSignedByAll | DateTime? | When all required signatures existed; use `.HasValue` before `.Value` |
+| Pages | enumerable | Layout pages for the PDF dump |
+| Supplements | enumerable | Requested kompletteringar |
 | `Model[friendlyId]` | Field | Lookup by FriendlyFieldId |
+| HasValue(friendlyId) | bool | True when that field should print |
+
+### Page / Block (dokumentmall)
+
+| Name | Meaning |
+| --- | --- |
+| page.DisplayName | Page title in the PDF |
+| page.HasAnyValues | Skip empty pages |
+| page.IsBlockPage | Blocks have their own headers |
+| page.Blocks | Blocks on the page |
+| block.Header | Caption when IsBlockPage |
+| block.Fields | Fields to loop (prefer this over `page.Fields` in new mallar) |
+
+`Model.HasValue(field.FriendlyFieldId)` — skip unanswered questions on the PDF.
+
+Table-like answers: `field.Answer.Contains("<table ")` (substring, including the space). Then print Answer as HTML, not as a plain cell.
 
 ### Administrator
 
@@ -1692,11 +1587,11 @@ Id, SocialSecurityNumber (personnummer or AD identity), FirstName, LastName, Ema
 
 ### Decision
 
-Date, Comment, DecisionText (**Avslaget** or **Godkänt**), Administrator (full name, else username, else empty / API).
+Date, Comment, DecisionText (**Avslaget** or **Godkänt**), **Adminstrator** (spelling in the model — full name, else username, else empty / API).
 
 ### Service
 
-DisplayName, Name, ShortName, RequiresMultipleSignatures, RequiresAuthentication, RequiresSignature, ServiceNr (stable across versions).
+RequiresEid / RequiresAuthentication / RequiresSignature / RequiresMultipleSignatures, DisplayName, Name, ShortName, ServiceNr (stable across versions).
 
 ### Field
 
@@ -1714,14 +1609,22 @@ DisplayName, Name, ShortName, RequiresMultipleSignatures, RequiresAuthentication
 
 ### Payment
 
-Amount (provider units may differ), PayedBy (Citizen; docs note it “borde heta PaidBy”), PaymentType, TransactionId.
+Amount (provider units may differ), OrderId, Date, PayedBy (Citizen; docs note it “borde heta PaidBy”), PaymentType, TransactionId.
 
-## Signatures (examples)
+## Signatures
+
+`ApplicantSignature` — the sökande. `SortedRecentCoApplicantSignatures` — medsökande. `SortedRecentAttestSignatures` — attest; extra `SignatureAttest.AnswerString`, `.Comment`, `.Attachment` (FileName). `Signatures` — full list; filter with `SignatureType.Applicant` (namespace `Abou.Calamare.Framework.HtmlTemplate`).
+
+Each signature: `Signed` (DateTime), `Issuer`, `SignedBy` (FirstName, LastName, SocialSecurityNumber, DisplayName).
 
 ```
 @Model.ApplicantSignature.SignedBy.DisplayName
 @foreach (var signature in Model.SortedRecentCoApplicantSignatures){@(signature.SignedBy.DisplayName + "\n")}
 ```
+
+## Supplements
+
+Title, DateRequested, DateCompleted, OriginalFileNamesJoined, CitizenComment. Loop `Model.Supplements`.
 
 ## Enums (UPPRÄKNINGAR)
 
@@ -1731,12 +1634,9 @@ Amount (provider units may differ), PayedBy (Citizen; docs note it “borde heta
 
 **ProposalFilterType** (e-förslag list filters): *Inväntar publicering*, *Röstning pågår*, *Inväntar ställningstagande*, plus decided statuses *Godkänt* / *Avslaget* / *Besvarat* / *Avslutad*. URL example: `/Citizen/Proposal?status=Godkänt&status=Avslaget` (space as `%20`).
 
-Substitution **`$token$`** list: [../message-tokens.md](../message-tokens.md).
-
+Substitution tokens `$name$` are listed under meddelandemallar / tokens.
 
 ---
-
-## Källa: `references/technical/compliance.md`
 
 # Compliance, hosting, browsers, eIDAS
 
@@ -1752,7 +1652,7 @@ Latest **Edge, Firefox, Chrome, Safari**. Older versions only as long as they ar
 
 ## GDPR (*Information om GDPR*)
 
-Sokigo documents GDPR approach, internal systems, planned work, and customer responsibilities. Person data in Abou is plugin-backed ([citizeninfo.md](citizeninfo.md)). Do not store extra person fields in Python. Scheduled **Synkronisera personuppgifter** and soft/permanent delete are the operational tools ([../scheduling.md](../scheduling.md)).
+Sokigo documents GDPR approach, internal systems, planned work, and customer responsibilities. Person data in Abou is plugin-backed . Do not store extra person fields in Python. Scheduled **Synkronisera personuppgifter** and soft/permanent delete are the operational tools .
 
 ## eIDAS (*Vad är EIDAS*, pageId `60096954`)
 
@@ -1784,6 +1684,5 @@ Confluence *Penetrationstester av Abou* records that tests exist. **Do not copy 
 
 - Ansvarsfördelning vid drift On Prem (`161742875`)
 - Teknisk kravspecifikation - Abou Intern Hosting
-
 
 ---
