@@ -44,6 +44,7 @@ This page is **how the integration is used**, not a SDK dump. Types and calls:
 | Session PersonPost (GDPR bypass on `self.Citizen`) | `GetCitizenInfoLookUp` | [pagenode-api.md](../logic-templates/pagenode-api.md) |
 | Children + other vårdnadshavare (`VF`) | `CitizenServiceProxy` / `ProxyRequest` | [navet-dropdown.md](../logic-templates/navet-dropdown.md), [navet-table.md](../logic-templates/navet-table.md) |
 | Full PersonPost JSON, reuse in `Session` | `ICitizenServicePluginFactory.GetCitizenAsJson` | [extended-citizen.md](../logic-templates/extended-citizen.md) |
+| School-registered contacts / write email+phone | Edlevo / Procapita (`procapita1_1`) — **not** Navet | [edlevo.md](edlevo.md) |
 
 Map of all extra types: [libraries.md](../logic-templates/libraries.md). Clone from a working service on the same site if the mall needs adapting (certificates, avtal).
 

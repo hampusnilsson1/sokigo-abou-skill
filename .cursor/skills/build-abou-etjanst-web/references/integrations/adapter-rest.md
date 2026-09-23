@@ -7,6 +7,7 @@ Generic adapter toward **one or more REST APIs**.
 - **Python in the e-tjänst** names the methods and the request/response JSON.
 - The adapter handles **security** and **which endpoints** to call (sysadmin).
 - You must know the target API. Examples in docs: Ängelholm → Procapita Education via Mule; Täby → BookIT.
+- **Edlevo is Procapita** (rename when the UI changed). Production Skolstart resolves named `IRestWrapperService("procapita1_1")` and uses `Get`/`Post` — see [edlevo.md](edlevo.md).
 
 There is **no method list** on this Confluence page. The library in Python is `IRestWrapperServiceFactory` + a **named** sysadmin config (URL, auth, `ExtendedConfigurationData`). Example of how to call it: [ad-lookup.md](../logic-templates/ad-lookup.md) (`InternalWebSearch`). How it fits: [libraries.md](../logic-templates/libraries.md).
 

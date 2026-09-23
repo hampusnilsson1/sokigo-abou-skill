@@ -38,6 +38,7 @@ How to use the library: [libraries.md](libraries.md) + [pagenode-api.md](pagenod
 | Sums / läggtillrad | [calculations.md](calculations.md) |
 | Build tabellfält JSON | [table-field.md](table-field.md) |
 | After submit (`Published`) | [thankyou.md](thankyou.md) |
+| Edlevo / Procapita contacts (GET + POST) | [edlevo-contacts.md](edlevo-contacts.md) |
 | Full PersonPost JSON | [extended-citizen.md](extended-citizen.md) |
 
 Thank-you **plugin** `IPythonCaseService`: [../logic.md](../logic.md).

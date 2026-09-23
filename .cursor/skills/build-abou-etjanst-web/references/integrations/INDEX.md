@@ -24,6 +24,7 @@ The Integrationer Confluence page often describes the **product**, not the Pytho
 | Need | How it is used | File |
 | --- | --- | --- |
 | Personuppgifter / barn / vårdnadshavare | Integrerade fält, session LookUp, or `CitizenServiceProxy` mallar | [navet.md](navet.md) |
+| Elev / skolkontakter / skriv tillbaka e-post | Named RestWrapper `procapita1_1` (Edlevo = Procapita) | [edlevo.md](edlevo.md) |
 | Företag / organisationsnummer | SSBTGU/SSBTGO; builder/plugin, not a PageNode mall in this skill | [bolagsverket.md](bolagsverket.md) |
 | Valfritt REST-API from Python | `IRestWrapperServiceFactory` + named sysadmin config | [adapter-rest.md](adapter-rest.md) |
 | BankID / e-leg (login, sign) | Service settings + signeringsida; not PageLogic | [e-legitimation.md](e-legitimation.md) |

@@ -22,6 +22,7 @@ Read 2026-08-21 from Integrationer children. These are **Sokigo-built adapters**
 | Sokigo OL2 | Folköl/tobak/e-cig (Karlskrona) |
 | Sokigo Orbit | Felanmälan on complete (Huddinge) |
 | Sokigo Skolskjuts | Prefill elev; send application; prelim decisions (Trelleborg) |
+| Edlevo / Procapita | Same school product (rename). Named RestWrapper `procapita1_1`; GET contacts, POST email/phone. Not a Confluence child. [edlevo.md](edlevo.md) |
 | Solarplexus Lex | XML on disk → Lex Talk (Upplands Väsby) |
 
 AlkT and ByggR/Ecos are the richest Sokigo ones. No Python method tables except EDP Future ([edp-future.md](edp-future.md)).
