@@ -60,7 +60,7 @@ def strip_skill_refs(text: str) -> str:
     text = re.sub(r"\(\s*\)", "", text)
     text = re.sub(r"\s+—\s*\.", ".", text)
     text = re.sub(r"\b[Ss]ee\s*\.", "", text)
-    text = re.sub(r":\s*,(?:\s*,)*\s*\.?", ".", text)
+    text = re.sub(r":\s*,(?:\s*,)*\s*\.??", ".", text)
     text = re.sub(r",\s*\.", ".", text)
     text = re.sub(r"[ \t]+\n", "\n", text)
     text = re.sub(r" +", " ", text)
@@ -168,6 +168,7 @@ def main() -> None:
         "references/logic-templates/calculations.md",
         "references/logic-templates/table-field.md",
         "references/logic-templates/thankyou.md",
+        "references/logic-templates/edlevo-contacts.md",
         "references/logic-templates/extended-citizen.md",
         "references/logic-templates/client/api.md",
         "references/logic-templates/client/empty.md",
@@ -177,6 +178,7 @@ def main() -> None:
         "references/integrations/INDEX.md",
         "references/integrations/catalog.md",
         "references/integrations/navet.md",
+        "references/integrations/edlevo.md",
         "references/integrations/bolagsverket.md",
         "references/integrations/adapter-rest.md",
         "references/integrations/e-legitimation.md",
@@ -196,7 +198,7 @@ def main() -> None:
         render(
             "Bygg Abou e-tjänst — kunskapsbas",
             "All kunskap för **e-tjänstebyggaren**: sidor, fält, fältregler, validatorer, "
-            "Python/JS-bibliotek, logikmallar och Integrationer (Navet, REST, betalning, AD, EDP, …).",
+            "Python/JS-bibliotek, logikmallar och Integrationer (Navet, Edlevo/Procapita, REST, betalning, AD, EDP, …).",
             collect_md(builder_dir, builder_order),
         ),
         encoding="utf-8",
