@@ -1,6 +1,6 @@
 ---
 name: build-abou-etjanst-web
-description: Build Sokigo Abou e-tjänster in the web builder. Documents PageNode/PageLogic libraries, integrations, and builder mallar. Use when creating, configuring, explaining, or reviewing Abou e-services — pages, fields, validators, Python, client JS, Navet, REST, payment, AD, EDP.
+description: Build Sokigo Abou e-tjänster in the web builder. Documents PageNode/PageLogic libraries, integrations, and builder mallar. Use when creating, configuring, explaining, or reviewing Abou e-services — pages, fields, validators, Python, client JS, Navet, Edlevo/Procapita, REST, payment, AD, EDP.
 ---
 
 # Build an Abou e-tjänst in the web builder
@@ -28,7 +28,7 @@ Read the matching file when you:
 - Explain what Python, JavaScript, or an integration can do
 - Choose between fältregler, klientlogik, and sidlogik
 - Review or debug logic the user pasted
-- Design a flow that uses Navet, REST, payment, AD, EDP, …
+- Design a flow that uses Navet, Edlevo/Procapita, REST, payment, AD, EDP, …
 - Write or adapt Logik / Klientlogik
 
 | Need | Documentation |
@@ -52,7 +52,7 @@ Ask only for what is missing, then give **builder steps**:
 2. Add **layoutsidor**, blocks, and fields ([pages-and-fields.md](references/pages-and-fields.md), [field-types.md](references/field-types.md)).
 3. Set **fältregler / visningsvillkor** before writing Python for show/hide or page skip ([rules-validators.md](references/rules-validators.md)).
 4. Use **Pythonlogik** or **Klientlogik** only when the UI cannot do it. Read [libraries.md](references/logic-templates/libraries.md) for how the APIs work, then one mall from [INDEX.md](references/logic-templates/INDEX.md) if you implement.
-5. If the service needs a register or backend (Navet, Bolagsverket, ByggR, REST, …), read **only** the matching file under [integrations/INDEX.md](references/integrations/INDEX.md) (how that integration is used). Do not load the whole integrations folder.
+5. If the service needs a register or backend (Navet, Edlevo/Procapita, Bolagsverket, ByggR, REST, …), read **only** the matching file under [integrations/INDEX.md](references/integrations/INDEX.md) (how that integration is used). Do not load the whole integrations folder.
 6. **Förhandsvisa e-tjänsten** on the page you are editing. Do not publish to production unless the user asked in this message.
 
 Paste-here: if you cannot click the builder, describe the exact tab, field, and value. Ask the user to paste screenshots or confirm labels.
@@ -86,6 +86,7 @@ These were **not** a complete IronPython or JS SDK on *Att bygga e-tjänster*:
 - The children-macro **Validatorer** (26 articles) on the hub did not resolve to live pages (404). Use [rules-validators.md](references/rules-validators.md) (*Konfigurera validatorer*).
 - Navet integration page (`58524277`) describes PersonPost/NamnSökning and properties, **not** a `CitizenServiceProxy` API. Relation lookup is the builder mallar; method names in [navet.md](references/integrations/navet.md) are from those mallar.
 - Most other integrations are product blurbs + Sokigo config. Only **EDP Future** publishes a Python method list.
+- **Edlevo / Procapita** is not on Confluence. Same school product (rename). Pattern from production Skolstart: [edlevo.md](references/integrations/edlevo.md).
 
 ## References
 
@@ -97,6 +98,7 @@ These were **not** a complete IronPython or JS SDK on *Att bygga e-tjänster*:
 - [logic-templates/libraries.md](references/logic-templates/libraries.md) — how PageNode, PageLogic, and extra types are used
 - [logic-templates/INDEX.md](references/logic-templates/INDEX.md) — mallar as examples (pick one)
 - [integrations/INDEX.md](references/integrations/INDEX.md) — how each integration is used (pick one)
+- [integrations/edlevo.md](references/integrations/edlevo.md) — Edlevo / Procapita (`procapita1_1`)
 - [document-templates.md](references/document-templates.md) — Dokumentmallar, blankett, editerbar PDF
 - [builder-ui.md](references/builder-ui.md) — layout builder, preview, shortcuts
 - [messages.md](references/messages.md) — emails, status notices, co-signer notify

@@ -70,7 +70,7 @@ Runs in the browser when answers **on this page** change. Cannot see other pages
 | One field | `self.GetField(id)` then `SetAnswer` / `GetAnswer` / `SetHidden` / `EmptyField` |
 | Same without instance | `self.SetAnswer(id, v)` / `GetAnswer` / `SetHidden` / `EmptyField` |
 | Several fields/blocks | `EmptyFields` / `SetHiddenFields` / `SetHiddenBlocks` |
-| React to a value | `field.When("equals"\|"notequals"\|"contains"\|"notcontains", value, fn)` |
+| React to a value | `field.When("equals"|"notequals"|"contains"|"notcontains", value, fn)` |
 | Custom compare | `self.When(fn, value, callback)` |
 | Split text/value on change | `field.WhenEvent(fn, "change")` + `GetValueFromQuestionAlternative` |
 
@@ -81,10 +81,11 @@ Full list: [client/api.md](client/api.md). Examples: [handle-field.md](client/ha
 These are **not** always available. They need the field type and usually a **sysadmin-enabled** integration. Document the product in `integrations/`, use the type as shown in the mall.
 
 | Type / factory | What it is | Integration / setup | Example |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | `CitizenServiceProxy`, `ProxyRequest` | Children / other guardians from Navet (`VF`, skyddad identitet) | [navet.md](../integrations/navet.md) | [navet-dropdown.md](navet-dropdown.md), [navet-table.md](navet-table.md) |
 | `ICitizenServicePluginFactory` + `GetCitizenAsJson` | Full PersonPost JSON (Navet / TEST / TEIS shapes differ) | [navet.md](../integrations/navet.md) | [extended-citizen.md](extended-citizen.md) |
 | `IRestWrapperServiceFactory` | Named REST config (URL, auth). Python fills `IntegrationHttpRequest.Parameters` | [adapter-rest.md](../integrations/adapter-rest.md) | [ad-lookup.md](ad-lookup.md) (`InternalWebSearch`) |
+| `IRestWrapperService("procapita1_1")` | Edlevo / Procapita (same product). `HttpRequest` + `Get`/`Post`; URL `{0}`=elev-pnr, `{1}`=skoltyp | [edlevo.md](../integrations/edlevo.md) | [edlevo-contacts.md](edlevo-contacts.md) |
 | `SlotFilter` on booking field | Filter bookable slots (admin, days, text, weekends) | Booking field on the page | [booking-filter.md](booking-filter.md) |
 | `TableFieldModel` | Table JSON (headers, widths ≤ 12, rows) | Tabellfält; not in preview | [table-field.md](table-field.md) |
 | `AnswersModel.Deserialize` | Läggtillrad cells `Answer1`, `Answer2`, … | [calculations.md](calculations.md) | same |
