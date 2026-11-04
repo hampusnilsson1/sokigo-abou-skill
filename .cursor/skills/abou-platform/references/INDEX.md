@@ -22,7 +22,7 @@ These files **are** the documentation. The wiki is behind login; do not send the
 | Dela e-tjänster med andra kommuner | [sharing.md](sharing.md) |
 | Checklista driftsättning / deploy | [operations.md](operations.md) |
 | `$uniqueID$`, kö/bokning tokens, Razor in mallar | [message-tokens.md](message-tokens.md) |
-| REST API method names | [technical/rest-api.md](technical/rest-api.md) |
+| REST API v2.4.4 (auth, 28 methods, payloads, C#) | [technical/rest-api.md](technical/rest-api.md) |
 | `self.Citizen` vs `GetCitizen` vs GetCitizenAsJson | [technical/citizeninfo.md](technical/citizeninfo.md) |
 | `@Model` in dokumentmall / ThankYouAdvanced / e-post | [technical/htmlcasemodel.md](technical/htmlcasemodel.md) |
 | GDPR, eIDAS, TLS, browsers, WCAG, hosting | [technical/INDEX.md](technical/INDEX.md) |

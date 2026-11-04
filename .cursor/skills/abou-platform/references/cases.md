@@ -27,4 +27,4 @@ Default statuses (change under service **Inställningar**): Inkommet, Registrera
 
 ## Diarienummer vs REST
 
-UI or API `UpdateDiaryNumber`. Message when **När diarienummer sätts**.
+UI **Ange diarienummer**, or REST `UpdateDiaryNumber` (PUT, **Statusuppdaterare**). Message when **När diarienummer sätts**. Payload: [REST API](technical/rest-api.md).

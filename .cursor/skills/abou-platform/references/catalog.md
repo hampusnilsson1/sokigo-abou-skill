@@ -4,7 +4,9 @@ Ingested 2026-08-25 from Confluence space Abou.
 
 **Already covered with the builder notes:** *Att bygga e-tjänster* and *Integrationer*. Do not duplicate those here.
 
-**Not ingested (intentionally):** Release-note bodies, Community presentations, Webinar videos, Minut Bygg, Minut Miljö. REST API request/response schemas (PDF). On-prem hosting PDFs (headings only in compliance). Testpersoner personnummer (never copy into git).
+**Not ingested (intentionally):** Release-note bodies, Community presentations, Webinar videos, Minut Bygg, Minut Miljö. On-prem hosting PDFs (headings only in compliance). Testpersoner personnummer (never copy into git).
+
+**Abou REST API v2.4.4** (Sokigo PDF, 55 pages) is ingested in full, including notes on errors in the original ([full text](technical/abou-rest-api-v2.4.4.md), [method map](technical/rest-api.md)).
 
 ## Abou (main hub)
 

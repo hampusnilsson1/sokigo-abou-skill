@@ -20,7 +20,9 @@ Must exist in the **same environment**. Export service to prod → export regist
 
 ## Rights
 
-Anyone in Admin can **see** registers and coupling. Editors can couple. Create/update/import/export/delete needs system **Administrera Register**.
+Anyone in Admin can **see** registers and coupling. Editors can couple. Create/update/import/export/delete in the UI needs system **Administrera Register**.
+
+REST `ImportRegister` (`PUT /api/v2/registers/ImportRegister`) is a different entry. The API PDF names systembehörighet **Importera register**. It creates a register or overwrites one with the same SystemName and can couple it to e-tjänster. Payload: [REST API reference](technical/abou-rest-api-v2.4.4.md).
 
 ## Text/värde
 

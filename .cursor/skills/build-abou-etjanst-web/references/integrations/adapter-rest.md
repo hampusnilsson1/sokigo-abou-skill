@@ -2,7 +2,7 @@
 
 Docs: [Adapter Rest](https://dok.sokigo.com/display/ABOU/Adapter+Rest). Read 2026-08-21.
 
-Generic adapter toward **one or more REST APIs**.
+Generic adapter toward **one or more REST APIs** that an e-tjänst calls from Python. Abou's own case API (external system → Abou, token or API key) is [Abou REST API](../../../abou-platform/references/technical/rest-api.md), not this adapter.
 
 - **Python in the e-tjänst** names the methods and the request/response JSON.
 - The adapter handles **security** and **which endpoints** to call (sysadmin).

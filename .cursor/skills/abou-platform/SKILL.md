@@ -37,9 +37,18 @@ Start at [references/INDEX.md](references/INDEX.md). Read **one** topic file. Ca
 | FAQ (Q&A from the wiki) | [faq.md](references/faq.md) |
 | Dela e-tjänster | [sharing.md](references/sharing.md) |
 | Driftsättning / deploy notes | [operations.md](references/operations.md) |
-| REST API, CitizenInfo, HtmlCaseModel, GDPR, TLS | [technical/INDEX.md](references/technical/INDEX.md) |
+| REST API (auth, methods, payloads) | [technical/rest-api.md](references/technical/rest-api.md) |
+| CitizenInfo, HtmlCaseModel, GDPR, TLS | [technical/INDEX.md](references/technical/INDEX.md) |
 
-Builder pages, fields, Python mallar: **not here** — use `build-abou-etjanst-web`.
+Builder pages, fields, Python mallar: **not here** — use `build-abou-etjanst-web`. Adapter REST inside an e-tjänst is not this API.
+
+## REST API (v2.4.4)
+
+Use it when an **external system** reads or updates Abou: ärenden, komplettering, beslut, fältsvar, statistik, e-tjänster, register. Open [technical/rest-api.md](references/technical/rest-api.md) before naming a verb or path. Payloads, entities, and C# samples: [technical/abou-rest-api-v2.4.4.md](references/technical/abou-rest-api-v2.4.4.md) (Swedish; notes in that file mark errors in Sokigo's PDF — keep them, do not silently fix examples).
+
+**Auth.** Sokigo recommends a token (Abou 2021.8+). `GET /api/authenticate` or `GET /api/authenticate/{ServiceShortName}` with `Authorization: Basic` + Base64(`UserName:ApiKey`). The body is a JWT; later calls send `Authorization: Bearer`. If the call has a service short name, fetch the token with that name. API user: **Behörigheter → API-användare**, checkbox **Kräv tokenbaserad anslutning**. Older option: `username` and `apikey` on the query string (checkbox off). Example host `https://abou.sokigo.com/api` is fictional.
+
+**Calls.** 28 methods, mostly `/api/v2/services/{serviceShortName}/cases/{Method}`. Write/update (UpdateStatus, UpdateDiaryNumber, UpdateAdministrator, AddCitizens, FileUpload, CreateCase, NewDirectMessage, RequestSupplement*, CancelSupplement, CancelAllSupplements, UpdateFieldAnswers): **Statusuppdaterare**. Read (GetByDate*, GetByState, GetDetailed, *PdfDownload, AttachmentDownload, GetCaseListFromUserIdentity): **Enbart läsbehörighet**. DecisionOnExistingCase / DecisionToNewCase: **Beslutsfattare**. Outside that prefix: GetVersion, SearchServices, GetServices, ImportRegister (`PUT /api/v2/registers/ImportRegister`). GetDetailed does not return attachment bytes.
 
 ## Guardrails
 

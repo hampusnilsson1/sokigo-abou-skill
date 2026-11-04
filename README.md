@@ -22,7 +22,7 @@ Samma innehåll, samlat till tre markdownfiler för RAG. Filerna är självstän
 | --- | --- |
 | [kunskap/abou-web-guard.md](kunskap/abou-web-guard.md) | Web guard |
 | [kunskap/build-abou-etjanst-web.md](kunskap/build-abou-etjanst-web.md) | E-tjänstebyggaren + Integrationer |
-| [kunskap/abou-platform.md](kunskap/abou-platform.md) | Plattform (admin, Min sida, köer, FAQ, REST, …) |
+| [kunskap/abou-platform.md](kunskap/abou-platform.md) | Plattform (admin, Min sida, köer, FAQ, REST API 2.4.4, …) |
 
 Återskapa: `python3 kunskap/rebuild.py`
 
@@ -37,6 +37,8 @@ Ask the agent to help **build an e-tjänst in the web builder**, or to explain r
 ## Platform docs
 
 `.cursor/skills/abou-platform/references/` — start at `INDEX.md`. Catalog of Confluence pages outside the builder: `catalog.md`.
+
+Abou REST API **v2.4.4** (Sokigo PDF, Swedish): method map in `references/technical/rest-api.md` (token via `GET /api/authenticate` or API key, 28 methods). Full text, entities, and C# samples: `references/technical/abou-rest-api-v2.4.4.md`. Notes in that file mark errors in the original PDF.
 
 ## Public sources
 

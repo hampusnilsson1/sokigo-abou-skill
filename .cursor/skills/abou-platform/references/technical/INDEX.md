@@ -4,7 +4,7 @@ Hub: *Teknisk Information & Dokumentation*. Read 2026-08-25.
 
 | Need | File |
 | --- | --- |
-| REST methods to update/fetch cases | [rest-api.md](rest-api.md) |
+| REST API v2.4.4 — auth, methods, then the full PDF text | [method map](rest-api.md), [full text](abou-rest-api-v2.4.4.md) |
 | `self.Citizen`, Citizen vs CitizenInfo, Navet/KIR mapping | [citizeninfo.md](citizeninfo.md) |
 | `@Model` Razor in dokumentmall, e-post, ThankYouAdvanced | [htmlcasemodel.md](htmlcasemodel.md) |
 | GDPR, eIDAS, TLS, browsers, WCAG, pentest, hosting | [compliance.md](compliance.md) |
@@ -13,4 +13,4 @@ Hub: *Teknisk Information & Dokumentation*. Read 2026-08-25.
 
 **Ansvarsfördelning vid drift On Prem** and **Teknisk kravspecifikation - Abou Intern Hosting** are PDFs on Confluence; not transcribed here.
 
-**Abou REST API** is a PDF (*Abou REST API version 2.5.2*, 56 pages). Method names: [rest-api.md](rest-api.md). Request/response schemas were not transcribed (too large). Ask Sokigo support for the PDF / test endpoints — do not tell the user to log into the wiki.
+**Abou REST API v2.4.4** is transcribed in full (Sokigo PDF *Abou REST API v2_4_4*, 55 pages) in the [full REST reference](abou-rest-api-v2.4.4.md). Start at the [method map](rest-api.md) (when to call, token vs API key, method table). A 2026-08-25 note called the PDF version 2.5.2 and omitted schemas; that version label is not in the verified document. Ask Sokigo support for the real host and test credentials — do not tell the user to log into the wiki.
