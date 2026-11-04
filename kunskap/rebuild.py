@@ -47,8 +47,31 @@ def _replace_md_link(match: re.Match[str]) -> str:
     return label
 
 
-def strip_skill_refs(text: str) -> str:
-    """Remove pointers to skill files so RAG does not cite them."""
+_FENCE = re.compile(r"```.*?```", re.DOTALL)
+
+
+def strip_skill_refs(text: str, *, keep_fences: bool = False) -> str:
+    """Remove pointers to skill files so RAG does not cite them.
+
+    keep_fences leaves fenced samples untouched. The prose cleaner deletes
+    empty ``()`` and collapses runs of spaces, which corrupts C# in the
+    REST reference.
+    """
+    if not keep_fences:
+        return _strip_skill_refs(text)
+    blocks: list[str] = []
+
+    def _hold(match: re.Match[str]) -> str:
+        blocks.append(match.group(0))
+        return f"\n\nFENCEBLOCK{len(blocks) - 1}END\n\n"
+
+    cleaned = _strip_skill_refs(_FENCE.sub(_hold, text))
+    for i, block in enumerate(blocks):
+        cleaned = cleaned.replace(f"FENCEBLOCK{i}END", block)
+    return cleaned
+
+
+def _strip_skill_refs(text: str) -> str:
     text = MD_LINK.sub(_replace_md_link, text)
     text = BACKTICK_PATH.sub("", text)
     text = SKILL_PATH.sub("", text)
@@ -112,7 +135,10 @@ def render(title: str, blurb: str, files: list[Path]) -> str:
         "",
     ]
     for p in files:
-        body = strip_skill_refs(strip_frontmatter(p.read_text(encoding="utf-8")))
+        body = strip_skill_refs(
+            strip_frontmatter(p.read_text(encoding="utf-8")),
+            keep_fences=p.name == "abou-rest-api-v2.4.4.md",
+        )
         if not body.strip():
             continue
         parts.append(body.rstrip())
@@ -224,6 +250,7 @@ def main() -> None:
         "references/message-tokens.md",
         "references/technical/INDEX.md",
         "references/technical/rest-api.md",
+        "references/technical/abou-rest-api-v2.4.4.md",
         "references/technical/citizeninfo.md",
         "references/technical/htmlcasemodel.md",
         "references/technical/compliance.md",
@@ -233,7 +260,7 @@ def main() -> None:
             "Abou-plattform — kunskapsbas",
             "All kunskap utanför byggaren: behörigheter, admin, ärenden, Min sida, köer, "
             "bokning, register, e-förslag, schemaläggning, dokumentmallar, FAQ, Funktionalitet, "
-            "REST-metodnamn, CitizenInfo, HtmlCaseModel, GDPR/TLS.",
+            "REST API 2.4.4 (metoder, payload, entiteter, C#), CitizenInfo, HtmlCaseModel, GDPR/TLS.",
             collect_md(platform_dir, platform_order),
         ),
         encoding="utf-8",

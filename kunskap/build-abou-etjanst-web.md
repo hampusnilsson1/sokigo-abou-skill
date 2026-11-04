@@ -2393,6 +2393,7 @@ The Integrationer Confluence page often describes the **product**, not the Pytho
 | Personuppgifter / barn / vårdnadshavare | Integrerade fält, session LookUp, or `CitizenServiceProxy` mallar | |
 | Företag / organisationsnummer | SSBTGU/SSBTGO; builder/plugin, not a PageNode mall in this skill | |
 | Valfritt REST-API from Python | `IRestWrapperServiceFactory` + named sysadmin config | |
+| Abou's own REST API (external system ↔ ärenden) | Token or API key against `/api/v2`, not Adapter REST | Abou REST API |
 | BankID / e-leg (login, sign) | Service settings + signeringsida; not PageLogic | |
 | Fastighet / adress / detaljplan | Sokigo FB fields | |
 | Karta in vs GEO ut | GEO fields / publish | |
@@ -2513,7 +2514,7 @@ Builder: company/role integrated fields + login as **Företag**. Copy Python fro
 
 Docs: [Adapter Rest](https://dok.sokigo.com/display/ABOU/Adapter+Rest). Read 2026-08-21.
 
-Generic adapter toward **one or more REST APIs**.
+Generic adapter toward **one or more REST APIs** that an e-tjänst calls from Python. Abou's own case API (external system → Abou, token or API key) is Abou REST API, not this adapter.
 
 - **Python in the e-tjänst** names the methods and the request/response JSON.
 - The adapter handles **security** and **which endpoints** to call (sysadmin).

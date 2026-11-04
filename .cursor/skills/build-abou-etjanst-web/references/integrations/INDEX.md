@@ -26,6 +26,7 @@ The Integrationer Confluence page often describes the **product**, not the Pytho
 | Personuppgifter / barn / vårdnadshavare | Integrerade fält, session LookUp, or `CitizenServiceProxy` mallar | [navet.md](navet.md) |
 | Företag / organisationsnummer | SSBTGU/SSBTGO; builder/plugin, not a PageNode mall in this skill | [bolagsverket.md](bolagsverket.md) |
 | Valfritt REST-API from Python | `IRestWrapperServiceFactory` + named sysadmin config | [adapter-rest.md](adapter-rest.md) |
+| Abou's own REST API (external system ↔ ärenden) | Token or API key against `/api/v2`, not Adapter REST | [Abou REST API](../../../abou-platform/references/technical/rest-api.md) |
 | BankID / e-leg (login, sign) | Service settings + signeringsida; not PageLogic | [e-legitimation.md](e-legitimation.md) |
 | Fastighet / adress / detaljplan | Sokigo FB fields | [sokigo-fb.md](sokigo-fb.md) |
 | Karta in vs GEO ut | GEO fields / publish | [geo.md](geo.md) |

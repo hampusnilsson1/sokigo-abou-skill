@@ -64,3 +64,7 @@ Handläggare pickable for tilldelning = users with **Statusuppdaterare** on that
 Text editing includes: e-tjänstens namn, uppskattad handläggningstid (flik **Handläggningstider** / **Så funkar det** — not every graphic theme), handläggningsinformation, hjälptext on menygrupp, page name/body/right column, block rubrik/beskrivning, svarsalternativ (if enabled in builder), field help, text above/below field.
 
 Cannot delete a meddelandemall that is still coupled to a service.
+
+## API-användare (REST)
+
+Not in the wiki tables above. Abou REST API 2.4.4: flik **API-användare** under **Behörigheter** (användarnamn, API-nyckel, **Kräv tokenbaserad anslutning**). Case calls use the e-tjänst rights **Statusuppdaterare**, **Enbart läsbehörighet** (Läs), or **Beslutsfattare**. System rights named only in that PDF: **Hämta ärendestatistik**, **Hämta e-tjänster**, **Importera register**. Map and payloads: [REST API](technical/rest-api.md).
